@@ -30,7 +30,14 @@ def _convert_videos(
     Each video is split into *segment_duration_s*-second chunks.  Silent
     chunks (max amplitude < 5e-3) are discarded.
     """
+    import shutil
+
     import ffmpegio
+
+    # Auto-detect ffmpeg path if not in default locations
+    ffmpeg_bin = shutil.which("ffmpeg")
+    if ffmpeg_bin:
+        ffmpegio.set_path(os.path.dirname(ffmpeg_bin))
 
     os.makedirs(audio_dir, exist_ok=True)
 
