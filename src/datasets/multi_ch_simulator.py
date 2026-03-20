@@ -11,11 +11,17 @@ import soundfile as sf
 import librosa
 import torch
 import torchaudio
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    plt = None
 
 import logging
 
-from src.datasets.gen.multi_ch_simulator import SBSBRIR_Simulator
+try:
+    from src.datasets.gen.multi_ch_simulator import SBSBRIR_Simulator
+except ImportError:
+    SBSBRIR_Simulator = None
 
 # Logging is configured via setup_logging in entry point scripts
 logger = logging.getLogger(__name__)
