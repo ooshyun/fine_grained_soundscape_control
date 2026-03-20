@@ -238,11 +238,13 @@ class MultiFiLMGuidedTFNet(nn.Module):
         embedding_init: str = "",
         film_preset: str = "all_except_first",
         film_positions: list[int] | None = None,
+        freq_compression: int = 1,
     ) -> None:
         super().__init__()
         self.n_srcs = n_srcs
         self.n_layers = n_layers
         self.num_inputs = num_inputs
+        self.freq_compression = freq_compression
         assert n_fft % 2 == 0
         n_freqs = n_fft // 2 + 1
         self.n_freqs = n_freqs
@@ -315,6 +317,7 @@ class MultiFiLMGuidedTFNet(nn.Module):
                 n_freqs=n_freqs,
                 latent_dim=latent_dim,
                 hidden_channels=hidden_channels,
+                freq_compression=freq_compression,
                 bidirectional=bidirectional,
             )
             for _ in range(n_layers)
@@ -440,6 +443,7 @@ class TFGridNet(nn.Module):
         embedding_dim: int = 0,
         embedding_activation: str = "",
         embedding_init: str = "",
+        freq_compression: int = 1,
     ) -> None:
         super().__init__()
 
@@ -479,6 +483,7 @@ class TFGridNet(nn.Module):
             embedding_init=embedding_init,
             film_preset=film_preset,
             film_positions=film_positions,
+            freq_compression=freq_compression,
         )
 
     def init_buffers(self, batch_size: int, device: torch.device) -> dict[str, Any]:

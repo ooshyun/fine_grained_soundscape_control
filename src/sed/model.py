@@ -230,15 +230,18 @@ def load_pretrained(
     # Download weights
     weights_path = hf_hub_download(
         repo_id=repo_id,
-        filename=f"{subfolder}/best.pt",
+        filename=f"{subfolder}/checkpoints/best.pt",
     )
 
-    # Instantiate model from config
-    hf_model_name = config.get(
+    # Instantiate model from config (handle nested pl_module_args format)
+    model_params = config
+    if "pl_module_args" in config:
+        model_params = config["pl_module_args"].get("model_params", config)
+    hf_model_name = model_params.get(
         "model_name", "MIT/ast-finetuned-audioset-10-10-0.4593"
     )
-    num_classes = config.get("num_classes", 20)
-    sample_rate = config.get("sample_rate", 16000)
+    num_classes = model_params.get("num_labels", model_params.get("num_classes", 20))
+    sample_rate = config.get("pl_module_args", config).get("sr", 16000)
 
     model = ASTModel(
         model_name=hf_model_name,
@@ -248,11 +251,22 @@ def load_pretrained(
     )
 
     # Load state dict
-    state_dict = torch.load(weights_path, map_location="cpu", weights_only=True)
-    # Handle nested state dicts (e.g. {"model_state_dict": ...})
+    state_dict = torch.load(weights_path, map_location="cpu", weights_only=False)
+    # Handle nested state dicts
     if "model_state_dict" in state_dict:
         state_dict = state_dict["model_state_dict"]
-    model.load_state_dict(state_dict, strict=False)
+    elif "model" in state_dict:
+        state_dict = state_dict["model"]
+
+    # Remap keys: checkpoint uses flat keys (audio_spectrogram_transformer.*)
+    # but ASTModel wraps HF model under self.model (model.audio_spectrogram_transformer.*)
+    remapped = {}
+    for k, v in state_dict.items():
+        if k.startswith("model."):
+            remapped[k] = v
+        else:
+            remapped[f"model.{k}"] = v
+    model.load_state_dict(remapped, strict=True)
 
     if device is not None:
         model = model.to(device)
