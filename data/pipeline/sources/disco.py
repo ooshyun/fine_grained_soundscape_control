@@ -43,12 +43,12 @@ class DISCOSource(BaseSource):
         if (out / ".done").exists():
             print(f"  [skip] {self.name} already downloaded")
             return
-        print("  Loading from HF: ooshyun/soundscape-control-data (disco) ...")
+        print("  Loading from HF: ooshyun/fine-grained-soundscape (disco) ...")
         from huggingface_hub import snapshot_download
 
         tmp = raw_dir / "_hf_download"
         snapshot_download(
-            repo_id="ooshyun/soundscape-control-data",
+            repo_id="ooshyun/fine-grained-soundscape",
             repo_type="dataset",
             allow_patterns="disco/**",
             local_dir=str(tmp),
