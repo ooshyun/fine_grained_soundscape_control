@@ -1,0 +1,17 @@
+torch>=2.0
+torchaudio>=2.0
+lightning>=2.0
+transformers>=4.30
+huggingface_hub
+auraloss
+pyloudnorm
+soundfile
+librosa
+scipy
+numpy
+pandas
+pyyaml
+tqdm
+torchmetrics
+pesq
+pystoi
