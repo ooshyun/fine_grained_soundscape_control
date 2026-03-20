@@ -665,38 +665,54 @@ def load_pretrained(
     )
     weights_path = hf_hub_download(
         repo_id=repo_id,
-        filename=f"{run_dir}/best.pt",
+        filename=f"{run_dir}/checkpoints/best.pt",
     )
 
     with open(config_path) as f:
         config = json.load(f)
 
-    # Build model from config
-    model_cfg = config.get("model", config)
+    # Build model from config — handle nested pl_module_args.model_params
+    if "pl_module_args" in config and "model_params" in config["pl_module_args"]:
+        mp = config["pl_module_args"]["model_params"]
+        block_params = mp.get("block_model_params", {})
+        emb_params = mp.get("embedding_params", {})
+        film_params = mp.get("film_params", {})
+    elif "model" in config:
+        mp = config["model"]
+        block_params = mp
+        emb_params = mp
+        film_params = mp
+    else:
+        mp = config
+        block_params = config
+        emb_params = config
+        film_params = config
+
     model = TFGridNet(
-        stft_chunk_size=model_cfg.get("stft_chunk_size", 96),
-        stft_pad_size=model_cfg.get("stft_pad_size", 64),
-        stft_back_pad=model_cfg.get("stft_back_pad", 96),
-        num_input_channels=model_cfg.get("num_input_channels", 2),
-        num_output_channels=model_cfg.get("num_output_channels", 1),
-        num_layers=model_cfg.get("num_layers", 6),
-        latent_dim=model_cfg.get("latent_dim", 32),
-        hidden_channels=model_cfg.get("hidden_channels", 64),
-        speaker_dim=model_cfg.get("speaker_dim", 20),
-        bidirectional=model_cfg.get("bidirectional", False),
-        film_preset=model_cfg.get("film_preset", "all_except_first"),
-        use_first_ln=model_cfg.get("use_first_ln", False),
-        embedding_type=model_cfg.get("embedding_type", "embedding"),
-        embedding_dim=model_cfg.get("embedding_dim", 0),
-        embedding_activation=model_cfg.get("embedding_activation", ""),
-        embedding_init=model_cfg.get("embedding_init", ""),
+        stft_chunk_size=mp.get("stft_chunk_size", 96),
+        stft_pad_size=mp.get("stft_pad_size", 64),
+        stft_back_pad=mp.get("stft_back_pad", 96),
+        num_input_channels=mp.get("num_input_channels", 2),
+        num_output_channels=mp.get("num_output_channels", 1),
+        num_layers=mp.get("num_layers", 6),
+        latent_dim=mp.get("latent_dim", 32),
+        hidden_channels=block_params.get("hidden_channels", 64),
+        speaker_dim=mp.get("speaker_dim", 20),
+        bidirectional=block_params.get("bidirectional", False),
+        film_preset=film_params.get("film_preset", "all_except_first"),
+        use_first_ln=mp.get("use_first_ln", False),
+        embedding_type=emb_params.get("embedding_type", ""),
+        embedding_dim=emb_params.get("embedding_dim", 0),
+        embedding_activation=emb_params.get("embedding_activation", ""),
+        embedding_init=emb_params.get("embedding_init", ""),
+        freq_compression=block_params.get("freq_compression", 1),
     )
 
     state_dict = torch.load(weights_path, map_location="cpu", weights_only=True)
     # Handle wrapped state dicts (e.g. {"model": ...})
     if "model" in state_dict:
         state_dict = state_dict["model"]
-    model.load_state_dict(state_dict, strict=False)
+    model.load_state_dict(state_dict, strict=True)
     model.eval()
 
     logger.info("Loaded pretrained model '%s' from %s", model_name, repo_id)
