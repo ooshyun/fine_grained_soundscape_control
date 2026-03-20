@@ -204,23 +204,19 @@ def _download_from_huggingface(
         local_dir=str(dataset_dir.parent),
     )
     # snapshot_download puts files under local_dir/hf_path/
-    # Move to dataset_dir if needed
+    # Create a symlink or copy to dataset_dir
     src = Path(local_dir) / hf_path
-    if src.exists() and src != dataset_dir:
-        # If dataset_dir already has the hf_path name, it's fine
+    if src.exists() and src.resolve() != dataset_dir.resolve():
         if not dataset_dir.exists():
-            src.rename(dataset_dir)
-        else:
-            import shutil
-            # Merge into dataset_dir
-            for item in src.iterdir():
-                dest = dataset_dir / item.name
-                if item.is_dir():
-                    if dest.exists():
-                        shutil.rmtree(dest)
-                    shutil.move(str(item), str(dest))
-                else:
-                    shutil.move(str(item), str(dest))
+            dataset_dir.mkdir(parents=True, exist_ok=True)
+        import shutil
+        for item in src.rglob("*"):
+            if item.is_file():
+                rel = item.relative_to(src)
+                dest = dataset_dir / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                if not dest.exists():
+                    shutil.copy2(str(item), str(dest))
     print(f"  Done: {dataset_dir}")
 
 
