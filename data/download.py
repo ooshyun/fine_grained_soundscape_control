@@ -74,12 +74,10 @@ DATASETS = {
     },
     "disco": {
         "name": "DISCO",
-        "files": [
-            {
-                "url": "https://zenodo.org/api/records/4019030/files/disco_noises.zip/content",
-                "filename": "disco_noises.zip",
-            },
-        ],
+        "source": "huggingface",
+        "hf_repo": "ooshyun/fine-grained-soundscape",
+        "hf_path": "disco",
+        "files": [],
     },
     "tau": {
         "name": "TAU-2019",
@@ -99,12 +97,10 @@ DATASETS = {
     },
     "cipic": {
         "name": "CIPIC-HRTF",
-        "files": [
-            {
-                "url": "https://github.com/amini-allight/cipic-hrtf-database/archive/refs/heads/master.zip",
-                "filename": "cipic-hrtf-database-master.zip",
-            },
-        ],
+        "source": "huggingface",
+        "hf_repo": "ooshyun/fine-grained-soundscape",
+        "hf_path": "cipic_hrtf",
+        "files": [],
     },
 }
 
@@ -194,6 +190,40 @@ def _merge_split_zip(dataset_dir: Path, base_name: str) -> None:
     print(f"  Merge + extract done for {base_name}")
 
 
+def _download_from_huggingface(
+    repo_id: str, hf_path: str, dataset_dir: Path,
+) -> None:
+    """Download a subfolder from a HuggingFace dataset repo."""
+    from huggingface_hub import snapshot_download
+
+    print(f"  Downloading from HuggingFace: {repo_id}/{hf_path}")
+    local_dir = snapshot_download(
+        repo_id=repo_id,
+        repo_type="dataset",
+        allow_patterns=f"{hf_path}/**",
+        local_dir=str(dataset_dir.parent),
+    )
+    # snapshot_download puts files under local_dir/hf_path/
+    # Move to dataset_dir if needed
+    src = Path(local_dir) / hf_path
+    if src.exists() and src != dataset_dir:
+        # If dataset_dir already has the hf_path name, it's fine
+        if not dataset_dir.exists():
+            src.rename(dataset_dir)
+        else:
+            import shutil
+            # Merge into dataset_dir
+            for item in src.iterdir():
+                dest = dataset_dir / item.name
+                if item.is_dir():
+                    if dest.exists():
+                        shutil.rmtree(dest)
+                    shutil.move(str(item), str(dest))
+                else:
+                    shutil.move(str(item), str(dest))
+    print(f"  Done: {dataset_dir}")
+
+
 def _sizeof_fmt(num_bytes: int | None) -> str:
     if num_bytes is None:
         return "unknown size"
@@ -216,6 +246,9 @@ def dry_run(selected: list[str]) -> None:
         print(f"\n{'='*60}")
         print(f"  {info['name']}")
         print(f"{'='*60}")
+        if info.get("source") == "huggingface":
+            print(f"  [HuggingFace] {info['hf_repo']} / {info['hf_path']}")
+            continue
         for f in info["files"]:
             size = _remote_file_size(f["url"])
             print(f"  {f['filename']:60s}  {_sizeof_fmt(size)}")
@@ -236,6 +269,13 @@ def download_datasets(
         print(f"\n{'='*60}")
         print(f"  Downloading {info['name']} -> {dataset_dir}")
         print(f"{'='*60}")
+
+        # HuggingFace dataset download
+        if info.get("source") == "huggingface":
+            _download_from_huggingface(
+                info["hf_repo"], info["hf_path"], dataset_dir,
+            )
+            continue
 
         for f in info["files"]:
             dest = dataset_dir / f["filename"]
