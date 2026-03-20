@@ -1,5 +1,7 @@
-"""Tests for the collect stage — FSD50K and ESC-50 collectors."""
+"""Tests for the collect stage — FSD50K, ESC-50, DISCO, musdb18, TAU collectors."""
 from __future__ import annotations
+
+import os
 
 import pandas as pd
 import pytest
@@ -8,6 +10,9 @@ from pathlib import Path
 
 from data.pipeline.sources.fsd50k import FSD50KSource
 from data.pipeline.sources.esc50 import ESC50Source, ESC50_TO_AUDIOSET
+from data.pipeline.sources.disco import DISCOSource, DISCO_TO_AUDIOSET
+from data.pipeline.sources.musdb18 import MUSDB18Source
+from data.pipeline.sources.tau import TAUSource
 from data.pipeline.collect import run_collect
 
 
@@ -22,6 +27,16 @@ class _FakeOntology:
         "/m/002": "Meow",
         "/m/003": "Rain",
         "/m/004": "Wind",
+        "/m/baby": "Baby cry, infant cry",
+        "/m/blend": "Blender",
+        "/m/tooth": "Toothbrush",
+        "/m/fan": "Mechanical fan",
+        "/m/fry": "Frying (food)",
+        "/m/print": "Printer",
+        "/m/vac": "Vacuum cleaner",
+        "/m/water": "Water",
+        "/m/sing": "Singing",
+        "/m/melody": "Melody",
     }
     _label_to_id = {v: k for k, v in _id_to_label.items()}
 
@@ -281,6 +296,238 @@ class TestESC50Collect:
         for split in ("train", "val", "test"):
             df = pd.read_csv(out_dir / f"{split}.csv")
             assert list(df.columns) == ["fname", "label", "id"]
+
+
+# ---------------------------------------------------------------------------
+# DISCO tests
+# ---------------------------------------------------------------------------
+
+class TestDISCOCollect:
+    """DISCO collector tests."""
+
+    def _setup_disco(self, tmp_path: Path, labels=None) -> tuple[Path, Path]:
+        raw_dir = tmp_path / "raw"
+        curated_dir = tmp_path / "curated"
+        if labels is None:
+            labels = ["baby", "blender", "dishwasher"]
+        disco_dir = raw_dir / "disco_noises"
+        for split in ("train", "test"):
+            for label in labels:
+                label_dir = disco_dir / split / label
+                label_dir.mkdir(parents=True, exist_ok=True)
+                for i in range(10):
+                    (label_dir / f"{label}_{split}_{i}.wav").touch()
+        return raw_dir, curated_dir
+
+    def test_audioset_mapping(self, tmp_path: Path):
+        """DISCO_TO_AUDIOSET: mapped labels appear, None labels are skipped."""
+        raw_dir, curated_dir = self._setup_disco(tmp_path)
+
+        source = DISCOSource(ontology=_make_ontology_mock())
+        source.collect(raw_dir, curated_dir)
+
+        out_dir = curated_dir / "disco_noises"
+        train = pd.read_csv(out_dir / "train.csv")
+
+        # "baby" maps to "Baby cry, infant cry" → should appear
+        assert "Baby cry, infant cry" in train["label"].values
+        # "blender" maps to "Blender" → should appear
+        assert "Blender" in train["label"].values
+        # "dishwasher" maps to None → should NOT appear
+        assert "dishwasher" not in train["label"].values
+
+    def test_three_way_split(self, tmp_path: Path):
+        """DISCO produces train/val/test and total count is preserved."""
+        raw_dir, curated_dir = self._setup_disco(
+            tmp_path, labels=["baby", "blender"]
+        )
+
+        source = DISCOSource(ontology=_make_ontology_mock())
+        source.collect(raw_dir, curated_dir)
+
+        out_dir = curated_dir / "disco_noises"
+        train = pd.read_csv(out_dir / "train.csv")
+        val = pd.read_csv(out_dir / "val.csv")
+        test = pd.read_csv(out_dir / "test.csv")
+
+        # All three splits should be non-empty
+        assert len(train) > 0
+        assert len(val) > 0
+        assert len(test) > 0
+
+        # Total should equal number of valid label files
+        # 2 labels (baby, blender) × 2 splits × 10 files = 40
+        total = len(train) + len(val) + len(test)
+        assert total == 40
+
+    def test_csv_columns(self, tmp_path: Path):
+        """Output CSVs must have columns: fname, label, id."""
+        raw_dir, curated_dir = self._setup_disco(tmp_path, labels=["baby"])
+
+        source = DISCOSource(ontology=_make_ontology_mock())
+        source.collect(raw_dir, curated_dir)
+
+        out_dir = curated_dir / "disco_noises"
+        for split in ("train", "val", "test"):
+            df = pd.read_csv(out_dir / f"{split}.csv")
+            assert list(df.columns) == ["fname", "label", "id"]
+
+    def test_relative_paths(self, tmp_path: Path):
+        """fname should be relative like train/baby/file.wav."""
+        raw_dir, curated_dir = self._setup_disco(tmp_path, labels=["baby"])
+
+        source = DISCOSource(ontology=_make_ontology_mock())
+        source.collect(raw_dir, curated_dir)
+
+        out_dir = curated_dir / "disco_noises"
+        all_dfs = []
+        for split in ("train", "val", "test"):
+            all_dfs.append(pd.read_csv(out_dir / f"{split}.csv"))
+        combined = pd.concat(all_dfs)
+
+        # All fnames should start with "train/" or "test/" (original DISCO splits)
+        for fname in combined["fname"]:
+            assert fname.startswith("train/") or fname.startswith("test/")
+
+
+# ---------------------------------------------------------------------------
+# TAU tests
+# ---------------------------------------------------------------------------
+
+class TestTAUCollect:
+    """TAU collector tests."""
+
+    def _setup_tau(self, tmp_path: Path) -> tuple[Path, Path]:
+        raw_dir = tmp_path / "raw"
+        curated_dir = tmp_path / "curated"
+        dev_dir = (
+            raw_dir / "TAU-2019"
+            / "TAU-urban-acoustic-scenes-2019-development"
+            / "audio"
+        )
+        dev_dir.mkdir(parents=True, exist_ok=True)
+        # Create files with TAU naming: scene-city-timestamp-id.wav
+        scenes = ["airport-barcelona", "bus-barcelona", "metro-barcelona"]
+        for scene in scenes:
+            for i in range(20):
+                (dev_dir / f"{scene}-{i}-0.wav").touch()
+        return raw_dir, curated_dir
+
+    def test_label_parsing(self, tmp_path: Path):
+        """Labels are parsed as first two dash-separated parts of filename."""
+        raw_dir, curated_dir = self._setup_tau(tmp_path)
+
+        source = TAUSource()
+        source.collect(raw_dir, curated_dir)
+
+        csv_dir = curated_dir / "TAU-acoustic-sounds"
+        train = pd.read_csv(csv_dir / "train.csv")
+
+        labels = set(train["label"].unique())
+        # All labels should be scene-city format
+        for label in labels:
+            parts = label.split("-")
+            assert len(parts) == 2, f"Expected scene-city format, got {label}"
+
+        # Specific labels
+        assert "airport-barcelona" in labels
+        assert "bus-barcelona" in labels
+
+    def test_stratified_split(self, tmp_path: Path):
+        """90:10 stratified split: both train and val have same labels."""
+        raw_dir, curated_dir = self._setup_tau(tmp_path)
+
+        source = TAUSource()
+        source.collect(raw_dir, curated_dir)
+
+        csv_dir = curated_dir / "TAU-acoustic-sounds"
+        train = pd.read_csv(csv_dir / "train.csv")
+        val = pd.read_csv(csv_dir / "val.csv")
+
+        train_labels = set(train["label"].unique())
+        val_labels = set(val["label"].unique())
+
+        # Common label constraint: train and val should have same labels
+        assert train_labels == val_labels
+
+        # Both splits non-empty
+        assert len(train) > 0
+        assert len(val) > 0
+
+    def test_symlinks_created(self, tmp_path: Path):
+        """Symlinks should be created in noise_scaper_fmt directory."""
+        raw_dir, curated_dir = self._setup_tau(tmp_path)
+
+        source = TAUSource()
+        source.collect(raw_dir, curated_dir)
+
+        symlink_dir = curated_dir / "noise_scaper_fmt"
+        assert symlink_dir.exists()
+        # At least train directory should have scene subdirs
+        train_dir = symlink_dir / "train"
+        assert train_dir.exists()
+        scene_dirs = list(train_dir.iterdir())
+        assert len(scene_dirs) > 0
+
+    def test_csv_columns(self, tmp_path: Path):
+        """Output CSVs must have columns: fname, label, id."""
+        raw_dir, curated_dir = self._setup_tau(tmp_path)
+
+        source = TAUSource()
+        source.collect(raw_dir, curated_dir)
+
+        csv_dir = curated_dir / "TAU-acoustic-sounds"
+        for split in ("train", "val"):
+            df = pd.read_csv(csv_dir / f"{split}.csv")
+            assert list(df.columns) == ["fname", "label", "id"]
+
+
+# ---------------------------------------------------------------------------
+# musdb18 tests
+# ---------------------------------------------------------------------------
+
+class TestMUSDB18Collect:
+    """musdb18 collector tests (basic, no actual STEMS extraction)."""
+
+    def test_label_names(self):
+        """musdb18 uses 'Singing' and 'Melody' as label names."""
+        ontology = _make_ontology_mock()
+        source = MUSDB18Source(ontology=ontology)
+        # Verify the ontology can resolve both expected labels
+        assert ontology.get_id_from_name("Singing") is not None
+        assert ontology.get_id_from_name("Melody") is not None
+
+    def test_write_csv_from_preextracted(self, tmp_path: Path):
+        """_write_csv generates correct CSV from pre-extracted audio."""
+        raw_dir = tmp_path / "raw"
+        curated_dir = tmp_path / "curated"
+
+        # Create fake pre-extracted audio structure
+        dataset_dir = raw_dir / "musdb18"
+        for split in ("train", "val", "test"):
+            vocals_dir = dataset_dir / "audio" / split / "vocals"
+            instr_dir = dataset_dir / "audio" / split / "instrumental"
+            vocals_dir.mkdir(parents=True, exist_ok=True)
+            instr_dir.mkdir(parents=True, exist_ok=True)
+            for i in range(3):
+                (vocals_dir / f"song_{i}_v_{i}.wav").touch()
+                (instr_dir / f"song_{i}_i_{i}.wav").touch()
+
+        curated_dir.mkdir(parents=True, exist_ok=True)
+        out_dir = curated_dir / "musdb18"
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        ontology = _make_ontology_mock()
+        source = MUSDB18Source(ontology=ontology)
+
+        df = source._write_csv(str(dataset_dir), "train", str(out_dir))
+
+        assert len(df) == 6  # 3 vocals + 3 instrumental
+        assert set(df["label"].unique()) == {"Singing", "Melody"}
+        assert list(df.columns) == ["fname", "label", "id"]
+
+        # Verify CSV was written
+        assert (out_dir / "train.csv").exists()
 
 
 # ---------------------------------------------------------------------------
