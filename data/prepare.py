@@ -144,8 +144,11 @@ def write_scaper_source(
     ontology: Ontology,
     all_samples: list[dict],
     dry_run: bool = False,
+    audio_base_dir: str | None = None,
 ) -> None:
     dataset_path = os.path.join(base_dir, dataset_name)
+    # audio_base_dir: root directory of actual audio files (already points to dataset root)
+    audio_dataset_path = audio_base_dir if audio_base_dir else dataset_path
     fg_out_dir = os.path.join(fg_dest_dir, dataset_type)
     bg_out_dir = os.path.join(bg_dest_dir, dataset_type)
 
@@ -184,9 +187,11 @@ def write_scaper_source(
             logger.debug("Would symlink %s → %s", src, dest)
             continue
 
-        start_sample, first_silence, end_sample = trim_silence(
-            os.path.join(dataset_path, sample_data["fname"])
-        )
+        audio_path = os.path.join(audio_dataset_path, sample_data["fname"])
+        if not os.path.exists(audio_path):
+            # Fallback: try dataset_path (CSV dir)
+            audio_path = os.path.join(dataset_path, sample_data["fname"])
+        start_sample, first_silence, end_sample = trim_silence(audio_path)
         assert start_sample < end_sample
         all_samples.append(
             {
@@ -388,6 +393,14 @@ def main() -> None:
     dataset_types = ["train", "val", "test"]
     all_samples: list[dict] = []
 
+    # Map dataset names to their raw_dir locations for audio file access
+    _AUDIO_DIR_MAP = {
+        "FSD50K": os.path.join(args.raw_dir, "FSD50K"),
+        "ESC-50": os.path.join(args.raw_dir, "ESC-50", "ESC-50-master"),
+        "musdb18": os.path.join(args.raw_dir, "musdb18"),
+        "disco_noises": os.path.join(args.raw_dir, "DISCO"),
+    }
+
     for dataset_name in datasets:
         for dataset_type in dataset_types:
             write_scaper_source(
@@ -400,6 +413,7 @@ def main() -> None:
                 ontology=ontology,
                 all_samples=all_samples,
                 dry_run=args.dry_run,
+                audio_base_dir=_AUDIO_DIR_MAP.get(dataset_name),
             )
 
     # ------------------------------------------------------------------
