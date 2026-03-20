@@ -104,6 +104,14 @@ def _build_dataset(params: dict, data_dir: str | None = None):
 
     if data_dir is not None:
         test_data_args["root_dataset_dir"] = data_dir
+        # Strip 'BinauralCuratedDataset/' prefix from paths if data_dir is used
+        # (config paths are relative to /scr/BinauralCuratedDataset/ but
+        #  data_dir already points to the dataset root)
+        for key in ("fg_sounds_dir", "bg_sounds_dir", "noise_sounds_dir", "hrtf_list"):
+            if key in test_data_args:
+                val = test_data_args[key]
+                if val.startswith("BinauralCuratedDataset/"):
+                    test_data_args[key] = val[len("BinauralCuratedDataset/"):]
     elif "root_dataset_dir" in params:
         test_data_args["root_dataset_dir"] = params["root_dataset_dir"]
 
@@ -306,6 +314,89 @@ def evaluate(model, test_loader, params, device, output_dir):
 # Main
 # ---------------------------------------------------------------------------
 
+def _load_model_from_config(config_path: str, checkpoint_path: str):
+    """Load model from a YAML config + Lightning or raw checkpoint."""
+    import yaml
+
+    with open(config_path) as f:
+        cfg = yaml.safe_load(f)
+
+    # Build model from YAML config (same as train.py _build_model)
+    from src.tse.net import Net
+
+    m = cfg["model"]
+    model = Net(
+        model_name=m.get(
+            "model_name",
+            "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet",
+        ),
+        block_model_name=m.get(
+            "block_model_name",
+            "src.tse.gridnet_block.GridNetBlock",
+        ),
+        block_model_params=m.get("block_model_params", {}),
+        speaker_dim=m.get("speaker_dim", 20),
+        stft_chunk_size=m.get("stft_chunk_size", 96),
+        stft_pad_size=m.get("stft_pad_size", 64),
+        stft_back_pad=m.get("stft_back_pad", 96),
+        num_input_channels=m.get("num_input_channels", 2),
+        num_output_channels=m.get("num_output_channels", 1),
+        num_layers=m.get("num_layers", 6),
+        latent_dim=m.get("latent_dim", 32),
+        embedding_params=m.get("embedding_params", {}),
+        film_params=m.get("film_params", {}),
+        use_first_ln=m.get("use_first_ln", False),
+    )
+
+    # Load checkpoint (handle Lightning format)
+    ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+    if "state_dict" in ckpt:
+        # Lightning checkpoint — keys are prefixed with "model."
+        state_dict = {}
+        for k, v in ckpt["state_dict"].items():
+            new_key = k.replace("model.", "", 1) if k.startswith("model.") else k
+            state_dict[new_key] = v
+        model.load_state_dict(state_dict, strict=True)
+    elif "model_state_dict" in ckpt:
+        model.load_state_dict(ckpt["model_state_dict"], strict=True)
+    elif "model" in ckpt:
+        model.load_state_dict(ckpt["model"], strict=True)
+    else:
+        model.load_state_dict(ckpt, strict=True)
+
+    model.eval()
+    logger.info("Loaded model from config=%s, checkpoint=%s", config_path, checkpoint_path)
+
+    # Convert YAML config to params dict for dataset building
+    params = _yaml_to_eval_params(cfg)
+    return model, params
+
+
+def _yaml_to_eval_params(cfg: dict) -> dict:
+    """Convert YAML training config to the params dict expected by _build_dataset."""
+    d = cfg.get("data", {})
+    return {
+        "onflight_test_data_args": {
+            "fg_sounds_dir": os.path.join(d["fg_dir"], "test"),
+            "noise_sounds_dir": os.path.join(d["noise_dir"], "test"),
+            "hrtf_list": d["hrtf_list"].replace("train_hrtf", "test_hrtf"),
+            "sr": d.get("sr", 16000),
+            "duration": d.get("duration", 5),
+            "num_fg_sounds_min": d.get("num_fg_range", [1, 1])[0],
+            "num_fg_sounds_max": d.get("num_fg_range", [1, 1])[1],
+            "num_bg_sounds_min": d.get("num_bg_range", [0, 0])[0],
+            "num_bg_sounds_max": d.get("num_bg_range", [0, 0])[1],
+            "num_noise_sounds_min": d.get("num_noise_range", [1, 1])[0],
+            "num_noise_sounds_max": d.get("num_noise_range", [1, 1])[1],
+            "snr_range_fg": d.get("snr_range_fg", [5, 15]),
+            "snr_range_bg": d.get("snr_range_bg", [0, 10]),
+            "hrtf_type": d.get("hrtf_type", "CIPIC"),
+            "samples_per_epoch": d.get("samples_per_epoch", 2000),
+        },
+        "onflight_val_dataset": "src.datasets.soundscape_dataset.SoundscapeDataset",
+    }
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Evaluate TSE model")
     parser.add_argument("--run_dir", type=str, default=None,
@@ -314,10 +405,16 @@ def main(argv: list[str] | None = None) -> None:
                         help="HuggingFace repo ID")
     parser.add_argument("--model", type=str, default="orange_pi",
                         help="Model name for --pretrained")
+    parser.add_argument("--config", type=str, default=None,
+                        help="YAML config path (use with --checkpoint)")
+    parser.add_argument("--checkpoint", type=str, default=None,
+                        help="Checkpoint path (Lightning or raw)")
     parser.add_argument("--data_dir", type=str, default=None,
                         help="Override dataset root (e.g., /scr)")
     parser.add_argument("--output_dir", type=str, default="runs/tse/eval",
                         help="Output directory")
+    parser.add_argument("--num_samples", type=int, default=None,
+                        help="Override number of eval samples")
     parser.add_argument("--sr", type=int, default=16000,
                         help="Sample rate")
     parser.add_argument("--use_last", action="store_true", default=True,
@@ -333,14 +430,20 @@ def main(argv: list[str] | None = None) -> None:
     logger.info("Device: %s", device)
 
     # Load model
-    if args.pretrained:
+    if args.config and args.checkpoint:
+        model, params = _load_model_from_config(args.config, args.checkpoint)
+    elif args.pretrained:
         model, params = _load_model_from_pretrained(args.pretrained, args.model)
     elif args.run_dir:
         model, params = _load_model_from_run_dir(args.run_dir, use_last=args.use_last)
     else:
-        raise ValueError("Provide either --run_dir or --pretrained")
+        raise ValueError("Provide --config/--checkpoint, --pretrained, or --run_dir")
 
     logger.info("Model: nI=%d, nO=%d", model.nI, model.nO)
+
+    # Override num_samples if specified
+    if args.num_samples is not None:
+        params["onflight_test_data_args"]["samples_per_epoch"] = args.num_samples
 
     # Load dataset
     test_dataset = _build_dataset(params, data_dir=args.data_dir)
