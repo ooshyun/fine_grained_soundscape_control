@@ -27,6 +27,13 @@ import logging
 import os
 import sys
 
+# Add parent Sementic-Listening-v2 repo to sys.path as fallback
+# for original MisophoniaDataset and its dependencies (src.models, src.utils, etc.)
+_PARENT_REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", ".."))
+if os.path.isfile(os.path.join(_PARENT_REPO, "main.py")):  # verify it's the right repo
+    if _PARENT_REPO not in sys.path:
+        sys.path.append(_PARENT_REPO)
+
 import numpy as np
 import torch
 import tqdm
