@@ -49,20 +49,20 @@ class ASTModel(nn.Module):
 
         # Load pre-trained AST and feature extractor
         self.feature_extractor = AutoFeatureExtractor.from_pretrained(model_name)
-        self.model = ASTForAudioClassification.from_pretrained(model_name)
+
+        # Use AutoModelForAudioClassification with num_labels to auto-resize classifier
+        if num_classes == 527:
+            self.model = ASTForAudioClassification.from_pretrained(model_name)
+        else:
+            from transformers import AutoModelForAudioClassification
+            self.model = AutoModelForAudioClassification.from_pretrained(
+                model_name, num_labels=num_classes, ignore_mismatched_sizes=True,
+            )
 
         # Store original AudioSet class names from model config
         self.audioset_class_names: list[str] = list(
             self.model.config.id2label.values()
         )
-
-        # Replace only the dense layer in the classifier head.
-        # HF AST classifier structure: classifier.layernorm + classifier.dense
-        hidden_size = self.model.config.hidden_size
-        self.model.config.num_labels = num_classes
-        self.model.classifier.dense = nn.Linear(hidden_size, num_classes)
-        nn.init.xavier_uniform_(self.model.classifier.dense.weight)
-        nn.init.zeros_(self.model.classifier.dense.bias)
 
         if freeze_encoder:
             self.freeze_encoder()
@@ -260,15 +260,9 @@ def load_pretrained(
     elif "model" in state_dict:
         state_dict = state_dict["model"]
 
-    # Remap keys: checkpoint uses flat keys (audio_spectrogram_transformer.*)
-    # but ASTModel wraps HF model under self.model (model.audio_spectrogram_transformer.*)
-    remapped = {}
-    for k, v in state_dict.items():
-        if k.startswith("model."):
-            remapped[k] = v
-        else:
-            remapped[f"model.{k}"] = v
-    model.load_state_dict(remapped, strict=True)
+    # Checkpoint was saved via ast_model.state_dict() (no prefix).
+    # Load directly into self.model (the HF ASTForAudioClassification).
+    model.model.load_state_dict(state_dict, strict=True)
 
     if device is not None:
         model = model.to(device)
