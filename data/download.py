@@ -36,19 +36,23 @@ DATASETS = {
     "fsd50k": {
         "name": "FSD50K",
         "files": [
-            {
-                "url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.zip?download=1",
-                "filename": "FSD50K.dev_audio.zip",
-            },
-            {
-                "url": "https://zenodo.org/records/4060432/files/FSD50K.eval_audio.zip?download=1",
-                "filename": "FSD50K.eval_audio.zip",
-            },
-            {
-                "url": "https://zenodo.org/records/4060432/files/FSD50K.metadata.zip?download=1",
-                "filename": "FSD50K.metadata.zip",
-            },
+            # dev_audio is a 6-part split zip (~18GB total)
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.zip?download=1", "filename": "FSD50K.dev_audio.zip", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.z01?download=1", "filename": "FSD50K.dev_audio.z01", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.z02?download=1", "filename": "FSD50K.dev_audio.z02", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.z03?download=1", "filename": "FSD50K.dev_audio.z03", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.z04?download=1", "filename": "FSD50K.dev_audio.z04", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.dev_audio.z05?download=1", "filename": "FSD50K.dev_audio.z05", "no_extract": True},
+            # eval_audio is a 2-part split zip (~6.3GB total)
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.eval_audio.zip?download=1", "filename": "FSD50K.eval_audio.zip", "no_extract": True},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.eval_audio.z01?download=1", "filename": "FSD50K.eval_audio.z01", "no_extract": True},
+            # metadata + ground_truth + doc (regular zips)
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.metadata.zip?download=1", "filename": "FSD50K.metadata.zip"},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.ground_truth.zip?download=1", "filename": "FSD50K.ground_truth.zip"},
+            {"url": "https://zenodo.org/records/4060432/files/FSD50K.doc.zip?download=1", "filename": "FSD50K.doc.zip"},
         ],
+        # Post-download: merge split zips and extract
+        "post_download": "fsd50k_merge",
     },
     "esc50": {
         "name": "ESC-50",
@@ -160,6 +164,36 @@ def _extract_zip(zip_path: Path, extract_dir: Path) -> None:
         )
 
 
+def _merge_split_zip(dataset_dir: Path, base_name: str) -> None:
+    """Merge split zip parts and extract. E.g. FSD50K.dev_audio.zip + .z01-.z05"""
+    import subprocess
+
+    zip_main = dataset_dir / f"{base_name}.zip"
+    if not zip_main.exists():
+        print(f"  [skip merge] {base_name}.zip not found")
+        return
+
+    # Check if already extracted (look for the expected directory)
+    expected_dir = dataset_dir / base_name.replace(".", "_").replace("FSD50K_", "FSD50K.")
+    # Actually just check for any extracted content
+    print(f"  Merging split zip: {base_name}...")
+    combined = dataset_dir / f"{base_name}_combined.zip"
+    if not combined.exists():
+        subprocess.run(
+            ["zip", "-s", "0", str(zip_main), "--out", str(combined)],
+            cwd=str(dataset_dir),
+            check=True,
+        )
+    print(f"  Extracting {combined.name}...")
+    subprocess.run(
+        ["unzip", "-o", "-q", str(combined), "-d", str(dataset_dir)],
+        check=True,
+    )
+    # Clean up
+    combined.unlink(missing_ok=True)
+    print(f"  Merge + extract done for {base_name}")
+
+
 def _sizeof_fmt(num_bytes: int | None) -> str:
     if num_bytes is None:
         return "unknown size"
@@ -213,15 +247,14 @@ def download_datasets(
                     if expected is not None and dest.stat().st_size == expected:
                         print(f"  [skip] {f['filename']} already downloaded")
                     elif expected is None:
-                        # Cannot verify size; assume complete if file exists
                         print(f"  [skip] {f['filename']} exists (size unverified)")
                     else:
                         _download_file(f["url"], dest)
                 else:
                     _download_file(f["url"], dest)
 
-                # Extract
-                if dest.suffix == ".zip":
+                # Extract (unless marked no_extract for split zips)
+                if dest.suffix == ".zip" and not f.get("no_extract", False):
                     _extract_zip(dest, dataset_dir)
                     if not keep_zips:
                         dest.unlink()
@@ -229,6 +262,15 @@ def download_datasets(
             except Exception as exc:
                 print(f"  [ERROR] {f['filename']}: {exc}")
                 print(f"  Continuing with next file...")
+
+        # Post-download hooks (e.g. merge split zips)
+        post = info.get("post_download")
+        if post == "fsd50k_merge":
+            try:
+                _merge_split_zip(dataset_dir, "FSD50K.dev_audio")
+                _merge_split_zip(dataset_dir, "FSD50K.eval_audio")
+            except Exception as exc:
+                print(f"  [ERROR] FSD50K merge: {exc}")
 
     print("\nDone.")
 
