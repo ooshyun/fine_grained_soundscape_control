@@ -18,9 +18,13 @@ Usage:
 
 import argparse
 import os
+import ssl
 import urllib.request
 import zipfile
 from pathlib import Path
+
+# Workaround for SSL certificate issues on HPC clusters
+ssl._create_default_https_context = ssl._create_unverified_context
 
 from tqdm import tqdm
 
