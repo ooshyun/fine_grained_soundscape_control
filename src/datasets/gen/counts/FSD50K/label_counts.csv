@@ -1,0 +1,245 @@
+label,train_count,val_count,test_count,total_count
+Accordion,44,5,23,72
+Acoustic guitar,323,36,72,431
+Air conditioning,9,1,6,16
+Aircraft,25,3,1,29
+Alarm,124,14,11,149
+Alarm clock,34,4,4,42
+Alto saxophone,185,21,4,210
+Ambulance (siren),3,1,2,6
+Applause,123,14,4,141
+Artillery fire,1,1,2,4
+"Baby cry, infant cry",30,4,8,42
+Baby laughter,18,3,8,29
+Bark,109,13,33,155
+Bass drum,103,12,14,129
+Bass guitar,230,26,38,294
+Bassoon,154,18,6,178
+Bathtub (filling or washing),49,6,2,57
+Bell,119,14,8,141
+Bicycle bell,44,5,29,78
+"Bird flight, flapping wings",11,2,3,16
+"Bird vocalization, bird call, bird song",100,12,2,114
+Bleat,1,1,3,5
+Boiling,31,4,7,42
+Boom,67,8,17,92
+Bowed string instrument,86,10,1,97
+Brass instrument,227,26,1,254
+Breathing,146,17,15,178
+"Burping, eructation",166,19,62,247
+"Burst, pop",22,3,3,28
+Bus,122,14,2,138
+Buzz,12,2,15,29
+Buzzer,6,1,6,13
+Camera,224,25,47,296
+Car,110,13,2,125
+Car alarm,4,1,1,6
+Car passing by,44,5,2,51
+Cat,31,4,1,36
+Cello,568,64,17,649
+"Cellphone buzz, vibrating alert",32,4,14,50
+Chant,27,4,5,36
+Cheering,27,3,1,31
+"Chewing, mastication",107,12,24,143
+Child singing,5,1,1,7
+"Child speech, kid speaking",75,9,18,102
+Children playing,4,1,1,6
+Children shouting,1,1,1,3
+Chime,63,8,15,86
+"Chink, clink",95,11,26,132
+"Chirp, tweet",65,8,52,125
+Choir,17,2,3,22
+Chop,12,2,1,15
+Chopping (food),20,3,1,24
+"Chuckle, chortle",18,2,10,30
+Church bell,36,4,17,57
+Clapping,216,25,25,266
+Clarinet,527,59,3,589
+Clip-clop,6,1,3,10
+Cluck,7,1,3,11
+Clunk,18,3,3,24
+Coin (dropping),207,23,28,258
+Computer keyboard,78,9,68,155
+Cough,142,16,32,190
+Cowbell,103,12,31,146
+Crack,29,4,8,41
+Crackle,108,12,44,164
+Crash cymbal,133,15,41,189
+Cricket,61,7,14,82
+Croak,5,1,6,12
+Crowd,38,5,3,46
+"Crowing, cock-a-doodle-doo",23,3,9,35
+"Crumpling, crinkling",121,14,53,188
+Crushing,72,9,27,108
+"Crying, sobbing",16,2,7,25
+Cupboard open or close,46,6,22,74
+"Cutlery, silverware",156,18,27,201
+Dial tone,10,2,4,16
+Didgeridoo,64,8,2,74
+Ding-dong,6,1,10,17
+"Dishes, pots, and pans",140,16,25,181
+Dog,82,10,5,97
+Door,36,4,1,41
+Doorbell,29,4,4,37
+Double bass,404,45,63,512
+Drawer open or close,81,10,28,119
+Drill,99,12,19,130
+Drip,44,5,11,60
+Drum,28,4,8,40
+Drum roll,18,3,1,22
+Electric guitar,365,41,113,519
+Electric piano,77,9,3,89
+Electric toothbrush,2,1,1,4
+Engine,19,3,2,24
+Explosion,87,10,10,107
+Fart,417,47,73,537
+Female singing,47,6,34,87
+"Female speech, woman speaking",232,26,32,290
+Filing (rasp),4,1,6,11
+Fill (with liquid),18,2,10,30
+Finger snapping,90,11,47,148
+Fire,95,11,3,109
+Fire alarm,2,1,3,6
+Firecracker,7,1,4,12
+Fireworks,153,18,23,194
+Flute,431,48,32,511
+Frog,20,3,1,24
+Frying (food),31,4,26,61
+Gasp,27,4,20,51
+Gears,12,2,7,21
+Giggle,48,6,26,80
+Glass,117,14,4,135
+Glockenspiel,44,5,58,107
+Gong,162,19,50,231
+Growling,8,1,5,14
+Guitar,252,28,3,283
+"Gull, seagull",19,3,3,25
+"Gunshot, gunfire",151,17,37,205
+Gurgling,34,4,1,39
+Hair dryer,16,2,15,33
+Hammer,88,10,39,137
+Hands,28,4,4,36
+Harmonica,123,14,48,185
+Harp,126,15,27,168
+Helicopter,12,2,9,23
+Hi-hat,330,37,68,435
+Hiss,41,5,10,56
+Hoot,2,1,1,4
+Howl,54,7,4,65
+Howl (wind),3,1,10,14
+Human voice,92,11,7,110
+Insect,35,4,7,46
+Jackhammer,21,3,5,29
+Jingle bell,21,3,3,27
+Keys jangling,86,10,31,127
+Knock,65,8,33,106
+Laughter,476,53,19,548
+Lawn mower,14,2,7,23
+Light engine (high frequency),48,6,9,63
+Machine gun,17,2,28,47
+Male singing,36,5,28,69
+"Male speech, man speaking",187,21,59,267
+Maraca,10,2,2,14
+"Marimba, xylophone",93,11,7,111
+Mechanical fan,35,4,18,57
+Mechanisms,79,9,2,90
+Meow,73,9,39,121
+Microwave oven,82,10,28,120
+Moo,6,1,2,9
+Oboe,293,33,4,330
+Oink,9,1,2,12
+Orchestra,22,3,4,29
+Organ,183,21,14,218
+"Packing tape, duct tape",39,5,42,86
+Percussion,10,2,1,13
+Piano,424,48,46,518
+Pig,17,2,2,21
+Printer,60,7,39,106
+Purr,27,3,34,64
+Rain,81,9,8,98
+Rain on surface,9,2,15,26
+Raindrop,17,2,1,20
+"Ratchet, pawl",19,3,16,38
+Rattle,55,7,10,72
+Rattle (instrument),114,13,42,169
+Rhodes piano,37,5,4,46
+Ringtone,57,7,23,87
+Run,133,15,24,172
+Sanding,6,1,2,9
+Sawing,67,8,36,111
+Saxophone,496,56,4,556
+Scissors,58,7,28,93
+Scratching (performance technique),160,18,42,220
+Screaming,146,17,62,225
+Screech,24,3,3,30
+Shatter,212,24,31,267
+Ship,24,3,1,28
+Shout,13,2,3,18
+Shuffling cards,15,2,8,25
+Sigh,28,4,12,44
+Singing bowl,18,2,6,26
+Sink (filling or washing),55,7,1,63
+Siren,13,2,3,18
+Sitar,5,1,8,14
+Skateboard,38,5,23,66
+Slam,70,8,28,106
+Sliding door,46,6,5,57
+Slosh,12,2,2,16
+Snare drum,525,59,36,620
+Sneeze,30,4,32,66
+Sniff,32,4,4,40
+Snoring,26,3,10,39
+Soprano saxophone,74,9,8,91
+"Splash, splatter",117,14,15,146
+Splinter,14,2,2,18
+Squeak,134,15,36,185
+"Steel guitar, slide guitar",26,3,2,31
+Stream,114,13,19,146
+"Subway, metro, underground",182,21,9,212
+Synthetic singing,2,1,5,8
+Tabla,39,5,32,76
+Tambourine,155,18,31,204
+Tap,81,10,13,104
+Tearing,183,21,52,256
+Telephone,117,13,9,139
+Telephone bell ringing,36,5,14,55
+"Telephone dialing, DTMF",37,5,7,49
+Theremin,11,2,1,14
+Throat clearing,12,2,8,22
+"Thump, thud",120,14,19,153
+Thunder,122,14,9,145
+Tick,14,2,10,26
+Tick-tock,40,5,45,90
+Toilet flush,112,13,21,146
+Tools,134,15,4,153
+Toothbrush,14,2,6,22
+"Traffic noise, roadway noise",27,4,1,32
+Train,114,13,20,147
+Train horn,4,1,4,9
+"Trickle, dribble",22,3,2,27
+Trombone,7,1,10,18
+Trumpet,499,56,37,592
+Tubular bells,10,2,1,13
+Typewriter,38,5,30,73
+Typing,70,8,1,79
+Ukulele,54,7,5,66
+Vacuum cleaner,30,4,14,48
+"Vehicle horn, car horn, honking",36,4,21,61
+"Velcro, hook and loop fastener",34,4,15,53
+Vibraphone,36,4,1,41
+"Violin, fiddle",426,48,10,484
+"Wail, moan",9,2,2,13
+"Walk, footsteps",157,18,33,208
+"Water tap, faucet",52,6,19,77
+Waterfall,32,4,5,41
+"Waves, surf",86,10,19,115
+Whispering,108,12,5,125
+"Whoosh, swoosh, swish",186,21,61,268
+Wind,83,10,3,96
+Wind chime,39,5,29,73
+"Wind instrument, woodwind instrument",9,2,1,12
+Wood,4,1,2,7
+Writing,205,23,55,283
+Yawn,18,2,7,27
+Yell,35,4,18,57
+Zipper (clothing),204,23,76,303

@@ -1,0 +1,1105 @@
+original_label,fname,label,id
+dog,audio/1-100032-A-0.wav,Bark,/m/05tny_
+chirping_birds,audio/1-100038-A-14.wav,"Chirp, tweet",/m/07pggtn
+vacuum_cleaner,audio/1-100210-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/1-100210-B-36.wav,Vacuum cleaner,/m/0d31p
+thunderstorm,audio/1-101296-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/1-101296-B-19.wav,Thunderstorm,/m/0jb2l
+door_wood_knock,audio/1-101336-A-30.wav,Knock,/m/07r4wb8
+crow,audio/1-103298-A-9.wav,Crow,/m/04s8yn
+door_wood_knock,audio/1-103995-A-30.wav,Knock,/m/07r4wb8
+door_wood_knock,audio/1-103999-A-30.wav,Knock,/m/07r4wb8
+clapping,audio/1-104089-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/1-104089-B-22.wav,Clapping,/m/0l15bq
+clapping,audio/1-105224-A-22.wav,Clapping,/m/0l15bq
+dog,audio/1-110389-A-0.wav,Bark,/m/05tny_
+clapping,audio/1-110537-A-22.wav,Clapping,/m/0l15bq
+thunderstorm,audio/1-115521-A-19.wav,Thunderstorm,/m/0jb2l
+fireworks,audio/1-115545-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/1-115545-B-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/1-115545-C-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/1-115546-A-48.wav,Fireworks,/m/0g6b5
+clapping,audio/1-115920-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/1-115920-B-22.wav,Clapping,/m/0l15bq
+clapping,audio/1-115921-A-22.wav,Clapping,/m/0l15bq
+chainsaw,audio/1-116765-A-41.wav,Chainsaw,/m/01j4z9
+airplane,audio/1-11687-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+pouring_water,audio/1-118559-A-17.wav,Pour,/m/07prgkl
+train,audio/1-119125-A-45.wav,Train,/m/07jdr
+sheep,audio/1-121951-A-8.wav,Sheep,/m/07bgp
+water_drops,audio/1-12653-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/1-12654-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/1-12654-B-15.wav,Drip,/m/07r5v4s
+church_bells,audio/1-13571-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/1-13572-A-46.wav,Church bell,/m/03w41f
+clock_alarm,audio/1-13613-A-37.wav,Alarm clock,/m/046dlr
+keyboard_typing,audio/1-137-A-32.wav,Computer keyboard,/m/01m2v
+wind,audio/1-137296-A-16.wav,Wind,/m/03m9d0z
+clock_alarm,audio/1-14262-A-37.wav,Alarm clock,/m/046dlr
+footsteps,audio/1-155858-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/1-155858-B-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/1-155858-C-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/1-155858-D-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/1-155858-E-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/1-155858-F-25.wav,"Walk, footsteps",/m/07pbtc8
+frog,audio/1-15689-A-4.wav,Frog,/m/09ld4
+frog,audio/1-15689-B-4.wav,Frog,/m/09ld4
+fireworks,audio/1-160563-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/1-160563-B-48.wav,Fireworks,/m/0g6b5
+cow,audio/1-16568-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+water_drops,audio/1-16746-A-15.wav,Drip,/m/07r5v4s
+brushing_teeth,audio/1-17092-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/1-17092-B-27.wav,Toothbrush,/m/012xff
+car_horn,audio/1-17124-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+crackling_fire,audio/1-17150-A-12.wav,Crackle,/m/07pzfmf
+helicopter,audio/1-172649-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-172649-B-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-172649-C-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-172649-D-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-172649-E-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-172649-F-40.wav,Helicopter,/m/09ct_
+rain,audio/1-17367-A-10.wav,Rain,/m/06mb1
+crackling_fire,audio/1-17565-A-12.wav,Crackle,/m/07pzfmf
+insects,audio/1-17585-A-7.wav,Insect,/m/03vt0
+crackling_fire,audio/1-17742-A-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/1-17808-A-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/1-17808-B-12.wav,Crackle,/m/07pzfmf
+laughing,audio/1-1791-A-26.wav,Laughter,/m/01j3sz
+frog,audio/1-17970-A-4.wav,Frog,/m/09ld4
+hen,audio/1-18074-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/1-18074-B-6.wav,"Chicken, rooster",/m/09b5t
+helicopter,audio/1-181071-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/1-181071-B-40.wav,Helicopter,/m/09ct_
+engine,audio/1-18527-A-44.wav,Engine,/m/02mk9
+engine,audio/1-18527-B-44.wav,Engine,/m/02mk9
+breathing,audio/1-18631-A-23.wav,Breathing,/m/0lyf6
+crying_baby,audio/1-187207-A-20.wav,"Baby cry, infant cry",/t/dd00002
+frog,audio/1-18755-A-4.wav,Frog,/m/09ld4
+frog,audio/1-18755-B-4.wav,Frog,/m/09ld4
+frog,audio/1-18757-A-4.wav,Frog,/m/09ld4
+hand_saw,audio/1-18810-A-49.wav,Sawing,/m/01b82r
+car_horn,audio/1-19026-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+coughing,audio/1-19111-A-24.wav,Cough,/m/01b_21
+coughing,audio/1-19118-A-24.wav,Cough,/m/01b_21
+insects,audio/1-19501-A-7.wav,Insect,/m/03vt0
+sheep,audio/1-196660-A-8.wav,Sheep,/m/07bgp
+sheep,audio/1-196660-B-8.wav,Sheep,/m/07bgp
+vacuum_cleaner,audio/1-19840-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/1-19872-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/1-19872-B-36.wav,Vacuum cleaner,/m/0d31p
+chainsaw,audio/1-19898-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/1-19898-B-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/1-19898-C-41.wav,Chainsaw,/m/01j4z9
+glass_breaking,audio/1-20133-A-39.wav,Shatter,/m/07rn7sz
+cow,audio/1-202111-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+snoring,audio/1-20545-A-28.wav,Snoring,/m/01d3sd
+toilet_flush,audio/1-20736-A-18.wav,Toilet flush,/m/01jt3m
+pig,audio/1-208757-A-2.wav,Pig,/m/068zj
+pig,audio/1-208757-B-2.wav,Pig,/m/068zj
+pig,audio/1-208757-C-2.wav,Pig,/m/068zj
+pig,audio/1-208757-D-2.wav,Pig,/m/068zj
+pig,audio/1-208757-E-2.wav,Pig,/m/068zj
+crying_baby,audio/1-211527-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/1-211527-B-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/1-211527-C-20.wav,"Baby cry, infant cry",/t/dd00002
+rain,audio/1-21189-A-10.wav,Rain,/m/06mb1
+church_bells,audio/1-21421-A-46.wav,Church bell,/m/03w41f
+clock_tick,audio/1-21934-A-38.wav,Tick-tock,/m/07qjznl
+clock_tick,audio/1-21935-A-38.wav,Tick-tock,/m/07qjznl
+footsteps,audio/1-223162-A-25.wav,"Walk, footsteps",/m/07pbtc8
+crying_baby,audio/1-22694-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/1-22694-B-20.wav,"Baby cry, infant cry",/t/dd00002
+church_bells,audio/1-22804-A-46.wav,Church bell,/m/03w41f
+engine,audio/1-22882-A-44.wav,Engine,/m/02mk9
+water_drops,audio/1-23094-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/1-23094-B-15.wav,Drip,/m/07r5v4s
+thunderstorm,audio/1-23222-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/1-23222-B-19.wav,Thunderstorm,/m/0jb2l
+hand_saw,audio/1-23706-A-49.wav,Sawing,/m/01b82r
+car_horn,audio/1-24074-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+car_horn,audio/1-24076-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+thunderstorm,audio/1-24524-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/1-24524-B-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/1-24524-C-19.wav,Thunderstorm,/m/0jb2l
+airplane,audio/1-24796-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+car_horn,audio/1-254507-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+fireworks,audio/1-25777-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/1-25781-A-48.wav,Fireworks,/m/0g6b5
+pig,audio/1-260640-A-2.wav,Pig,/m/068zj
+pig,audio/1-260640-B-2.wav,Pig,/m/068zj
+pig,audio/1-260640-C-2.wav,Pig,/m/068zj
+sneezing,audio/1-26143-A-21.wav,Sneeze,/m/01hsr_
+car_horn,audio/1-26176-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+car_horn,audio/1-26177-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+door_wood_knock,audio/1-26188-A-30.wav,Knock,/m/07r4wb8
+rain,audio/1-26222-A-10.wav,Rain,/m/06mb1
+rooster,audio/1-26806-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+snoring,audio/1-27403-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/1-27405-A-28.wav,Snoring,/m/01d3sd
+rooster,audio/1-27724-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+toilet_flush,audio/1-28005-A-18.wav,Toilet flush,/m/01jt3m
+sea_waves,audio/1-28135-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/1-28135-B-11.wav,"Waves, surf",/m/034srq
+car_horn,audio/1-28808-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+wind,audio/1-29532-A-16.wav,Wind,/m/03m9d0z
+rain,audio/1-29561-A-10.wav,Rain,/m/06mb1
+sneezing,audio/1-29680-A-21.wav,Sneeze,/m/01hsr_
+laughing,audio/1-30039-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/1-30043-A-26.wav,Laughter,/m/01j3sz
+toilet_flush,audio/1-30214-A-18.wav,Toilet flush,/m/01jt3m
+dog,audio/1-30226-A-0.wav,Bark,/m/05tny_
+dog,audio/1-30344-A-0.wav,Bark,/m/05tny_
+breathing,audio/1-30709-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/1-30709-B-23.wav,Breathing,/m/0lyf6
+breathing,audio/1-30709-C-23.wav,Breathing,/m/0lyf6
+coughing,audio/1-30830-A-24.wav,Cough,/m/01b_21
+hen,audio/1-31251-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/1-31251-B-6.wav,"Chicken, rooster",/m/09b5t
+siren,audio/1-31482-A-42.wav,Siren,/m/03kmc9
+siren,audio/1-31482-B-42.wav,Siren,/m/03kmc9
+sneezing,audio/1-31748-A-21.wav,Sneeze,/m/01hsr_
+frog,audio/1-31836-A-4.wav,Frog,/m/09ld4
+frog,audio/1-31836-B-4.wav,Frog,/m/09ld4
+dog,audio/1-32318-A-0.wav,Bark,/m/05tny_
+laughing,audio/1-33658-A-26.wav,Laughter,/m/01j3sz
+cat,audio/1-34094-A-5.wav,Meow,/m/07qrkrw
+cat,audio/1-34094-B-5.wav,Meow,/m/07qrkrw
+rooster,audio/1-34119-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+rooster,audio/1-34119-B-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+chirping_birds,audio/1-34495-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/1-34497-A-14.wav,"Chirp, tweet",/m/07pggtn
+clock_alarm,audio/1-34853-A-37.wav,Alarm clock,/m/046dlr
+clock_tick,audio/1-35687-A-38.wav,Tick-tock,/m/07qjznl
+laughing,audio/1-36164-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/1-36164-B-26.wav,Laughter,/m/01j3sz
+breathing,audio/1-36393-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/1-36397-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/1-36400-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/1-36402-A-23.wav,Breathing,/m/0lyf6
+airplane,audio/1-36929-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+chirping_birds,audio/1-38559-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/1-38560-A-14.wav,"Chirp, tweet",/m/07pggtn
+crow,audio/1-39835-A-9.wav,Crow,/m/04s8yn
+crow,audio/1-39835-B-9.wav,Crow,/m/04s8yn
+sea_waves,audio/1-39901-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/1-39901-B-11.wav,"Waves, surf",/m/034srq
+rooster,audio/1-39923-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+snoring,audio/1-39937-A-28.wav,Snoring,/m/01d3sd
+church_bells,audio/1-40154-A-46.wav,Church bell,/m/03w41f
+snoring,audio/1-40621-A-28.wav,Snoring,/m/01d3sd
+rooster,audio/1-40730-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+snoring,audio/1-40967-A-28.wav,Snoring,/m/01d3sd
+crackling_fire,audio/1-4211-A-12.wav,Crackle,/m/07pzfmf
+clock_tick,audio/1-42139-A-38.wav,Tick-tock,/m/07qjznl
+rooster,audio/1-43382-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+sea_waves,audio/1-43760-A-11.wav,"Waves, surf",/m/034srq
+airplane,audio/1-43807-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/1-43807-B-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/1-43807-C-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/1-43807-D-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+rooster,audio/1-44831-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+brushing_teeth,audio/1-45641-A-27.wav,Toothbrush,/m/012xff
+chirping_birds,audio/1-46040-A-14.wav,"Chirp, tweet",/m/07pggtn
+crackling_fire,audio/1-46272-A-12.wav,Crackle,/m/07pzfmf
+toilet_flush,audio/1-46274-A-18.wav,Toilet flush,/m/01jt3m
+hand_saw,audio/1-46353-A-49.wav,Sawing,/m/01b82r
+vacuum_cleaner,audio/1-46744-A-36.wav,Vacuum cleaner,/m/0d31p
+insects,audio/1-46938-A-7.wav,Insect,/m/03vt0
+insects,audio/1-46938-B-7.wav,Insect,/m/03vt0
+chainsaw,audio/1-47250-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/1-47250-B-41.wav,Chainsaw,/m/01j4z9
+sneezing,audio/1-47273-A-21.wav,Sneeze,/m/01hsr_
+sneezing,audio/1-47274-A-21.wav,Sneeze,/m/01hsr_
+wind,audio/1-47709-A-16.wav,Wind,/m/03m9d0z
+wind,audio/1-47714-A-16.wav,Wind,/m/03m9d0z
+cat,audio/1-47819-A-5.wav,Meow,/m/07qrkrw
+cat,audio/1-47819-B-5.wav,Meow,/m/07qrkrw
+cat,audio/1-47819-C-5.wav,Meow,/m/07qrkrw
+snoring,audio/1-47923-A-28.wav,Snoring,/m/01d3sd
+church_bells,audio/1-48298-A-46.wav,Church bell,/m/03w41f
+clock_tick,audio/1-48413-A-38.wav,Tick-tock,/m/07qjznl
+sheep,audio/1-49409-A-8.wav,Sheep,/m/07bgp
+sheep,audio/1-49409-B-8.wav,Sheep,/m/07bgp
+rain,audio/1-50060-A-10.wav,Rain,/m/06mb1
+engine,audio/1-50454-A-44.wav,Engine,/m/02mk9
+engine,audio/1-50455-A-44.wav,Engine,/m/02mk9
+water_drops,audio/1-50623-A-15.wav,Drip,/m/07r5v4s
+pouring_water,audio/1-50625-A-17.wav,Pour,/m/07prgkl
+engine,audio/1-50661-A-44.wav,Engine,/m/02mk9
+pouring_water,audio/1-50688-A-17.wav,Pour,/m/07prgkl
+wind,audio/1-51035-A-16.wav,Wind,/m/03m9d0z
+wind,audio/1-51036-A-16.wav,Wind,/m/03m9d0z
+wind,audio/1-51037-A-16.wav,Wind,/m/03m9d0z
+footsteps,audio/1-51147-A-25.wav,"Walk, footsteps",/m/07pbtc8
+toilet_flush,audio/1-51170-A-18.wav,Toilet flush,/m/01jt3m
+pouring_water,audio/1-51433-A-17.wav,Pour,/m/07prgkl
+pouring_water,audio/1-51436-A-17.wav,Pour,/m/07prgkl
+door_wood_creaks,audio/1-51805-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-B-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-C-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-D-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-E-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-F-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-G-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/1-51805-H-33.wav,Creak,/m/07qh7jl
+coughing,audio/1-52266-A-24.wav,Cough,/m/01b_21
+door_wood_knock,audio/1-52290-A-30.wav,Knock,/m/07r4wb8
+coughing,audio/1-52323-A-24.wav,Cough,/m/01b_21
+snoring,audio/1-53444-A-28.wav,Snoring,/m/01d3sd
+airplane,audio/1-53467-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+keyboard_typing,audio/1-53501-A-32.wav,Computer keyboard,/m/01m2v
+coughing,audio/1-53663-A-24.wav,Cough,/m/01b_21
+toilet_flush,audio/1-53670-A-18.wav,Toilet flush,/m/01jt3m
+train,audio/1-54065-A-45.wav,Train,/m/07jdr
+train,audio/1-54065-B-45.wav,Train,/m/07jdr
+siren,audio/1-54084-A-42.wav,Siren,/m/03kmc9
+sneezing,audio/1-54505-A-21.wav,Sneeze,/m/01hsr_
+church_bells,audio/1-54747-A-46.wav,Church bell,/m/03w41f
+toilet_flush,audio/1-54752-A-18.wav,Toilet flush,/m/01jt3m
+chirping_birds,audio/1-54918-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/1-54918-B-14.wav,"Chirp, tweet",/m/07pggtn
+rain,audio/1-54958-A-10.wav,Rain,/m/06mb1
+crow,audio/1-56233-A-9.wav,Crow,/m/04s8yn
+crow,audio/1-56234-A-9.wav,Crow,/m/04s8yn
+toilet_flush,audio/1-56269-A-18.wav,Toilet flush,/m/01jt3m
+rain,audio/1-56311-A-10.wav,Rain,/m/06mb1
+cat,audio/1-56380-A-5.wav,Meow,/m/07qrkrw
+cat,audio/1-56380-B-5.wav,Meow,/m/07qrkrw
+church_bells,audio/1-56907-A-46.wav,Church bell,/m/03w41f
+clock_tick,audio/1-57163-A-38.wav,Tick-tock,/m/07qjznl
+crickets,audio/1-57316-A-13.wav,Cricket,/m/09xqv
+crickets,audio/1-57318-A-13.wav,Cricket,/m/09xqv
+sheep,audio/1-57795-A-8.wav,Sheep,/m/07bgp
+cow,audio/1-58277-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+coughing,audio/1-58792-A-24.wav,Cough,/m/01b_21
+brushing_teeth,audio/1-58923-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/1-58923-B-27.wav,Toothbrush,/m/012xff
+crickets,audio/1-59102-A-13.wav,Cricket,/m/09xqv
+sneezing,audio/1-59324-A-21.wav,Sneeze,/m/01hsr_
+dog,audio/1-59513-A-0.wav,Bark,/m/05tny_
+hen,audio/1-5996-A-6.wav,"Chicken, rooster",/m/09b5t
+vacuum_cleaner,audio/1-60460-A-36.wav,Vacuum cleaner,/m/0d31p
+crying_baby,audio/1-60997-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/1-60997-B-20.wav,"Baby cry, infant cry",/t/dd00002
+keyboard_typing,audio/1-61212-A-32.wav,Computer keyboard,/m/01m2v
+pouring_water,audio/1-61221-A-17.wav,Pour,/m/07prgkl
+sea_waves,audio/1-61252-A-11.wav,"Waves, surf",/m/034srq
+engine,audio/1-61261-A-44.wav,Engine,/m/02mk9
+brushing_teeth,audio/1-61534-A-27.wav,Toothbrush,/m/012xff
+train,audio/1-62509-A-45.wav,Train,/m/07jdr
+engine,audio/1-62565-A-44.wav,Engine,/m/02mk9
+keyboard_typing,audio/1-62594-A-32.wav,Computer keyboard,/m/01m2v
+clock_tick,audio/1-62849-A-38.wav,Tick-tock,/m/07qjznl
+clock_tick,audio/1-62850-A-38.wav,Tick-tock,/m/07qjznl
+coughing,audio/1-63679-A-24.wav,Cough,/m/01b_21
+rain,audio/1-63871-A-10.wav,Rain,/m/06mb1
+chainsaw,audio/1-64398-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/1-64398-B-41.wav,Chainsaw,/m/01j4z9
+train,audio/1-64473-A-45.wav,Train,/m/07jdr
+crickets,audio/1-65483-A-13.wav,Cricket,/m/09xqv
+clock_alarm,audio/1-67033-A-37.wav,Alarm clock,/m/046dlr
+pouring_water,audio/1-67152-A-17.wav,Pour,/m/07prgkl
+brushing_teeth,audio/1-67432-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/1-68628-A-27.wav,Toothbrush,/m/012xff
+cow,audio/1-69422-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/1-69641-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+wind,audio/1-69760-A-16.wav,Wind,/m/03m9d0z
+train,audio/1-70300-A-45.wav,Train,/m/07jdr
+crackling_fire,audio/1-7057-A-12.wav,Crackle,/m/07pzfmf
+hen,audio/1-71030-A-6.wav,"Chicken, rooster",/m/09b5t
+clock_alarm,audio/1-72195-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/1-72195-B-37.wav,Alarm clock,/m/046dlr
+hen,audio/1-72229-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/1-72229-B-6.wav,"Chicken, rooster",/m/09b5t
+laughing,audio/1-72695-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/1-73123-A-26.wav,Laughter,/m/01j3sz
+insects,audio/1-73585-A-7.wav,Insect,/m/03vt0
+clock_alarm,audio/1-74517-A-37.wav,Alarm clock,/m/046dlr
+crickets,audio/1-7456-A-13.wav,Cricket,/m/09xqv
+crow,audio/1-75162-A-9.wav,Crow,/m/04s8yn
+insects,audio/1-75189-A-7.wav,Insect,/m/03vt0
+sheep,audio/1-75190-A-8.wav,Sheep,/m/07bgp
+siren,audio/1-76831-A-42.wav,Siren,/m/03kmc9
+siren,audio/1-76831-B-42.wav,Siren,/m/03kmc9
+siren,audio/1-76831-C-42.wav,Siren,/m/03kmc9
+siren,audio/1-76831-D-42.wav,Siren,/m/03kmc9
+siren,audio/1-76831-E-42.wav,Siren,/m/03kmc9
+cow,audio/1-77160-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/1-77241-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cat,audio/1-79113-A-5.wav,Meow,/m/07qrkrw
+pouring_water,audio/1-79220-A-17.wav,Pour,/m/07prgkl
+vacuum_cleaner,audio/1-79236-A-36.wav,Vacuum cleaner,/m/0d31p
+keyboard_typing,audio/1-79711-A-32.wav,Computer keyboard,/m/01m2v
+insects,audio/1-7973-A-7.wav,Insect,/m/03vt0
+hand_saw,audio/1-7974-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/1-7974-B-49.wav,Sawing,/m/01b82r
+insects,audio/1-80785-A-7.wav,Insect,/m/03vt0
+crickets,audio/1-80840-A-13.wav,Cricket,/m/09xqv
+crickets,audio/1-80841-A-13.wav,Cricket,/m/09xqv
+door_wood_knock,audio/1-81001-A-30.wav,Knock,/m/07r4wb8
+door_wood_knock,audio/1-81001-B-30.wav,Knock,/m/07r4wb8
+cow,audio/1-81269-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+sneezing,audio/1-81883-A-21.wav,Sneeze,/m/01hsr_
+door_wood_knock,audio/1-82817-A-30.wav,Knock,/m/07r4wb8
+keyboard_typing,audio/1-84393-A-32.wav,Computer keyboard,/m/01m2v
+glass_breaking,audio/1-84536-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/1-84704-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/1-84705-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/1-85168-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/1-85184-A-39.wav,Shatter,/m/07rn7sz
+dog,audio/1-85362-A-0.wav,Bark,/m/05tny_
+train,audio/1-88409-A-45.wav,Train,/m/07jdr
+train,audio/1-88409-B-45.wav,Train,/m/07jdr
+sheep,audio/1-88574-A-8.wav,Sheep,/m/07bgp
+glass_breaking,audio/1-88807-A-39.wav,Shatter,/m/07rn7sz
+water_drops,audio/1-90797-A-15.wav,Drip,/m/07r5v4s
+sea_waves,audio/1-91359-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/1-91359-B-11.wav,"Waves, surf",/m/034srq
+clapping,audio/1-94036-A-22.wav,Clapping,/m/0l15bq
+keyboard_typing,audio/1-94231-A-32.wav,Computer keyboard,/m/01m2v
+keyboard_typing,audio/1-94231-B-32.wav,Computer keyboard,/m/01m2v
+clock_alarm,audio/1-96890-A-37.wav,Alarm clock,/m/046dlr
+crow,audio/1-96950-A-9.wav,Crow,/m/04s8yn
+crow,audio/1-96950-B-9.wav,Crow,/m/04s8yn
+dog,audio/1-97392-A-0.wav,Bark,/m/05tny_
+glass_breaking,audio/1-977-A-39.wav,Shatter,/m/07rn7sz
+crickets,audio/1-9841-A-13.wav,Cricket,/m/09xqv
+hand_saw,audio/1-9886-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/1-9887-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/1-9887-B-49.wav,Sawing,/m/01b82r
+car_horn,audio/2-100648-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+rooster,audio/2-100786-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+rain,audio/2-101676-A-10.wav,Rain,/m/06mb1
+pouring_water,audio/2-102414-A-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-B-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-C-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-D-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-E-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-F-17.wav,Pour,/m/07prgkl
+pouring_water,audio/2-102414-G-17.wav,Pour,/m/07prgkl
+clock_alarm,audio/2-102435-A-37.wav,Alarm clock,/m/046dlr
+sea_waves,audio/2-102852-A-11.wav,"Waves, surf",/m/034srq
+cow,audio/2-103423-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/2-103424-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/2-103426-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/2-103427-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/2-103428-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+thunderstorm,audio/2-104105-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-104105-B-19.wav,Thunderstorm,/m/0jb2l
+keyboard_typing,audio/2-104168-A-32.wav,Computer keyboard,/m/01m2v
+clock_alarm,audio/2-104475-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/2-104476-A-37.wav,Alarm clock,/m/046dlr
+cow,audio/2-104877-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+wind,audio/2-104952-A-16.wav,Wind,/m/03m9d0z
+wind,audio/2-104952-B-16.wav,Wind,/m/03m9d0z
+airplane,audio/2-105270-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+engine,audio/2-106014-A-44.wav,Engine,/m/02mk9
+engine,audio/2-106015-A-44.wav,Engine,/m/02mk9
+engine,audio/2-106015-B-44.wav,Engine,/m/02mk9
+crickets,audio/2-106019-A-13.wav,Cricket,/m/09xqv
+vacuum_cleaner,audio/2-106072-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/2-106073-A-36.wav,Vacuum cleaner,/m/0d31p
+engine,audio/2-106486-A-44.wav,Engine,/m/02mk9
+engine,audio/2-106487-A-44.wav,Engine,/m/02mk9
+airplane,audio/2-106849-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+glass_breaking,audio/2-106881-A-39.wav,Shatter,/m/07rn7sz
+engine,audio/2-107228-A-44.wav,Engine,/m/02mk9
+engine,audio/2-107228-B-44.wav,Engine,/m/02mk9
+crying_baby,audio/2-107351-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/2-107351-B-20.wav,"Baby cry, infant cry",/t/dd00002
+coughing,audio/2-108017-A-24.wav,Cough,/m/01b_21
+chirping_birds,audio/2-108760-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/2-108760-B-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/2-108761-A-14.wav,"Chirp, tweet",/m/07pggtn
+crow,audio/2-108763-A-9.wav,Crow,/m/04s8yn
+crow,audio/2-108766-A-9.wav,Crow,/m/04s8yn
+crow,audio/2-108767-A-9.wav,Crow,/m/04s8yn
+crow,audio/2-108767-B-9.wav,Crow,/m/04s8yn
+crow,audio/2-108767-C-9.wav,Crow,/m/04s8yn
+crow,audio/2-109231-A-9.wav,Crow,/m/04s8yn
+crow,audio/2-109231-B-9.wav,Crow,/m/04s8yn
+crow,audio/2-109231-C-9.wav,Crow,/m/04s8yn
+keyboard_typing,audio/2-109316-A-32.wav,Computer keyboard,/m/01m2v
+wind,audio/2-109371-A-16.wav,Wind,/m/03m9d0z
+wind,audio/2-109371-B-16.wav,Wind,/m/03m9d0z
+wind,audio/2-109371-C-16.wav,Wind,/m/03m9d0z
+wind,audio/2-109371-D-16.wav,Wind,/m/03m9d0z
+wind,audio/2-109374-A-16.wav,Wind,/m/03m9d0z
+sneezing,audio/2-109505-A-21.wav,Sneeze,/m/01hsr_
+laughing,audio/2-109759-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/2-109759-B-26.wav,Laughter,/m/01j3sz
+cat,audio/2-110010-A-5.wav,Meow,/m/07qrkrw
+cat,audio/2-110011-A-5.wav,Meow,/m/07qrkrw
+snoring,audio/2-110417-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/2-110417-B-28.wav,Snoring,/m/01d3sd
+crickets,audio/2-110613-A-13.wav,Cricket,/m/09xqv
+sheep,audio/2-110614-A-8.wav,Sheep,/m/07bgp
+sheep,audio/2-110614-B-8.wav,Sheep,/m/07bgp
+glass_breaking,audio/2-112213-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/2-112213-B-39.wav,Shatter,/m/07rn7sz
+door_wood_knock,audio/2-114254-A-30.wav,Knock,/m/07r4wb8
+dog,audio/2-114280-A-0.wav,Bark,/m/05tny_
+dog,audio/2-114587-A-0.wav,Bark,/m/05tny_
+snoring,audio/2-114609-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/2-114609-B-28.wav,Snoring,/m/01d3sd
+dog,audio/2-116400-A-0.wav,Bark,/m/05tny_
+clock_alarm,audio/2-117116-A-37.wav,Alarm clock,/m/046dlr
+dog,audio/2-117271-A-0.wav,Bark,/m/05tny_
+snoring,audio/2-117330-A-28.wav,Snoring,/m/01d3sd
+fireworks,audio/2-117615-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117615-B-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117615-C-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117615-D-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117615-E-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117616-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/2-117617-A-48.wav,Fireworks,/m/0g6b5
+rain,audio/2-117625-A-10.wav,Rain,/m/06mb1
+cow,audio/2-117795-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/2-117795-B-3.wav,"Cattle, bovinae",/m/01xq0k1
+dog,audio/2-118072-A-0.wav,Bark,/m/05tny_
+sneezing,audio/2-118104-A-21.wav,Sneeze,/m/01hsr_
+keyboard_typing,audio/2-118459-A-32.wav,Computer keyboard,/m/01m2v
+keyboard_typing,audio/2-118459-B-32.wav,Computer keyboard,/m/01m2v
+door_wood_knock,audio/2-118624-A-30.wav,Knock,/m/07r4wb8
+door_wood_knock,audio/2-118625-A-30.wav,Knock,/m/07r4wb8
+keyboard_typing,audio/2-118817-A-32.wav,Computer keyboard,/m/01m2v
+dog,audio/2-118964-A-0.wav,Bark,/m/05tny_
+sneezing,audio/2-119102-A-21.wav,Sneeze,/m/01hsr_
+sheep,audio/2-119161-A-8.wav,Sheep,/m/07bgp
+sheep,audio/2-119161-B-8.wav,Sheep,/m/07bgp
+sheep,audio/2-119161-C-8.wav,Sheep,/m/07bgp
+clock_tick,audio/2-119748-A-38.wav,Tick-tock,/m/07qjznl
+door_wood_knock,audio/2-120218-A-30.wav,Knock,/m/07r4wb8
+door_wood_knock,audio/2-120218-B-30.wav,Knock,/m/07r4wb8
+keyboard_typing,audio/2-120333-A-32.wav,Computer keyboard,/m/01m2v
+hen,audio/2-120586-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/2-120587-A-6.wav,"Chicken, rooster",/m/09b5t
+train,audio/2-122066-A-45.wav,Train,/m/07jdr
+train,audio/2-122066-B-45.wav,Train,/m/07jdr
+train,audio/2-122067-A-45.wav,Train,/m/07jdr
+train,audio/2-122067-B-45.wav,Train,/m/07jdr
+dog,audio/2-122104-A-0.wav,Bark,/m/05tny_
+dog,audio/2-122104-B-0.wav,Bark,/m/05tny_
+chirping_birds,audio/2-122616-A-14.wav,"Chirp, tweet",/m/07pggtn
+vacuum_cleaner,audio/2-122820-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/2-122820-B-36.wav,Vacuum cleaner,/m/0d31p
+door_wood_creaks,audio/2-123712-A-33.wav,Creak,/m/07qh7jl
+coughing,audio/2-123896-A-24.wav,Cough,/m/01b_21
+water_drops,audio/2-124564-A-15.wav,Drip,/m/07r5v4s
+sea_waves,audio/2-124662-A-11.wav,"Waves, surf",/m/034srq
+car_horn,audio/2-125520-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+crickets,audio/2-125821-A-13.wav,Cricket,/m/09xqv
+crickets,audio/2-125875-A-13.wav,Cricket,/m/09xqv
+sea_waves,audio/2-125966-A-11.wav,"Waves, surf",/m/034srq
+pouring_water,audio/2-126433-A-17.wav,Pour,/m/07prgkl
+clock_tick,audio/2-127108-A-38.wav,Tick-tock,/m/07qjznl
+hen,audio/2-127109-A-6.wav,"Chicken, rooster",/m/09b5t
+car_horn,audio/2-128465-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+car_horn,audio/2-128465-B-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+sneezing,audio/2-128631-A-21.wav,Sneeze,/m/01hsr_
+sneezing,audio/2-130978-A-21.wav,Sneeze,/m/01hsr_
+sneezing,audio/2-130979-A-21.wav,Sneeze,/m/01hsr_
+clock_tick,audio/2-131943-A-38.wav,Tick-tock,/m/07qjznl
+sea_waves,audio/2-132157-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/2-132157-B-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/2-133863-A-11.wav,"Waves, surf",/m/034srq
+door_wood_knock,audio/2-133889-A-30.wav,Knock,/m/07r4wb8
+hen,audio/2-134049-A-6.wav,"Chicken, rooster",/m/09b5t
+clock_tick,audio/2-134700-A-38.wav,Tick-tock,/m/07qjznl
+door_wood_knock,audio/2-134915-A-30.wav,Knock,/m/07r4wb8
+train,audio/2-135649-A-45.wav,Train,/m/07jdr
+train,audio/2-135649-B-45.wav,Train,/m/07jdr
+train,audio/2-135649-C-45.wav,Train,/m/07jdr
+clock_tick,audio/2-135728-A-38.wav,Tick-tock,/m/07qjznl
+hand_saw,audio/2-135860-A-49.wav,Sawing,/m/01b82r
+sea_waves,audio/2-137162-A-11.wav,"Waves, surf",/m/034srq
+car_horn,audio/2-138465-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+water_drops,audio/2-139748-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/2-139748-B-15.wav,Drip,/m/07r5v4s
+water_drops,audio/2-139749-A-15.wav,Drip,/m/07r5v4s
+clock_tick,audio/2-140147-A-38.wav,Tick-tock,/m/07qjznl
+door_wood_knock,audio/2-140841-A-30.wav,Knock,/m/07r4wb8
+glass_breaking,audio/2-141563-A-39.wav,Shatter,/m/07rn7sz
+clock_tick,audio/2-141584-A-38.wav,Tick-tock,/m/07qjznl
+vacuum_cleaner,audio/2-141681-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/2-141681-B-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/2-141682-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/2-141682-B-36.wav,Vacuum cleaner,/m/0d31p
+car_horn,audio/2-144137-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+crying_baby,audio/2-151079-A-20.wav,"Baby cry, infant cry",/t/dd00002
+sea_waves,audio/2-155801-A-11.wav,"Waves, surf",/m/034srq
+hen,audio/2-157488-A-6.wav,"Chicken, rooster",/m/09b5t
+pig,audio/2-158746-A-2.wav,Pig,/m/068zj
+pig,audio/2-158746-B-2.wav,Pig,/m/068zj
+pig,audio/2-158746-C-2.wav,Pig,/m/068zj
+pig,audio/2-158746-D-2.wav,Pig,/m/068zj
+insects,audio/2-160128-A-7.wav,Insect,/m/03vt0
+airplane,audio/2-160888-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+fireworks,audio/2-165801-A-48.wav,Fireworks,/m/0g6b5
+pig,audio/2-166644-A-2.wav,Pig,/m/068zj
+pig,audio/2-166644-B-2.wav,Pig,/m/068zj
+pig,audio/2-166644-C-2.wav,Pig,/m/068zj
+glass_breaking,audio/2-173559-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/2-173607-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/2-173618-A-39.wav,Shatter,/m/07rn7sz
+sheep,audio/2-182508-A-8.wav,Sheep,/m/07bgp
+sheep,audio/2-182508-B-8.wav,Sheep,/m/07bgp
+hand_saw,audio/2-184077-A-49.wav,Sawing,/m/01b82r
+crackling_fire,audio/2-18766-A-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/2-18766-B-12.wav,Crackle,/m/07pzfmf
+helicopter,audio/2-188822-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-188822-B-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-188822-C-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-188822-D-40.wav,Helicopter,/m/09ct_
+sheep,audio/2-196688-A-8.wav,Sheep,/m/07bgp
+wind,audio/2-205966-A-16.wav,Wind,/m/03m9d0z
+footsteps,audio/2-209471-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209472-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209473-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209474-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209475-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209476-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209477-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/2-209478-A-25.wav,"Walk, footsteps",/m/07pbtc8
+glass_breaking,audio/2-250710-A-39.wav,Shatter,/m/07rn7sz
+clapping,audio/2-25292-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/2-25293-A-22.wav,Clapping,/m/0l15bq
+train,audio/2-262579-A-45.wav,Train,/m/07jdr
+crackling_fire,audio/2-28314-A-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/2-28314-B-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/2-30322-A-12.wav,Crackle,/m/07pzfmf
+crackling_fire,audio/2-30322-B-12.wav,Crackle,/m/07pzfmf
+frog,audio/2-32515-A-4.wav,Frog,/m/09ld4
+frog,audio/2-32515-B-4.wav,Frog,/m/09ld4
+frog,audio/2-32515-C-4.wav,Frog,/m/09ld4
+frog,audio/2-32515-D-4.wav,Frog,/m/09ld4
+frog,audio/2-32834-A-4.wav,Frog,/m/09ld4
+helicopter,audio/2-37806-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-37806-B-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-37806-C-40.wav,Helicopter,/m/09ct_
+helicopter,audio/2-37806-D-40.wav,Helicopter,/m/09ct_
+pig,audio/2-37870-A-2.wav,Pig,/m/068zj
+thunderstorm,audio/2-39441-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-39443-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-39443-B-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-39945-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-39945-B-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/2-39945-C-19.wav,Thunderstorm,/m/0jb2l
+car_horn,audio/2-42101-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+siren,audio/2-43802-A-42.wav,Siren,/m/03kmc9
+siren,audio/2-43806-A-42.wav,Siren,/m/03kmc9
+crying_baby,audio/2-50665-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/2-50666-A-20.wav,"Baby cry, infant cry",/t/dd00002
+chainsaw,audio/2-50667-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/2-50667-B-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/2-50668-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/2-50668-B-41.wav,Chainsaw,/m/01j4z9
+breathing,audio/2-50774-A-23.wav,Breathing,/m/0lyf6
+hand_saw,audio/2-51630-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/2-51630-B-49.wav,Sawing,/m/01b82r
+snoring,audio/2-52001-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/2-52001-B-28.wav,Snoring,/m/01d3sd
+frog,audio/2-52085-A-4.wav,Frog,/m/09ld4
+frog,audio/2-52085-B-4.wav,Frog,/m/09ld4
+frog,audio/2-52789-A-4.wav,Frog,/m/09ld4
+car_horn,audio/2-54086-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+breathing,audio/2-54961-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/2-54962-A-23.wav,Breathing,/m/0lyf6
+church_bells,audio/2-56926-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/2-57191-A-46.wav,Church bell,/m/03w41f
+clapping,audio/2-57733-A-22.wav,Clapping,/m/0l15bq
+hand_saw,audio/2-59321-A-49.wav,Sawing,/m/01b82r
+church_bells,audio/2-59565-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/2-59566-A-46.wav,Church bell,/m/03w41f
+hand_saw,audio/2-60180-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/2-60180-B-49.wav,Sawing,/m/01b82r
+laughing,audio/2-60791-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/2-60794-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/2-60795-A-26.wav,Laughter,/m/01j3sz
+clapping,audio/2-60900-A-22.wav,Clapping,/m/0l15bq
+crackling_fire,audio/2-61311-A-12.wav,Crackle,/m/07pzfmf
+church_bells,audio/2-61618-A-46.wav,Church bell,/m/03w41f
+laughing,audio/2-62226-A-26.wav,Laughter,/m/01j3sz
+toilet_flush,audio/2-64332-A-18.wav,Toilet flush,/m/01jt3m
+water_drops,audio/2-64962-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/2-64963-A-15.wav,Drip,/m/07r5v4s
+toilet_flush,audio/2-65484-A-18.wav,Toilet flush,/m/01jt3m
+crackling_fire,audio/2-65747-A-12.wav,Crackle,/m/07pzfmf
+rooster,audio/2-65750-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+breathing,audio/2-66205-A-23.wav,Breathing,/m/0lyf6
+crying_baby,audio/2-66637-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/2-66637-B-20.wav,"Baby cry, infant cry",/t/dd00002
+toilet_flush,audio/2-67422-A-18.wav,Toilet flush,/m/01jt3m
+chainsaw,audio/2-68391-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/2-68391-B-41.wav,Chainsaw,/m/01j4z9
+water_drops,audio/2-68595-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/2-68595-B-15.wav,Drip,/m/07r5v4s
+cat,audio/2-69131-A-5.wav,Meow,/m/07qrkrw
+cat,audio/2-69131-B-5.wav,Meow,/m/07qrkrw
+siren,audio/2-70052-A-42.wav,Siren,/m/03kmc9
+siren,audio/2-70052-B-42.wav,Siren,/m/03kmc9
+toilet_flush,audio/2-70280-A-18.wav,Toilet flush,/m/01jt3m
+door_wood_creaks,audio/2-70344-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/2-70366-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/2-70367-A-33.wav,Creak,/m/07qh7jl
+siren,audio/2-70936-A-42.wav,Siren,/m/03kmc9
+siren,audio/2-70938-A-42.wav,Siren,/m/03kmc9
+siren,audio/2-70939-A-42.wav,Siren,/m/03kmc9
+rooster,audio/2-71162-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+hen,audio/2-72268-A-6.wav,"Chicken, rooster",/m/09b5t
+chirping_birds,audio/2-72547-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/2-72547-B-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/2-72547-C-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/2-72547-D-14.wav,"Chirp, tweet",/m/07pggtn
+toilet_flush,audio/2-72677-A-18.wav,Toilet flush,/m/01jt3m
+siren,audio/2-72688-A-42.wav,Siren,/m/03kmc9
+rain,audio/2-72970-A-10.wav,Rain,/m/06mb1
+rain,audio/2-73027-A-10.wav,Rain,/m/06mb1
+door_wood_creaks,audio/2-7321-A-33.wav,Creak,/m/07qh7jl
+rain,audio/2-73260-A-10.wav,Rain,/m/06mb1
+brushing_teeth,audio/2-73544-A-27.wav,Toothbrush,/m/012xff
+airplane,audio/2-74361-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+toilet_flush,audio/2-74977-A-18.wav,Toilet flush,/m/01jt3m
+hen,audio/2-75726-A-6.wav,"Chicken, rooster",/m/09b5t
+clapping,audio/2-76408-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/2-76408-B-22.wav,Clapping,/m/0l15bq
+clapping,audio/2-76408-C-22.wav,Clapping,/m/0l15bq
+clapping,audio/2-76408-D-22.wav,Clapping,/m/0l15bq
+hen,audio/2-76868-A-6.wav,"Chicken, rooster",/m/09b5t
+church_bells,audio/2-77346-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/2-77347-A-46.wav,Church bell,/m/03w41f
+chainsaw,audio/2-77945-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/2-77945-B-41.wav,Chainsaw,/m/01j4z9
+church_bells,audio/2-78381-A-46.wav,Church bell,/m/03w41f
+clock_alarm,audio/2-78562-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/2-78562-B-37.wav,Alarm clock,/m/046dlr
+engine,audio/2-78651-A-44.wav,Engine,/m/02mk9
+airplane,audio/2-78781-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/2-78799-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+laughing,audio/2-79769-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/2-79775-A-26.wav,Laughter,/m/01j3sz
+snoring,audio/2-80313-A-28.wav,Snoring,/m/01d3sd
+crying_baby,audio/2-80482-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crickets,audio/2-80844-A-13.wav,Cricket,/m/09xqv
+rooster,audio/2-81270-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+rain,audio/2-81731-A-10.wav,Rain,/m/06mb1
+insects,audio/2-81970-A-7.wav,Insect,/m/03vt0
+insects,audio/2-81970-B-7.wav,Insect,/m/03vt0
+insects,audio/2-81970-C-7.wav,Insect,/m/03vt0
+brushing_teeth,audio/2-82071-A-27.wav,Toothbrush,/m/012xff
+insects,audio/2-82077-A-7.wav,Insect,/m/03vt0
+cat,audio/2-82274-A-5.wav,Meow,/m/07qrkrw
+cat,audio/2-82274-B-5.wav,Meow,/m/07qrkrw
+rain,audio/2-82367-A-10.wav,Rain,/m/06mb1
+breathing,audio/2-82455-A-23.wav,Breathing,/m/0lyf6
+sneezing,audio/2-82538-A-21.wav,Sneeze,/m/01hsr_
+crickets,audio/2-83270-A-13.wav,Cricket,/m/09xqv
+brushing_teeth,audio/2-83536-A-27.wav,Toothbrush,/m/012xff
+cat,audio/2-83934-A-5.wav,Meow,/m/07qrkrw
+cat,audio/2-83934-B-5.wav,Meow,/m/07qrkrw
+hand_saw,audio/2-84693-A-49.wav,Sawing,/m/01b82r
+toilet_flush,audio/2-84943-A-18.wav,Toilet flush,/m/01jt3m
+breathing,audio/2-84965-A-23.wav,Breathing,/m/0lyf6
+crickets,audio/2-85139-A-13.wav,Cricket,/m/09xqv
+coughing,audio/2-85292-A-24.wav,Cough,/m/01b_21
+brushing_teeth,audio/2-85434-A-27.wav,Toothbrush,/m/012xff
+toilet_flush,audio/2-85945-A-18.wav,Toilet flush,/m/01jt3m
+brushing_teeth,audio/2-86160-A-27.wav,Toothbrush,/m/012xff
+coughing,audio/2-87412-A-24.wav,Cough,/m/01b_21
+door_wood_creaks,audio/2-87780-A-33.wav,Creak,/m/07qh7jl
+rain,audio/2-87781-A-10.wav,Rain,/m/06mb1
+coughing,audio/2-87794-A-24.wav,Cough,/m/01b_21
+coughing,audio/2-87795-A-24.wav,Cough,/m/01b_21
+coughing,audio/2-87799-A-24.wav,Cough,/m/01b_21
+clock_tick,audio/2-88724-A-38.wav,Tick-tock,/m/07qjznl
+clock_alarm,audio/2-89516-A-37.wav,Alarm clock,/m/046dlr
+door_wood_creaks,audio/2-91912-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/2-91912-B-33.wav,Creak,/m/07qh7jl
+brushing_teeth,audio/2-92627-A-27.wav,Toothbrush,/m/012xff
+sneezing,audio/2-93030-A-21.wav,Sneeze,/m/01hsr_
+brushing_teeth,audio/2-94230-A-27.wav,Toothbrush,/m/012xff
+rooster,audio/2-95035-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+rooster,audio/2-95258-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+rooster,audio/2-95258-B-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+breathing,audio/2-95567-A-23.wav,Breathing,/m/0lyf6
+crickets,audio/2-96033-A-13.wav,Cricket,/m/09xqv
+clock_alarm,audio/2-96063-A-37.wav,Alarm clock,/m/046dlr
+rooster,audio/2-96460-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+airplane,audio/2-96654-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+brushing_teeth,audio/2-96904-A-27.wav,Toothbrush,/m/012xff
+breathing,audio/2-98392-A-23.wav,Breathing,/m/0lyf6
+coughing,audio/2-98676-A-24.wav,Cough,/m/01b_21
+airplane,audio/2-98866-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+keyboard_typing,audio/2-99795-A-32.wav,Computer keyboard,/m/01m2v
+keyboard_typing,audio/2-99796-A-32.wav,Computer keyboard,/m/01m2v
+insects,audio/2-99955-A-7.wav,Insect,/m/03vt0
+insects,audio/2-99955-B-7.wav,Insect,/m/03vt0
+insects,audio/2-99955-C-7.wav,Insect,/m/03vt0
+toilet_flush,audio/3-100018-A-18.wav,Toilet flush,/m/01jt3m
+brushing_teeth,audio/3-100024-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/3-100024-B-27.wav,Toothbrush,/m/012xff
+door_wood_creaks,audio/3-101381-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/3-101381-B-33.wav,Creak,/m/07qh7jl
+hand_saw,audio/3-102583-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/3-102583-B-49.wav,Sawing,/m/01b82r
+hand_saw,audio/3-102583-C-49.wav,Sawing,/m/01b82r
+frog,audio/3-102908-A-4.wav,Frog,/m/09ld4
+thunderstorm,audio/3-103050-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/3-103051-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/3-103051-B-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/3-103051-C-19.wav,Thunderstorm,/m/0jb2l
+door_wood_creaks,audio/3-103401-A-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/3-103401-B-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/3-103401-C-33.wav,Creak,/m/07qh7jl
+door_wood_creaks,audio/3-103401-D-33.wav,Creak,/m/07qh7jl
+footsteps,audio/3-103597-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/3-103598-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/3-103599-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/3-103599-B-25.wav,"Walk, footsteps",/m/07pbtc8
+crackling_fire,audio/3-104632-A-12.wav,Crackle,/m/07pzfmf
+insects,audio/3-104761-A-7.wav,Insect,/m/03vt0
+insects,audio/3-104761-B-7.wav,Insect,/m/03vt0
+crackling_fire,audio/3-104958-A-12.wav,Crackle,/m/07pzfmf
+insects,audio/3-105235-A-7.wav,Insect,/m/03vt0
+insects,audio/3-105236-A-7.wav,Insect,/m/03vt0
+laughing,audio/3-107123-A-26.wav,Laughter,/m/01j3sz
+rooster,audio/3-107219-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+breathing,audio/3-108160-A-23.wav,Breathing,/m/0lyf6
+pouring_water,audio/3-108451-A-17.wav,Pour,/m/07prgkl
+pouring_water,audio/3-108451-B-17.wav,Pour,/m/07prgkl
+toilet_flush,audio/3-108677-A-18.wav,Toilet flush,/m/01jt3m
+toilet_flush,audio/3-108791-A-18.wav,Toilet flush,/m/01jt3m
+laughing,audio/3-110536-A-26.wav,Laughter,/m/01j3sz
+insects,audio/3-110913-A-7.wav,Insect,/m/03vt0
+insects,audio/3-110913-B-7.wav,Insect,/m/03vt0
+insects,audio/3-110913-C-7.wav,Insect,/m/03vt0
+insects,audio/3-110913-D-7.wav,Insect,/m/03vt0
+church_bells,audio/3-111102-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/3-111102-B-46.wav,Church bell,/m/03w41f
+toilet_flush,audio/3-112356-A-18.wav,Toilet flush,/m/01jt3m
+crow,audio/3-112397-A-9.wav,Crow,/m/04s8yn
+brushing_teeth,audio/3-112522-A-27.wav,Toothbrush,/m/012xff
+breathing,audio/3-112557-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/3-112557-B-23.wav,Breathing,/m/0lyf6
+engine,audio/3-115382-A-44.wav,Engine,/m/02mk9
+airplane,audio/3-115387-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/3-115387-B-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/3-115387-C-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+rooster,audio/3-116135-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+crow,audio/3-117293-A-9.wav,Crow,/m/04s8yn
+wind,audio/3-117504-A-16.wav,Wind,/m/03m9d0z
+wind,audio/3-117504-B-16.wav,Wind,/m/03m9d0z
+clock_alarm,audio/3-117793-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/3-117883-A-37.wav,Alarm clock,/m/046dlr
+toilet_flush,audio/3-118059-A-18.wav,Toilet flush,/m/01jt3m
+brushing_teeth,audio/3-118069-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/3-118069-B-27.wav,Toothbrush,/m/012xff
+door_wood_creaks,audio/3-118194-A-33.wav,Creak,/m/07qh7jl
+laughing,audio/3-118487-A-26.wav,Laughter,/m/01j3sz
+chainsaw,audio/3-118656-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118657-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118657-B-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118658-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118658-B-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118972-A-41.wav,Chainsaw,/m/01j4z9
+chainsaw,audio/3-118972-B-41.wav,Chainsaw,/m/01j4z9
+fireworks,audio/3-119120-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/3-119120-B-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/3-119120-C-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/3-119120-D-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/3-119120-E-48.wav,Fireworks,/m/0g6b5
+engine,audio/3-119455-A-44.wav,Engine,/m/02mk9
+laughing,audio/3-119459-A-26.wav,Laughter,/m/01j3sz
+clock_alarm,audio/3-120526-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/3-120526-B-37.wav,Alarm clock,/m/046dlr
+crackling_fire,audio/3-120644-A-12.wav,Crackle,/m/07pzfmf
+crow,audio/3-121348-A-9.wav,Crow,/m/04s8yn
+church_bells,audio/3-122110-A-46.wav,Church bell,/m/03w41f
+snoring,audio/3-123086-A-28.wav,Snoring,/m/01d3sd
+thunderstorm,audio/3-123224-A-19.wav,Thunderstorm,/m/0jb2l
+cow,audio/3-124376-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/3-124376-B-3.wav,"Cattle, bovinae",/m/01xq0k1
+thunderstorm,audio/3-124600-A-19.wav,Thunderstorm,/m/0jb2l
+snoring,audio/3-124795-A-28.wav,Snoring,/m/01d3sd
+crow,audio/3-124925-A-9.wav,Crow,/m/04s8yn
+snoring,audio/3-124958-A-28.wav,Snoring,/m/01d3sd
+coughing,audio/3-125418-A-24.wav,Cough,/m/01b_21
+keyboard_typing,audio/3-125548-A-32.wav,Computer keyboard,/m/01m2v
+laughing,audio/3-126113-A-26.wav,Laughter,/m/01j3sz
+cow,audio/3-126358-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/3-126358-B-3.wav,"Cattle, bovinae",/m/01xq0k1
+brushing_teeth,audio/3-126391-A-27.wav,Toothbrush,/m/012xff
+brushing_teeth,audio/3-126391-B-27.wav,Toothbrush,/m/012xff
+pouring_water,audio/3-127874-A-17.wav,Pour,/m/07prgkl
+crow,audio/3-127890-A-9.wav,Crow,/m/04s8yn
+crow,audio/3-127890-B-9.wav,Crow,/m/04s8yn
+crow,audio/3-127890-C-9.wav,Crow,/m/04s8yn
+engine,audio/3-128160-A-44.wav,Engine,/m/02mk9
+airplane,audio/3-128512-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/3-128512-B-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+crow,audio/3-129264-A-9.wav,Crow,/m/04s8yn
+crickets,audio/3-129338-A-13.wav,Cricket,/m/09xqv
+crickets,audio/3-129678-A-13.wav,Cricket,/m/09xqv
+clapping,audio/3-130330-A-22.wav,Clapping,/m/0l15bq
+snoring,audio/3-130998-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/3-130998-B-28.wav,Snoring,/m/01d3sd
+clock_alarm,audio/3-131943-A-37.wav,Alarm clock,/m/046dlr
+clock_alarm,audio/3-132340-A-37.wav,Alarm clock,/m/046dlr
+coughing,audio/3-132601-A-24.wav,Cough,/m/01b_21
+laughing,audio/3-132747-A-26.wav,Laughter,/m/01j3sz
+keyboard_typing,audio/3-132830-A-32.wav,Computer keyboard,/m/01m2v
+rain,audio/3-132852-A-10.wav,Rain,/m/06mb1
+rooster,audio/3-134049-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+wind,audio/3-134699-A-16.wav,Wind,/m/03m9d0z
+wind,audio/3-134699-B-16.wav,Wind,/m/03m9d0z
+wind,audio/3-134699-C-16.wav,Wind,/m/03m9d0z
+crickets,audio/3-134802-A-13.wav,Cricket,/m/09xqv
+train,audio/3-135650-A-45.wav,Train,/m/07jdr
+train,audio/3-135650-B-45.wav,Train,/m/07jdr
+dog,audio/3-136288-A-0.wav,Bark,/m/05tny_
+train,audio/3-136451-A-45.wav,Train,/m/07jdr
+wind,audio/3-136608-A-16.wav,Wind,/m/03m9d0z
+rooster,audio/3-137152-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+clapping,audio/3-138114-A-22.wav,Clapping,/m/0l15bq
+train,audio/3-138212-A-45.wav,Train,/m/07jdr
+church_bells,audio/3-139109-A-46.wav,Church bell,/m/03w41f
+brushing_teeth,audio/3-139331-A-27.wav,Toothbrush,/m/012xff
+clock_alarm,audio/3-139958-A-37.wav,Alarm clock,/m/046dlr
+sheep,audio/3-140199-A-8.wav,Sheep,/m/07bgp
+sheep,audio/3-140199-B-8.wav,Sheep,/m/07bgp
+sheep,audio/3-140199-C-8.wav,Sheep,/m/07bgp
+sheep,audio/3-140199-D-8.wav,Sheep,/m/07bgp
+rain,audio/3-140774-A-10.wav,Rain,/m/06mb1
+engine,audio/3-141240-A-44.wav,Engine,/m/02mk9
+engine,audio/3-141240-B-44.wav,Engine,/m/02mk9
+train,audio/3-141559-A-45.wav,Train,/m/07jdr
+sneezing,audio/3-141684-A-21.wav,Sneeze,/m/01hsr_
+rain,audio/3-142005-A-10.wav,Rain,/m/06mb1
+rain,audio/3-142006-A-10.wav,Rain,/m/06mb1
+pouring_water,audio/3-142349-A-17.wav,Pour,/m/07prgkl
+clock_tick,audio/3-142593-A-38.wav,Tick-tock,/m/07qjznl
+sneezing,audio/3-142601-A-21.wav,Sneeze,/m/01hsr_
+coughing,audio/3-142604-A-24.wav,Cough,/m/01b_21
+sneezing,audio/3-142605-A-21.wav,Sneeze,/m/01hsr_
+sneezing,audio/3-143119-A-21.wav,Sneeze,/m/01hsr_
+airplane,audio/3-143560-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+airplane,audio/3-143562-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+rain,audio/3-143929-A-10.wav,Rain,/m/06mb1
+clock_tick,audio/3-143933-A-38.wav,Tick-tock,/m/07qjznl
+dog,audio/3-144028-A-0.wav,Bark,/m/05tny_
+keyboard_typing,audio/3-144106-A-32.wav,Computer keyboard,/m/01m2v
+keyboard_typing,audio/3-144120-A-32.wav,Computer keyboard,/m/01m2v
+breathing,audio/3-144128-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/3-144128-B-23.wav,Breathing,/m/0lyf6
+door_wood_knock,audio/3-144510-A-30.wav,Knock,/m/07r4wb8
+sneezing,audio/3-144692-A-21.wav,Sneeze,/m/01hsr_
+sea_waves,audio/3-144827-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/3-144827-B-11.wav,"Waves, surf",/m/034srq
+thunderstorm,audio/3-144891-A-19.wav,Thunderstorm,/m/0jb2l
+thunderstorm,audio/3-144891-B-19.wav,Thunderstorm,/m/0jb2l
+rooster,audio/3-145382-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+coughing,audio/3-145487-A-24.wav,Cough,/m/01b_21
+car_horn,audio/3-145577-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+pouring_water,audio/3-145719-A-17.wav,Pour,/m/07prgkl
+crackling_fire,audio/3-145774-A-12.wav,Crackle,/m/07pzfmf
+crickets,audio/3-146033-A-13.wav,Cricket,/m/09xqv
+engine,audio/3-146186-A-44.wav,Engine,/m/02mk9
+car_horn,audio/3-146697-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+coughing,audio/3-146873-A-24.wav,Cough,/m/01b_21
+cat,audio/3-146964-A-5.wav,Meow,/m/07qrkrw
+cat,audio/3-146965-A-5.wav,Meow,/m/07qrkrw
+cat,audio/3-146972-A-5.wav,Meow,/m/07qrkrw
+crackling_fire,audio/3-147965-A-12.wav,Crackle,/m/07pzfmf
+clock_alarm,audio/3-148297-A-37.wav,Alarm clock,/m/046dlr
+sneezing,audio/3-148330-A-21.wav,Sneeze,/m/01hsr_
+coughing,audio/3-149042-A-24.wav,Cough,/m/01b_21
+rooster,audio/3-149189-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+pouring_water,audio/3-149448-A-17.wav,Pour,/m/07prgkl
+clapping,audio/3-149465-A-22.wav,Clapping,/m/0l15bq
+sneezing,audio/3-150231-A-21.wav,Sneeze,/m/01hsr_
+clock_tick,audio/3-150363-A-38.wav,Tick-tock,/m/07qjznl
+helicopter,audio/3-150979-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/3-150979-B-40.wav,Helicopter,/m/09ct_
+helicopter,audio/3-150979-C-40.wav,Helicopter,/m/09ct_
+crying_baby,audio/3-151080-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-151081-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-151081-B-20.wav,"Baby cry, infant cry",/t/dd00002
+door_wood_knock,audio/3-151089-A-30.wav,Knock,/m/07r4wb8
+breathing,audio/3-151206-A-23.wav,Breathing,/m/0lyf6
+coughing,audio/3-151212-A-24.wav,Cough,/m/01b_21
+coughing,audio/3-151213-A-24.wav,Cough,/m/01b_21
+snoring,audio/3-151255-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/3-151557-A-28.wav,Snoring,/m/01d3sd
+snoring,audio/3-151557-B-28.wav,Snoring,/m/01d3sd
+crying_baby,audio/3-152007-A-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-152007-B-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-152007-C-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-152007-D-20.wav,"Baby cry, infant cry",/t/dd00002
+crying_baby,audio/3-152007-E-20.wav,"Baby cry, infant cry",/t/dd00002
+vacuum_cleaner,audio/3-152020-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-152020-B-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-152020-C-36.wav,Vacuum cleaner,/m/0d31p
+cow,audio/3-152039-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+cow,audio/3-152039-B-3.wav,"Cattle, bovinae",/m/01xq0k1
+door_wood_knock,audio/3-152594-A-30.wav,Knock,/m/07r4wb8
+laughing,audio/3-152912-A-26.wav,Laughter,/m/01j3sz
+laughing,audio/3-152997-A-26.wav,Laughter,/m/01j3sz
+car_horn,audio/3-153057-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+keyboard_typing,audio/3-153444-A-32.wav,Computer keyboard,/m/01m2v
+door_wood_knock,audio/3-154378-A-30.wav,Knock,/m/07r4wb8
+pouring_water,audio/3-154439-A-17.wav,Pour,/m/07prgkl
+engine,audio/3-154758-A-44.wav,Engine,/m/02mk9
+keyboard_typing,audio/3-154781-A-32.wav,Computer keyboard,/m/01m2v
+helicopter,audio/3-154926-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/3-154926-B-40.wav,Helicopter,/m/09ct_
+rooster,audio/3-154957-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+car_horn,audio/3-155130-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+car_horn,audio/3-155234-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+dog,audio/3-155312-A-0.wav,Bark,/m/05tny_
+keyboard_typing,audio/3-155568-A-32.wav,Computer keyboard,/m/01m2v
+keyboard_typing,audio/3-155570-A-32.wav,Computer keyboard,/m/01m2v
+chirping_birds,audio/3-155577-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/3-155578-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/3-155579-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/3-155583-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/3-155584-A-14.wav,"Chirp, tweet",/m/07pggtn
+sea_waves,audio/3-155642-A-11.wav,"Waves, surf",/m/034srq
+sea_waves,audio/3-155642-B-11.wav,"Waves, surf",/m/034srq
+crickets,audio/3-155766-A-13.wav,Cricket,/m/09xqv
+sneezing,audio/3-156558-A-21.wav,Sneeze,/m/01hsr_
+chirping_birds,audio/3-156581-A-14.wav,"Chirp, tweet",/m/07pggtn
+chirping_birds,audio/3-156581-B-14.wav,"Chirp, tweet",/m/07pggtn
+water_drops,audio/3-156907-A-15.wav,Drip,/m/07r5v4s
+rain,audio/3-157149-A-10.wav,Rain,/m/06mb1
+crackling_fire,audio/3-157187-A-12.wav,Crackle,/m/07pzfmf
+rain,audio/3-157487-A-10.wav,Rain,/m/06mb1
+train,audio/3-157492-A-45.wav,Train,/m/07jdr
+rain,audio/3-157615-A-10.wav,Rain,/m/06mb1
+dog,audio/3-157695-A-0.wav,Bark,/m/05tny_
+crackling_fire,audio/3-158476-A-12.wav,Crackle,/m/07pzfmf
+vacuum_cleaner,audio/3-159346-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-159346-B-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-159347-A-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-159347-B-36.wav,Vacuum cleaner,/m/0d31p
+vacuum_cleaner,audio/3-159348-A-36.wav,Vacuum cleaner,/m/0d31p
+train,audio/3-159445-A-45.wav,Train,/m/07jdr
+train,audio/3-159445-B-45.wav,Train,/m/07jdr
+water_drops,audio/3-160119-A-15.wav,Drip,/m/07r5v4s
+cow,audio/3-160993-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+car_horn,audio/3-161010-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+pouring_water,audio/3-161500-A-17.wav,Pour,/m/07prgkl
+crickets,audio/3-162786-A-13.wav,Cricket,/m/09xqv
+rooster,audio/3-163288-A-1.wav,"Crowing, cock-a-doodle-doo",/m/07qn5dc
+dog,audio/3-163459-A-0.wav,Bark,/m/05tny_
+crickets,audio/3-163607-A-13.wav,Cricket,/m/09xqv
+crickets,audio/3-163607-B-13.wav,Cricket,/m/09xqv
+cow,audio/3-163727-A-3.wav,"Cattle, bovinae",/m/01xq0k1
+sea_waves,audio/3-164120-A-11.wav,"Waves, surf",/m/034srq
+hen,audio/3-164216-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/3-164216-B-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/3-164216-C-6.wav,"Chicken, rooster",/m/09b5t
+water_drops,audio/3-164592-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/3-164593-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/3-164594-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/3-164595-A-15.wav,Drip,/m/07r5v4s
+sea_waves,audio/3-164630-A-11.wav,"Waves, surf",/m/034srq
+clock_tick,audio/3-164688-A-38.wav,Tick-tock,/m/07qjznl
+chainsaw,audio/3-165856-A-41.wav,Chainsaw,/m/01j4z9
+breathing,audio/3-166125-A-23.wav,Breathing,/m/0lyf6
+breathing,audio/3-166125-B-23.wav,Breathing,/m/0lyf6
+water_drops,audio/3-166324-A-15.wav,Drip,/m/07r5v4s
+water_drops,audio/3-166326-A-15.wav,Drip,/m/07r5v4s
+sea_waves,audio/3-166422-A-11.wav,"Waves, surf",/m/034srq
+dog,audio/3-170015-A-0.wav,Bark,/m/05tny_
+clock_tick,audio/3-170377-A-38.wav,Tick-tock,/m/07qjznl
+clock_tick,audio/3-170383-A-38.wav,Tick-tock,/m/07qjznl
+door_wood_knock,audio/3-170574-A-30.wav,Knock,/m/07r4wb8
+clock_tick,audio/3-171012-A-38.wav,Tick-tock,/m/07qjznl
+clock_tick,audio/3-171041-A-38.wav,Tick-tock,/m/07qjznl
+hen,audio/3-171281-A-6.wav,"Chicken, rooster",/m/09b5t
+fireworks,audio/3-172881-A-48.wav,Fireworks,/m/0g6b5
+fireworks,audio/3-172922-A-48.wav,Fireworks,/m/0g6b5
+car_horn,audio/3-174840-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+clapping,audio/3-177082-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/3-177083-A-22.wav,Clapping,/m/0l15bq
+hen,audio/3-178096-A-6.wav,"Chicken, rooster",/m/09b5t
+door_wood_knock,audio/3-180147-A-30.wav,Knock,/m/07r4wb8
+dog,audio/3-180256-A-0.wav,Bark,/m/05tny_
+dog,audio/3-180977-A-0.wav,Bark,/m/05tny_
+chirping_birds,audio/3-181132-A-14.wav,"Chirp, tweet",/m/07pggtn
+clapping,audio/3-181278-A-22.wav,Clapping,/m/0l15bq
+door_wood_knock,audio/3-182023-A-30.wav,Knock,/m/07r4wb8
+door_wood_knock,audio/3-182025-A-30.wav,Knock,/m/07r4wb8
+hen,audio/3-187549-A-6.wav,"Chicken, rooster",/m/09b5t
+hen,audio/3-187549-B-6.wav,"Chicken, rooster",/m/09b5t
+sea_waves,audio/3-187710-A-11.wav,"Waves, surf",/m/034srq
+hen,audio/3-188390-A-6.wav,"Chicken, rooster",/m/09b5t
+airplane,audio/3-193767-A-47.wav,"Fixed-wing aircraft, airplane",/m/0cmf2
+sheep,audio/3-197408-A-8.wav,Sheep,/m/07bgp
+sheep,audio/3-197408-B-8.wav,Sheep,/m/07bgp
+sheep,audio/3-197408-C-8.wav,Sheep,/m/07bgp
+clapping,audio/3-197435-A-22.wav,Clapping,/m/0l15bq
+clapping,audio/3-197435-B-22.wav,Clapping,/m/0l15bq
+glass_breaking,audio/3-203371-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-203373-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-203374-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-203375-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-203377-A-39.wav,Shatter,/m/07rn7sz
+sheep,audio/3-20861-A-8.wav,Sheep,/m/07bgp
+hand_saw,audio/3-208820-A-49.wav,Sawing,/m/01b82r
+glass_breaking,audio/3-216280-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-216281-A-39.wav,Shatter,/m/07rn7sz
+glass_breaking,audio/3-216284-A-39.wav,Shatter,/m/07rn7sz
+pig,audio/3-233151-A-2.wav,Pig,/m/068zj
+car_horn,audio/3-243726-A-43.wav,"Vehicle horn, car horn, honking",/m/0912c9
+wind,audio/3-246513-A-16.wav,Wind,/m/03m9d0z
+wind,audio/3-246513-B-16.wav,Wind,/m/03m9d0z
+footsteps,audio/3-249913-A-25.wav,"Walk, footsteps",/m/07pbtc8
+fireworks,audio/3-251617-A-48.wav,Fireworks,/m/0g6b5
+pig,audio/3-253081-A-2.wav,Pig,/m/068zj
+pig,audio/3-253084-A-2.wav,Pig,/m/068zj
+pig,audio/3-253084-B-2.wav,Pig,/m/068zj
+pig,audio/3-253084-C-2.wav,Pig,/m/068zj
+pig,audio/3-253084-D-2.wav,Pig,/m/068zj
+pig,audio/3-253084-E-2.wav,Pig,/m/068zj
+pig,audio/3-257858-A-2.wav,Pig,/m/068zj
+engine,audio/3-259622-A-44.wav,Engine,/m/02mk9
+siren,audio/3-51376-A-42.wav,Siren,/m/03kmc9
+siren,audio/3-51731-A-42.wav,Siren,/m/03kmc9
+siren,audio/3-51731-B-42.wav,Siren,/m/03kmc9
+siren,audio/3-51909-A-42.wav,Siren,/m/03kmc9
+siren,audio/3-51909-B-42.wav,Siren,/m/03kmc9
+siren,audio/3-58772-A-42.wav,Siren,/m/03kmc9
+siren,audio/3-62878-A-42.wav,Siren,/m/03kmc9
+siren,audio/3-62878-B-42.wav,Siren,/m/03kmc9
+crackling_fire,audio/3-65748-A-12.wav,Crackle,/m/07pzfmf
+helicopter,audio/3-68630-A-40.wav,Helicopter,/m/09ct_
+helicopter,audio/3-68630-B-40.wav,Helicopter,/m/09ct_
+helicopter,audio/3-68630-C-40.wav,Helicopter,/m/09ct_
+frog,audio/3-70962-A-4.wav,Frog,/m/09ld4
+frog,audio/3-70962-B-4.wav,Frog,/m/09ld4
+frog,audio/3-70962-C-4.wav,Frog,/m/09ld4
+frog,audio/3-71964-A-4.wav,Frog,/m/09ld4
+frog,audio/3-71964-B-4.wav,Frog,/m/09ld4
+frog,audio/3-71964-C-4.wav,Frog,/m/09ld4
+frog,audio/3-83527-A-4.wav,Frog,/m/09ld4
+church_bells,audio/3-87936-A-46.wav,Church bell,/m/03w41f
+church_bells,audio/3-87936-B-46.wav,Church bell,/m/03w41f
+toilet_flush,audio/3-92637-A-18.wav,Toilet flush,/m/01jt3m
+toilet_flush,audio/3-93010-A-18.wav,Toilet flush,/m/01jt3m
+footsteps,audio/3-94342-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/3-94343-A-25.wav,"Walk, footsteps",/m/07pbtc8
+footsteps,audio/3-94344-A-25.wav,"Walk, footsteps",/m/07pbtc8
+door_wood_creaks,audio/3-94355-A-33.wav,Creak,/m/07qh7jl
+cat,audio/3-95694-A-5.wav,Meow,/m/07qrkrw
+cat,audio/3-95695-A-5.wav,Meow,/m/07qrkrw
+cat,audio/3-95695-B-5.wav,Meow,/m/07qrkrw
+cat,audio/3-95697-A-5.wav,Meow,/m/07qrkrw
+cat,audio/3-95698-A-5.wav,Meow,/m/07qrkrw
+hand_saw,audio/3-96606-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/3-96606-B-49.wav,Sawing,/m/01b82r
+hand_saw,audio/3-97909-A-49.wav,Sawing,/m/01b82r
+hand_saw,audio/3-97909-B-49.wav,Sawing,/m/01b82r
+church_bells,audio/3-98193-A-46.wav,Church bell,/m/03w41f
+toilet_flush,audio/3-98771-A-18.wav,Toilet flush,/m/01jt3m
+church_bells,audio/3-98869-A-46.wav,Church bell,/m/03w41f

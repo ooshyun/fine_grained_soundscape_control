@@ -1,0 +1,47 @@
+label,original_label,train_count,val_count,test_count,total_count
+Alarm clock,clock_alarm,24,8,8,40
+"Baby cry, infant cry",crying_baby,24,8,8,40
+Bark,dog,24,8,8,40
+Breathing,breathing,24,8,8,40
+"Cattle, bovinae",cow,24,8,8,40
+Chainsaw,chainsaw,24,8,8,40
+"Chicken, rooster",hen,24,8,8,40
+"Chirp, tweet",chirping_birds,24,8,8,40
+Church bell,church_bells,24,8,8,40
+Clapping,clapping,24,8,8,40
+Computer keyboard,keyboard_typing,24,8,8,40
+Cough,coughing,24,8,8,40
+Crackle,crackling_fire,24,8,8,40
+Creak,door_wood_creaks,24,8,8,40
+Cricket,crickets,24,8,8,40
+Crow,crow,24,8,8,40
+"Crowing, cock-a-doodle-doo",rooster,24,8,8,40
+Drip,water_drops,24,8,8,40
+Engine,engine,24,8,8,40
+Fireworks,fireworks,24,8,8,40
+"Fixed-wing aircraft, airplane",airplane,24,8,8,40
+Frog,frog,24,8,8,40
+Helicopter,helicopter,24,8,8,40
+Insect,insects,24,8,8,40
+Knock,door_wood_knock,24,8,8,40
+Laughter,laughing,24,8,8,40
+Meow,cat,24,8,8,40
+Pig,pig,24,8,8,40
+Pour,pouring_water,24,8,8,40
+Rain,rain,24,8,8,40
+Sawing,hand_saw,24,8,8,40
+Shatter,glass_breaking,24,8,8,40
+Sheep,sheep,24,8,8,40
+Siren,siren,24,8,8,40
+Sneeze,sneezing,24,8,8,40
+Snoring,snoring,24,8,8,40
+Thunderstorm,thunderstorm,24,8,8,40
+Tick-tock,clock_tick,24,8,8,40
+Toilet flush,toilet_flush,24,8,8,40
+Toothbrush,brushing_teeth,24,8,8,40
+Train,train,24,8,8,40
+Vacuum cleaner,vacuum_cleaner,24,8,8,40
+"Vehicle horn, car horn, honking",car_horn,24,8,8,40
+"Walk, footsteps",footsteps,24,8,8,40
+"Waves, surf",sea_waves,24,8,8,40
+Wind,wind,24,8,8,40

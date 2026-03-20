@@ -1,0 +1,9 @@
+label,audio_set_label,train_count,val_count,test_count,total_count
+baby,"Baby cry, infant cry",95,11,53,159
+blender,Blender,54,6,31,91
+electric_shaver_toothbrush,Toothbrush,46,5,26,77
+fan,Mechanical fan,563,62,308,933
+frying,Frying (food),59,6,33,98
+printer,Printer,298,33,164,495
+vacuum_cleaner,Vacuum cleaner,272,30,150,452
+water,Water,491,54,269,814
