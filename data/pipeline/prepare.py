@@ -179,7 +179,7 @@ def write_scaper_source(
             }
         )
 
-        if not dest.exists():
+        if not os.path.lexists(str(dest)):
             os.symlink(src, str(dest))
 
 
