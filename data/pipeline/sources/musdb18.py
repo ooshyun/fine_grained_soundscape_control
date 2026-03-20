@@ -192,7 +192,11 @@ class MUSDB18Source(BaseSource):
 
         audio_dir = os.path.join(dataset_dir, "audio")
 
-        if not os.path.exists(audio_dir):
+        # Check for actual extracted WAVs, not just the directory existing
+        has_wavs = any(
+            glob.glob(os.path.join(audio_dir, "**", "*.wav"), recursive=True)
+        )
+        if not has_wavs:
             logger.info(
                 "MUSDB18: preprocessing stems into WAV chunks "
                 "(this may take some time)..."
