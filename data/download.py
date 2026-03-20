@@ -140,10 +140,24 @@ def _download_file(url: str, dest: Path) -> None:
 
 
 def _extract_zip(zip_path: Path, extract_dir: Path) -> None:
-    """Extract a zip archive into *extract_dir*."""
+    """Extract a zip archive into *extract_dir*.
+
+    Falls back to the system ``unzip`` command when Python's ``zipfile``
+    cannot handle the archive (e.g. multi-disk / ZIP64 spans).
+    """
+    import subprocess
+
     print(f"  Extracting {zip_path.name} -> {extract_dir}")
-    with zipfile.ZipFile(zip_path, "r") as zf:
-        zf.extractall(extract_dir)
+    try:
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            zf.extractall(extract_dir)
+    except zipfile.BadZipFile:
+        print(f"  Python zipfile failed, falling back to system unzip...")
+        extract_dir.mkdir(parents=True, exist_ok=True)
+        subprocess.run(
+            ["unzip", "-o", "-q", str(zip_path), "-d", str(extract_dir)],
+            check=True,
+        )
 
 
 def _sizeof_fmt(num_bytes: int | None) -> str:
@@ -192,25 +206,29 @@ def download_datasets(
         for f in info["files"]:
             dest = dataset_dir / f["filename"]
 
-            # Resume support: skip if file exists with matching size
-            if dest.exists():
-                expected = _remote_file_size(f["url"])
-                if expected is not None and dest.stat().st_size == expected:
-                    print(f"  [skip] {f['filename']} already downloaded")
-                    continue
-                elif expected is None:
-                    # Cannot verify size; assume complete if file exists
-                    print(f"  [skip] {f['filename']} exists (size unverified)")
-                    continue
+            try:
+                # Resume support: skip if file exists with matching size
+                if dest.exists():
+                    expected = _remote_file_size(f["url"])
+                    if expected is not None and dest.stat().st_size == expected:
+                        print(f"  [skip] {f['filename']} already downloaded")
+                    elif expected is None:
+                        # Cannot verify size; assume complete if file exists
+                        print(f"  [skip] {f['filename']} exists (size unverified)")
+                    else:
+                        _download_file(f["url"], dest)
+                else:
+                    _download_file(f["url"], dest)
 
-            _download_file(f["url"], dest)
-
-            # Extract
-            if dest.suffix == ".zip":
-                _extract_zip(dest, dataset_dir)
-                if not keep_zips:
-                    dest.unlink()
-                    print(f"  Removed {f['filename']}")
+                # Extract
+                if dest.suffix == ".zip":
+                    _extract_zip(dest, dataset_dir)
+                    if not keep_zips:
+                        dest.unlink()
+                        print(f"  Removed {f['filename']}")
+            except Exception as exc:
+                print(f"  [ERROR] {f['filename']}: {exc}")
+                print(f"  Continuing with next file...")
 
     print("\nDone.")
 
