@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """Download script for public audio datasets used in the project.
 
 Supported datasets:
