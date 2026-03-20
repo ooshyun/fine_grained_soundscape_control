@@ -56,11 +56,13 @@ class ASTModel(nn.Module):
             self.model.config.id2label.values()
         )
 
-        # Replace classifier head for our label set
+        # Replace only the dense layer in the classifier head.
+        # HF AST classifier structure: classifier.layernorm + classifier.dense
         hidden_size = self.model.config.hidden_size
-        self.model.classifier = nn.Linear(hidden_size, num_classes)
-        nn.init.xavier_uniform_(self.model.classifier.weight)
-        nn.init.zeros_(self.model.classifier.bias)
+        self.model.config.num_labels = num_classes
+        self.model.classifier.dense = nn.Linear(hidden_size, num_classes)
+        nn.init.xavier_uniform_(self.model.classifier.dense.weight)
+        nn.init.zeros_(self.model.classifier.dense.bias)
 
         if freeze_encoder:
             self.freeze_encoder()
