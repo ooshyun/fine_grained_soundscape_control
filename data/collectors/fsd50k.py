@@ -90,8 +90,12 @@ class FSD50KCollector:
     # ------------------------------------------------------------------
 
     def collect(self, raw_dir: str, output_dir: str) -> None:
-        """Run the full collection pipeline and write CSVs."""
-        dataset_dir = os.path.join(raw_dir, "FSD50K")
+        """Run the full collection pipeline and write CSVs.
+
+        *raw_dir* should point directly to the ``FSD50K/`` directory that
+        contains ``FSD50K.metadata/``, ``FSD50K.dev_audio/``, etc.
+        """
+        dataset_dir = raw_dir  # already points to FSD50K/
         out_dir = os.path.join(output_dir, "FSD50K")
         os.makedirs(out_dir, exist_ok=True)
 

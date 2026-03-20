@@ -46,7 +46,7 @@ class DISCOCollector:
         self.ontology = ontology
 
     def collect(self, raw_dir: str, output_dir: str) -> None:
-        dataset_dir = os.path.join(raw_dir, "disco_noises")
+        dataset_dir = os.path.join(raw_dir, "DISCO")
         out_dir = os.path.join(output_dir, "disco_noises")
         os.makedirs(out_dir, exist_ok=True)
 

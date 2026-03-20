@@ -5,7 +5,10 @@ import logging
 import os
 import random
 
-import ffmpegio
+try:
+    import ffmpegio
+except ImportError:
+    ffmpegio = None  # type: ignore[assignment]
 import numpy as np
 import pandas as pd
 from scipy.io.wavfile import write as wavwrite
@@ -137,6 +140,11 @@ class MUSDB18Collector:
         return df
 
     def collect(self, raw_dir: str, output_dir: str) -> None:
+        if ffmpegio is None:
+            raise ImportError(
+                "ffmpegio is required for MUSDB18 collection but is not "
+                "installed (needs ffmpeg on the system PATH)."
+            )
         dataset_dir = os.path.join(raw_dir, "musdb18")
         out_dir = os.path.join(output_dir, "musdb18")
         os.makedirs(out_dir, exist_ok=True)

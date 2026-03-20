@@ -97,7 +97,9 @@ class ESC50Collector:
         return dataset
 
     def collect(self, raw_dir: str, output_dir: str) -> None:
-        dataset_dir = os.path.join(raw_dir, "ESC-50")
+        # raw_dir should point directly to the ESC-50-master/ directory
+        # containing meta/ and audio/
+        dataset_dir = raw_dir
         out_dir = os.path.join(output_dir, "ESC-50")
         os.makedirs(out_dir, exist_ok=True)
 

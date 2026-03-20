@@ -207,7 +207,7 @@ def write_scaper_source(
 
 def prepare_hrtf(raw_dir: str, output_dir: str) -> None:
     """Copy CIPIC SOFA files and generate train/val/test split lists."""
-    cipic_src = os.path.join(raw_dir, "cipic-hrtf-database")
+    cipic_src = os.path.join(raw_dir, "CIPIC-HRTF", "CIPIC_SOFA")
     cipic_dst = os.path.join(output_dir, "hrtf", "CIPIC")
     os.makedirs(cipic_dst, exist_ok=True)
 
@@ -345,11 +345,28 @@ def main() -> None:
     # ------------------------------------------------------------------
     logger.info("=== Step 1: Running dataset collectors ===")
 
-    FSD50KCollector(args.raw_dir, ontology).collect(args.raw_dir, args.output_dir)
-    ESC50Collector(ontology).collect(args.raw_dir, args.output_dir)
-    MUSDB18Collector(ontology).collect(args.raw_dir, args.output_dir)
-    DISCOCollector(ontology).collect(args.raw_dir, args.output_dir)
-    TAUCollector().collect(args.raw_dir, args.output_dir)
+    # Each raw_dir sub-path matches the actual download directory layout:
+    #   raw_dir/FSD50K/{FSD50K.metadata,FSD50K.dev_audio,...}
+    #   raw_dir/ESC-50/ESC-50-master/{audio,meta}
+    #   raw_dir/musdb18/{train,test}
+    #   raw_dir/DISCO/{train,test}/{label}
+    #   raw_dir/TAU-2019/TAU-urban-acoustic-scenes-2019-development/{audio,meta.csv}
+    fsd50k_dir = os.path.join(args.raw_dir, "FSD50K")
+    esc50_dir = os.path.join(args.raw_dir, "ESC-50", "ESC-50-master")
+    musdb18_dir = args.raw_dir  # collector internally appends "musdb18"
+    disco_dir = args.raw_dir  # collector internally appends "disco_noises" → remapped to DISCO
+    tau_dir = os.path.join(args.raw_dir, "TAU-2019")
+
+    FSD50KCollector(fsd50k_dir, ontology).collect(fsd50k_dir, args.output_dir)
+    ESC50Collector(ontology).collect(esc50_dir, args.output_dir)
+    try:
+        MUSDB18Collector(ontology).collect(musdb18_dir, args.output_dir)
+    except Exception as exc:
+        logger.warning(
+            "MUSDB18 collection failed (ffmpeg may be unavailable): %s", exc
+        )
+    DISCOCollector(ontology).collect(disco_dir, args.output_dir)
+    TAUCollector().collect(tau_dir, args.output_dir)
 
     # ------------------------------------------------------------------
     # Step 2: Build id → classname mapping
