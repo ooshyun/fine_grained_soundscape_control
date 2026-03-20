@@ -32,6 +32,8 @@ TFGridNet = Net
 
 _MODEL_NAME_MAP = {
     "orange_pi": "tfgridnet_large_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    "orange_pi_5ch": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    "orange_pi_5ch_film_all": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_onflight",
     "raspberry_pi": "tfgridnet_small_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
     "neuralaid": "tfmlpnet_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
 }
@@ -66,10 +68,17 @@ def load_pretrained(
         repo_id=repo_id,
         filename=f"{run_dir}/config.json",
     )
-    weights_path = hf_hub_download(
-        repo_id=repo_id,
-        filename=f"{run_dir}/checkpoints/best.pt",
-    )
+    # Try last.pt first (paper uses last epoch), fallback to best.pt
+    try:
+        weights_path = hf_hub_download(
+            repo_id=repo_id,
+            filename=f"{run_dir}/checkpoints/last.pt",
+        )
+    except Exception:
+        weights_path = hf_hub_download(
+            repo_id=repo_id,
+            filename=f"{run_dir}/checkpoints/best.pt",
+        )
 
     with open(config_path) as f:
         config = json.load(f)
