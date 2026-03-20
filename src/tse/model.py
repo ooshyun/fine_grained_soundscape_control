@@ -92,9 +92,15 @@ def load_pretrained(
         mp = config
 
     # The original Net class takes model_name (dotted path) and block_model_name
-    # For pretrained loading, use the original import paths within this package
-    model_name_dotted = mp.get("model_name", "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet")
-    block_model_name = mp.get("block_model_name", "src.tse.gridnet_block.GridNetBlock")
+    # Remap original repo paths to new repo paths
+    _IMPORT_REMAP = {
+        "src.models.GuidedTFNetwork.multiflim_guided_tfnet.MultiFiLMGuidedTFNet": "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet",
+        "src.models.blocks.gridnet_blockTFGridNet.GridNetBlock": "src.tse.gridnet_block.GridNetBlock",
+    }
+    raw_model_name = mp.get("model_name", "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet")
+    raw_block_name = mp.get("block_model_name", "src.tse.gridnet_block.GridNetBlock")
+    model_name_dotted = _IMPORT_REMAP.get(raw_model_name, raw_model_name)
+    block_model_name = _IMPORT_REMAP.get(raw_block_name, raw_block_name)
     block_model_params = mp.get("block_model_params", {})
     embedding_params = mp.get("embedding_params", {
         "embedding_dim": 0,
