@@ -1,0 +1,49 @@
+model:
+  name: "MIT/ast-finetuned-audioset-10-10-0.4593"
+  num_classes: 20
+  freeze_encoder: true
+  sample_rate: 16000
+
+data:
+  sr: 16000
+  duration: 5
+  fg_dir: "BinauralCuratedDataset/scaper_fmt"
+  noise_dir: "BinauralCuratedDataset/noise_scaper_fmt"
+  hrtf_list: "BinauralCuratedDataset/hrtf/CIPIC/train_hrtf.txt"
+  hrtf_type: "CIPIC"
+  num_fg_range: [1, 5]
+  num_bg_range: [1, 3]
+  num_noise_range: [1, 1]
+  snr_range_fg: [5, 15]
+  snr_range_bg: [0, 10]
+  batch_size: 32
+  num_workers: 8
+  samples_per_epoch: 20000
+
+training:
+  backend: "lightning"
+  max_epochs: 80
+  encoder_lr: 0.00001
+  head_lr: 0.001
+  weight_decay: 0.01
+  grad_clip: 1.0
+  scheduler: "CosineAnnealingWarmRestarts"
+  scheduler_params:
+    T_0: 10
+    eta_min: 0.0000001
+
+loss:
+  type: "BCEWithLogitsLoss"
+  pos_weight: "auto"
+
+evaluation:
+  primary_metric: "map"
+  threshold: 0.5
+  metrics: ["map", "f1", "precision", "recall", "auc_roc", "d_prime"]
+  per_class: true
+
+checkpointing:
+  monitor: "val/map"
+  mode: "max"
+  save_dir: "runs/sed"
+  patience: 10
