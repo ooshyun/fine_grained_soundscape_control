@@ -49,6 +49,23 @@ After setup:
 > like `BinauralCuratedDataset/scaper_fmt/...`. This matches `setup_dataset.sh`'s
 > `--output_dir`, so you can pass the same path to both.
 
+#### Prebuilt metadata (`data/prebuilt/metadata.tar.gz`)
+
+The public tar does **not** include `noise_scaper_fmt/` (TAU noise symlinks) or
+per-dataset train/val/test CSV splits. Building these from scratch requires creating
+~21,600 symlinks which can be very slow on network filesystems (e.g. Lustre).
+
+To avoid this, we ship a prebuilt metadata archive (898KB) that contains:
+- `noise_scaper_fmt/{train,val,test}/{scene}/` — relative symlinks to TAU audio
+- `{FSD50K,ESC-50,musdb18,disco_noises,TAU-acoustic-sounds}/{train,val,test}.csv`
+- `hrtf/CIPIC/{train,val,test}_hrtf.txt`
+
+`setup_dataset.sh` automatically extracts this if found. To apply manually:
+
+```bash
+tar xzf data/prebuilt/metadata.tar.gz -C /path/to/BinauralCuratedDataset/
+```
+
 #### Datasets & Licenses
 
 | Dataset | License | Source |
@@ -62,28 +79,36 @@ After setup:
 
 ### 3. Train
 
+All scripts take `<data_dir>` as the first argument — this should be the **parent** of
+`BinauralCuratedDataset/` (i.e. the same path as `--output_dir` from Step 2).
+
 ```bash
+# Example: dataset at /scr/BinauralCuratedDataset/
+#          → data_dir = /scr
+
 # TSE (default: Orange Pi config)
-bash scripts/train/run_tse.sh /path/to/output [orange_pi|raspberry_pi|neuralaid]
+bash scripts/train/run_tse.sh /scr [orange_pi|raspberry_pi|neuralaid]
 
 # SED (default: AST finetune config)
-bash scripts/train/run_sed.sh /path/to/output [ast_finetune]
+bash scripts/train/run_sed.sh /scr [ast_finetune]
 ```
 
 ### 4. Evaluate (reproduce paper tables)
 
+Same `<data_dir>` convention as training.
+
 ```bash
 # Table 1: TSE model comparison (Orange Pi, Raspberry Pi, NeuralAids)
-bash scripts/eval/run_tse.sh /path/to/output
+bash scripts/eval/run_tse.sh /scr
 
 # Table 2: Multi-output TSE (5-out, 20-out)
-bash scripts/eval/run_multiout.sh /path/to/output
+bash scripts/eval/run_multiout.sh /scr
 
 # Table 3: FiLM ablation (first / all / all-except-first)
-bash scripts/eval/run_ablation.sh /path/to/output
+bash scripts/eval/run_ablation.sh /scr
 
 # Table 4, Figure 4: SED (Fine-tuned AST)
-bash scripts/eval/run_sed.sh /path/to/output
+bash scripts/eval/run_sed.sh /scr
 ```
 
 ## Reproducing Paper Results
