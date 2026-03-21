@@ -52,8 +52,9 @@ class YAMNetModel(nn.Module):
                 "Install with: pip install tensorflow"
             )
 
-        # Suppress TF warnings
+        # Suppress TF warnings and force CPU (avoid GPU JIT issues)
         tf.get_logger().setLevel("ERROR")
+        tf.config.set_visible_devices([], "GPU")
 
         self._device = device or torch.device("cpu")
         logger.info("Loading YAMNet...")
