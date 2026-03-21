@@ -105,8 +105,18 @@ def load_pretrained(
     else:
         mp = config
 
-    # The original Net class takes model_name (dotted path) and block_model_name
-    # Remap original repo paths to new repo paths
+    state_dict = torch.load(weights_path, map_location="cpu", weights_only=True)
+    # Handle wrapped state dicts (e.g. {"model": ...})
+    if "model" in state_dict:
+        state_dict = state_dict["model"]
+
+    # Waveformer: uses SemanticHearing DCC-TF architecture
+    if "waveformer_params" in mp:
+        model = _load_waveformer(mp, state_dict)
+        logger.info("Loaded pretrained Waveformer '%s' from %s", model_name, repo_id)
+        return model
+
+    # TFGridNet / TFMLPNet: remap original import paths
     _IMPORT_REMAP = {
         "src.models.GuidedTFNetwork.multiflim_guided_tfnet.MultiFiLMGuidedTFNet": "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet",
         "src.models.blocks.gridnet_blockTFGridNet.GridNetBlock": "src.tse.gridnet_block.GridNetBlock",
@@ -145,12 +155,49 @@ def load_pretrained(
         use_first_ln=mp.get("use_first_ln", False),
     )
 
-    state_dict = torch.load(weights_path, map_location="cpu", weights_only=True)
-    # Handle wrapped state dicts (e.g. {"model": ...})
-    if "model" in state_dict:
-        state_dict = state_dict["model"]
     model.load_state_dict(state_dict, strict=True)
     model.eval()
 
     logger.info("Loaded pretrained model '%s' from %s", model_name, repo_id)
+    return model
+
+
+def _load_waveformer(mp: dict, state_dict: dict) -> Any:
+    """Load Waveformer (SemanticHearing DCC-TF) from config + state dict."""
+    import sys
+    from pathlib import Path
+
+    # Add SemanticHearing to sys.path
+    sem_hearing_path = Path(__file__).parent.parent.parent / "third_party" / "SemanticHearing"
+    if str(sem_hearing_path) not in sys.path:
+        sys.path.insert(0, str(sem_hearing_path))
+
+    from src.training.dcc_tf import Net as WaveformerNet
+
+    wp = mp["waveformer_params"]
+    model = WaveformerNet(
+        label_len=wp.get("label_len", 20),
+        L=wp.get("L", 32),
+        model_dim=wp.get("model_dim", 256),
+        num_enc_layers=wp.get("num_enc_layers", 10),
+        dec_buf_len=wp.get("dec_buf_len", 13),
+        num_dec_layers=wp.get("num_dec_layers", 1),
+        dec_chunk_size=wp.get("dec_chunk_size", 13),
+        out_buf_len=wp.get("out_buf_len", 4),
+        use_pos_enc=wp.get("use_pos_enc", True),
+        conditioning=wp.get("conditioning", "mult"),
+    )
+
+    # State dict has "model." prefix from parent wrapper — strip it
+    stripped = {}
+    for k, v in state_dict.items():
+        new_key = k.replace("model.", "", 1) if k.startswith("model.") else k
+        stripped[new_key] = v
+
+    model.load_state_dict(stripped, strict=True)
+    model.eval()
+
+    # Add nO attribute for eval compatibility (Waveformer is single-output)
+    model.nO = wp.get("out_channels", 1)
+
     return model
