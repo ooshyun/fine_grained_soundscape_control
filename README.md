@@ -86,11 +86,9 @@ See [docs/pretrained_models.md](docs/pretrained_models.md) for full model detail
 
 | Name | Architecture | D | H | B | Outputs | FiLM | SNRi (dB) | SI-SNRi (dB) |
 |------|--------------|---|---|---|---------|------|-----------|-------------|
-| Orange Pi (1ch) | TFGridNet | 32 | 64 | 6 | 1 | All-ex-1st | 11.99 ± 7.04 | 11.27 ± 8.21 |
-| Orange Pi (5ch) | TFGridNet | 32 | 64 | 6 | 5 | All-ex-1st | 11.88 ± 4.27 | 9.77 ± 5.55 |
-| **Orange Pi (5ch, All)** | TFGridNet | 32 | 64 | 6 | 5 | **All** | **12.31 ± 4.08** | **10.18 ± 5.43** |
-| Raspberry Pi | TFGridNet | 16 | 64 | 3 | 1 | All-ex-1st | 10.13 ± 4.01 | 7.72 ± 5.17 |
-| NeuralAids | TFMLPNet | 32 | 32 | 6 | 1 | All-ex-1st | 9.75 ± 4.80 | 7.60 ± 6.48 |
+| **Orange Pi** | TFGridNet | 32 | 64 | 6 | 5 | All | **12.31 ± 4.08** | **10.18 ± 5.43** |
+| Raspberry Pi | TFGridNet | 16 | 64 | 3 | 5 | -- | -- | -- |
+| NeuralAids | TFMLPNet | 32 | 32 | 6 | 5 | -- | -- | -- |
 
 ### SED Models
 
