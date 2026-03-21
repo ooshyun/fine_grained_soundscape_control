@@ -11,7 +11,7 @@ echo "Data: ${DATA_DIR}"
 echo "Output: ${OUTPUT_DIR}"
 echo ""
 
-for model in orange_pi raspberry_pi neuralaid; do
+for model in orange_pi raspberry_pi neuralaid waveformer; do
     echo "--- ${model} ---"
     python -m src.tse.eval \
         --pretrained ooshyun/fine_grained_soundscape_control \
