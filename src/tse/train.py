@@ -4,12 +4,12 @@ from __future__ import annotations
 
 Usage::
 
-    python -m src.tse.train --config configs/tse/orange_pi.yaml [--data_dir ./BinauralCuratedDataset]
+    python -m src.tse.train --config configs/tse/orange_pi.yaml [--data_dir /path/to/BinauralCuratedDataset]
 """
 
 import argparse
 import logging
-import sys
+import os
 from pathlib import Path
 
 import torch
@@ -17,38 +17,44 @@ import yaml
 from torch.utils.data import DataLoader
 
 from src.datasets.soundscape_dataset import SoundscapeDataset
-from src.metrics.tse import compute_tse_metrics
 from src.tse.loss import MultiResoFuseLoss
-from src.tse.model import TFGridNet
+from src.tse.net import Net
 from src.trainer import create_trainer
 
 logger = logging.getLogger(__name__)
 
 
+# ---------------------------------------------------------------------------
+# Builders
+# ---------------------------------------------------------------------------
+
+
 def _build_datasets(cfg: dict, data_dir: str | None = None):
-    """Create train and validation SoundscapeDataset instances."""
+    """Create train and validation SoundscapeDataset instances.
+
+    The config paths (``fg_dir``, ``noise_dir``) are expected to be base
+    directories *without* the split suffix.  This function appends
+    ``/train`` or ``/val`` automatically.  Similarly, ``hrtf_list`` should
+    point to the *train* list; the val list is derived by replacing
+    ``train_hrtf`` with ``val_hrtf``.
+    """
     d = cfg["data"]
+    m = cfg.get("model", {})
 
-    fg_dir = d["fg_dir"]
-    noise_dir = d["noise_dir"]
-    hrtf_list = d["hrtf_list"]
+    fg_dir_base = d["fg_dir"]
+    noise_dir_base = d["noise_dir"]
+    hrtf_list_base = d["hrtf_list"]
 
+    # Re-root relative paths under --data_dir when given.
     if data_dir is not None:
-        # Re-root relative paths under data_dir
-        if not Path(fg_dir).is_absolute():
-            fg_dir = str(Path(data_dir) / Path(fg_dir).relative_to(Path(fg_dir).parts[0])
-                         if len(Path(fg_dir).parts) > 1 else Path(data_dir) / fg_dir)
-        if not Path(noise_dir).is_absolute():
-            noise_dir = str(Path(data_dir) / Path(noise_dir).relative_to(Path(noise_dir).parts[0])
-                           if len(Path(noise_dir).parts) > 1 else Path(data_dir) / noise_dir)
-        if not Path(hrtf_list).is_absolute():
-            hrtf_list = str(Path(data_dir) / Path(hrtf_list).relative_to(Path(hrtf_list).parts[0])
-                           if len(Path(hrtf_list).parts) > 1 else Path(data_dir) / hrtf_list)
+        if not Path(fg_dir_base).is_absolute():
+            fg_dir_base = str(Path(data_dir) / fg_dir_base)
+        if not Path(noise_dir_base).is_absolute():
+            noise_dir_base = str(Path(data_dir) / noise_dir_base)
+        if not Path(hrtf_list_base).is_absolute():
+            hrtf_list_base = str(Path(data_dir) / hrtf_list_base)
 
     common = dict(
-        fg_dir=fg_dir,
-        noise_dir=noise_dir,
-        hrtf_list=hrtf_list,
         sr=d.get("sr", 16000),
         duration=d.get("duration", 5),
         num_fg_range=tuple(d.get("num_fg_range", [1, 1])),
@@ -58,17 +64,42 @@ def _build_datasets(cfg: dict, data_dir: str | None = None):
         snr_range_bg=tuple(d.get("snr_range_bg", [0, 10])),
         hrtf_type=d.get("hrtf_type", "CIPIC"),
         samples_per_epoch=d.get("samples_per_epoch", 20000),
+        num_output_channels=m.get("num_output_channels", 1),
         task="tse",
     )
 
-    train_ds = SoundscapeDataset(split="train", **common)
-    val_ds = SoundscapeDataset(split="val", **common)
+    train_ds = SoundscapeDataset(
+        split="train",
+        fg_dir=os.path.join(fg_dir_base, "train"),
+        noise_dir=os.path.join(noise_dir_base, "train"),
+        hrtf_list=hrtf_list_base,
+        **common,
+    )
+    val_hrtf = hrtf_list_base.replace("train_hrtf", "val_hrtf")
+    val_ds = SoundscapeDataset(
+        split="val",
+        fg_dir=os.path.join(fg_dir_base, "val"),
+        noise_dir=os.path.join(noise_dir_base, "val"),
+        hrtf_list=val_hrtf,
+        **common,
+    )
     return train_ds, val_ds
 
 
-def _build_model(cfg: dict) -> TFGridNet:
+def _build_model(cfg: dict) -> Net:
+    """Construct a :class:`Net` (TFGridNet) from the YAML config."""
     m = cfg["model"]
-    return TFGridNet(
+    return Net(
+        model_name=m.get(
+            "model_name",
+            "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet",
+        ),
+        block_model_name=m.get(
+            "block_model_name",
+            "src.tse.gridnet_block.GridNetBlock",
+        ),
+        block_model_params=m.get("block_model_params", {}),
+        speaker_dim=m.get("speaker_dim", 20),
         stft_chunk_size=m.get("stft_chunk_size", 96),
         stft_pad_size=m.get("stft_pad_size", 64),
         stft_back_pad=m.get("stft_back_pad", 96),
@@ -76,15 +107,9 @@ def _build_model(cfg: dict) -> TFGridNet:
         num_output_channels=m.get("num_output_channels", 1),
         num_layers=m.get("num_layers", 6),
         latent_dim=m.get("latent_dim", 32),
-        hidden_channels=m.get("hidden_channels", 64),
-        speaker_dim=m.get("speaker_dim", 20),
-        bidirectional=m.get("bidirectional", False),
-        film_preset=m.get("film_preset", "all_except_first"),
+        embedding_params=m.get("embedding_params", {}),
+        film_params=m.get("film_params", {}),
         use_first_ln=m.get("use_first_ln", False),
-        embedding_type=m.get("embedding_type", "embedding"),
-        embedding_dim=m.get("embedding_dim", 0),
-        embedding_activation=m.get("embedding_activation", ""),
-        embedding_init=m.get("embedding_init", ""),
     )
 
 
@@ -95,8 +120,25 @@ def _build_loss(cfg: dict) -> MultiResoFuseLoss:
 
 def _metrics_fn(
     est: torch.Tensor, gt: torch.Tensor, mix: torch.Tensor,
-) -> dict[str, torch.Tensor]:
-    return compute_tse_metrics(est, gt, mix, metrics=("si_sdri", "snri"))
+) -> dict[str, float]:
+    """Lightweight training metrics (SI-SDRi and SNRi)."""
+    from torchmetrics.functional import (
+        scale_invariant_signal_distortion_ratio as si_sdr,
+        signal_noise_ratio as snr_fn,
+    )
+
+    # est/gt: (B, C, T), mix: (B, M, T) — mono-downmix mix to match
+    mix_mono = mix.mean(dim=1, keepdim=True).expand_as(gt)
+
+    si_sdri = (si_sdr(est, gt) - si_sdr(mix_mono, gt)).mean()
+    snri = (snr_fn(est, gt) - snr_fn(mix_mono, gt)).mean()
+
+    return {"si_sdri": si_sdri, "snri": snri}
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -105,7 +147,10 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--data_dir", type=str, default=None, help="Override data root")
     args = parser.parse_args(argv)
 
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s: %(message)s")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(name)s %(levelname)s: %(message)s",
+    )
 
     with open(args.config) as f:
         cfg = yaml.safe_load(f)

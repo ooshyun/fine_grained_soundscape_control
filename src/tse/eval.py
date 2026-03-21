@@ -373,28 +373,49 @@ def _load_model_from_config(config_path: str, checkpoint_path: str):
 
 
 def _yaml_to_eval_params(cfg: dict) -> dict:
-    """Convert YAML training config to the params dict expected by _build_dataset."""
-    d = cfg.get("data", {})
-    return {
-        "onflight_test_data_args": {
-            "fg_sounds_dir": os.path.join(d["fg_dir"], "test"),
-            "noise_sounds_dir": os.path.join(d["noise_dir"], "test"),
-            "hrtf_list": d["hrtf_list"].replace("train_hrtf", "test_hrtf"),
-            "sr": d.get("sr", 16000),
-            "duration": d.get("duration", 5),
-            "num_fg_sounds_min": d.get("num_fg_range", [1, 1])[0],
-            "num_fg_sounds_max": d.get("num_fg_range", [1, 1])[1],
-            "num_bg_sounds_min": d.get("num_bg_range", [0, 0])[0],
-            "num_bg_sounds_max": d.get("num_bg_range", [0, 0])[1],
-            "num_noise_sounds_min": d.get("num_noise_range", [1, 1])[0],
-            "num_noise_sounds_max": d.get("num_noise_range", [1, 1])[1],
-            "snr_range_fg": d.get("snr_range_fg", [5, 15]),
-            "snr_range_bg": d.get("snr_range_bg", [0, 10]),
-            "hrtf_type": d.get("hrtf_type", "CIPIC"),
-            "samples_per_epoch": d.get("samples_per_epoch", 2000),
-        },
-        "onflight_val_dataset": "src.datasets.soundscape_dataset.SoundscapeDataset",
-    }
+    """Store the raw YAML config for direct SoundscapeDataset construction."""
+    return {"_yaml_cfg": cfg}
+
+
+def _build_dataset_from_yaml(cfg: dict, data_dir: str | None = None, num_samples: int | None = None):
+    """Build test SoundscapeDataset directly from YAML config."""
+    from src.datasets.soundscape_dataset import SoundscapeDataset
+    from pathlib import Path
+
+    d = cfg["data"]
+    m = cfg.get("model", {})
+
+    fg_dir = os.path.join(d["fg_dir"], "test")
+    noise_dir = os.path.join(d["noise_dir"], "test")
+    hrtf_list = d["hrtf_list"].replace("train_hrtf", "test_hrtf")
+
+    if data_dir is not None:
+        if not Path(fg_dir).is_absolute():
+            fg_dir = str(Path(data_dir) / fg_dir)
+        if not Path(noise_dir).is_absolute():
+            noise_dir = str(Path(data_dir) / noise_dir)
+        if not Path(hrtf_list).is_absolute():
+            hrtf_list = str(Path(data_dir) / hrtf_list)
+
+    samples = num_samples if num_samples is not None else d.get("samples_per_epoch", 2000)
+
+    return SoundscapeDataset(
+        fg_dir=fg_dir,
+        noise_dir=noise_dir,
+        hrtf_list=hrtf_list,
+        split="test",
+        sr=d.get("sr", 16000),
+        duration=d.get("duration", 5),
+        num_fg_range=tuple(d.get("num_fg_range", [1, 1])),
+        num_bg_range=tuple(d.get("num_bg_range", [0, 0])),
+        num_noise_range=tuple(d.get("num_noise_range", [1, 1])),
+        snr_range_fg=tuple(d.get("snr_range_fg", [5, 15])),
+        snr_range_bg=tuple(d.get("snr_range_bg", [0, 10])),
+        hrtf_type=d.get("hrtf_type", "CIPIC"),
+        samples_per_epoch=samples,
+        num_output_channels=m.get("num_output_channels", 1),
+        task="tse",
+    )
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -441,12 +462,15 @@ def main(argv: list[str] | None = None) -> None:
 
     logger.info("Model: nI=%d, nO=%d", model.nI, model.nO)
 
-    # Override num_samples if specified
-    if args.num_samples is not None:
-        params["onflight_test_data_args"]["samples_per_epoch"] = args.num_samples
-
     # Load dataset
-    test_dataset = _build_dataset(params, data_dir=args.data_dir)
+    if "_yaml_cfg" in params:
+        test_dataset = _build_dataset_from_yaml(
+            params["_yaml_cfg"], data_dir=args.data_dir, num_samples=args.num_samples,
+        )
+    else:
+        if args.num_samples is not None:
+            params["onflight_test_data_args"]["samples_per_epoch"] = args.num_samples
+        test_dataset = _build_dataset(params, data_dir=args.data_dir)
     test_loader = torch.utils.data.DataLoader(
         test_dataset, batch_size=1, shuffle=False, num_workers=0,
     )

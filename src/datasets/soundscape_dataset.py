@@ -413,7 +413,7 @@ class SoundscapeDataset(Dataset):
 
             # Augmentations (train only)
             if self.split == "train":
-                mixture, target = self.perturbations.apply(mixture, target, rng)
+                mixture, target = self.perturbations.apply_random_augmentations(mixture, target, rng)
 
             # Peak normalise
             peak = torch.abs(mixture).max()

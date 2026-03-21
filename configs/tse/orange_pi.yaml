@@ -1,4 +1,8 @@
 model:
+  model_name: "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet"
+  block_model_name: "src.tse.gridnet_block.GridNetBlock"
+  block_model_params:
+    hidden_channels: 64
   num_input_channels: 2
   num_output_channels: 5
   stft_chunk_size: 96
@@ -6,10 +10,16 @@ model:
   stft_back_pad: 96
   num_layers: 6
   latent_dim: 32
-  hidden_channels: 64
   speaker_dim: 20
-  bidirectional: false
-  film_preset: "all"
+  use_first_ln: false
+  embedding_params:
+    embedding_dim: 0
+    embedding_type: ""
+    embedding_activation: ""
+    embedding_init: ""
+  film_params:
+    film_positions: []
+    film_preset: "all"
 
 data:
   sr: 16000

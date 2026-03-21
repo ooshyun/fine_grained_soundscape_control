@@ -50,8 +50,10 @@ class _LitWrapper(pl.LightningModule):
     def training_step(self, batch: Any, batch_idx: int) -> torch.Tensor:
         inputs, targets = batch
         outputs = self.model(inputs)
-        loss = self.loss_fn(outputs, targets)
-        self.log("train_loss", loss, prog_bar=True, sync_dist=True)
+        est = outputs["output"]
+        gt = targets["target"]
+        loss = self.loss_fn(est=est, gt=gt).mean()
+        self.log("train/loss", loss, prog_bar=True, sync_dist=True)
         return loss
 
     # ------------------------------------------------------------------
@@ -60,13 +62,16 @@ class _LitWrapper(pl.LightningModule):
     def validation_step(self, batch: Any, batch_idx: int) -> None:
         inputs, targets = batch
         outputs = self.model(inputs)
-        loss = self.loss_fn(outputs, targets)
-        self.log("val_loss", loss, prog_bar=True, sync_dist=True)
+        est = outputs["output"]
+        gt = targets["target"]
+        loss = self.loss_fn(est=est, gt=gt).mean()
+        self.log("val/loss", loss, prog_bar=True, sync_dist=True)
 
         if self.metrics_fn is not None:
-            metrics = self.metrics_fn(outputs, targets)
+            mix = inputs["mixture"]
+            metrics = self.metrics_fn(est, gt, mix)
             for key, value in metrics.items():
-                self.log(f"val_{key}", value, prog_bar=True, sync_dist=True)
+                self.log(f"val/{key}", value, prog_bar=True, sync_dist=True)
 
     # ------------------------------------------------------------------
     # Optimizers
@@ -76,7 +81,7 @@ class _LitWrapper(pl.LightningModule):
         if self._scheduler is not None:
             config["lr_scheduler"] = {
                 "scheduler": self._scheduler,
-                "monitor": "val_loss",
+                "monitor": "val/loss",
             }
         return config
 
@@ -102,20 +107,21 @@ class LightningTrainerBackend(TrainerBackend):
         config: dict[str, Any],
         metrics_fn: Callable | None = None,
     ) -> dict[str, Any]:
-        max_epochs: int = config.get("max_epochs", 100)
+        tc = config.get("training", config)
+        max_epochs: int = tc.get("max_epochs", config.get("max_epochs", 100))
 
         # -- Checkpointing config -----------------------------------------
         ckpt_cfg = config.get("checkpointing", {})
-        monitor = ckpt_cfg.get("monitor", "val_loss")
+        monitor = ckpt_cfg.get("monitor", "val/loss")
         mode = ckpt_cfg.get("mode", "min")
-        save_dir = ckpt_cfg.get("dirpath", "checkpoints")
+        save_dir = ckpt_cfg.get("save_dir", ckpt_cfg.get("dirpath", "checkpoints"))
 
         checkpoint_cb = ModelCheckpoint(
             dirpath=save_dir,
             monitor=monitor,
             mode=mode,
             save_top_k=ckpt_cfg.get("save_top_k", 1),
-            filename="best-{epoch:02d}-{val_loss:.4f}",
+            filename="best-{epoch:02d}",
         )
 
         callbacks: list[pl.Callback] = [checkpoint_cb, LearningRateMonitor()]
