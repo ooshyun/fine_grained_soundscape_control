@@ -12,54 +12,78 @@ Part of **MobiSys 2026 #198 "Aurchestra"**.
 pip install -r requirements.txt
 ```
 
-### 2. Download datasets (~88GB)
+### 2. Setup dataset
 
-Downloads 6 public audio datasets. CIPIC HRTF and DISCO are fetched from our [HuggingFace dataset repo](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape).
+Downloads the public BinauralCuratedDataset tar (~125GB) and builds `noise_scaper_fmt/` for TAU noise backgrounds.
 
 ```bash
-python data/download.py --output_dir ./raw_datasets
+bash scripts/setup_dataset.sh --output_dir /path/to/output
 ```
 
-| Dataset | Source | Size |
-|---------|--------|------|
-| FSD50K | Zenodo (split zip) | ~59GB |
-| ESC-50 | GitHub | ~1GB |
-| musdb18 | Zenodo | ~5GB |
-| DISCO | HuggingFace | ~3GB |
-| TAU-2019 | Zenodo (10 parts) | ~19GB |
-| CIPIC HRTF | HuggingFace (45 SOFA) | ~183MB |
-
-### 3. Prepare binaural dataset
-
-Runs per-dataset label collectors and consolidates into Scaper format with symlinks.
+If you already have the tar extracted, or TAU raw data at a separate path:
 
 ```bash
-python data/prepare.py --raw_dir ./raw_datasets --output_dir ./BinauralCuratedDataset
+# Skip download (tar already extracted)
+bash scripts/setup_dataset.sh --output_dir /path/to/output --skip_download
+
+# TAU raw data at separate path
+bash scripts/setup_dataset.sh --output_dir /path/to/output \
+    --tau_raw_dir /path/to/TAU-2019
 ```
 
-Note: musdb18 requires `ffmpeg` for STEMS extraction. If unavailable, music/singing classes from musdb18 will be skipped (FSD50K samples still included).
-
-### 4. Evaluate with pretrained models
-
-```bash
-# TSE: Orange Pi 5ch, FiLM=All blocks (Table 3)
-python -m src.tse.eval \
-  --pretrained ooshyun/semantic_listening \
-  --model orange_pi_5ch_film_all \
-  --data_dir ./BinauralCuratedDataset
-
-# SED: Fine-tuned AST
-python -m src.sed.eval \
-  --pretrained ooshyun/sound_event_detection \
-  --model finetuned_ast \
-  --data_dir ./BinauralCuratedDataset
+After setup:
+```
+/path/to/output/
+  BinauralCuratedDataset/
+    scaper_fmt/{train,val,test}/{class}/        # foreground audio symlinks
+    bg_scaper_fmt/{train,val,test}/{class}/     # background audio symlinks
+    noise_scaper_fmt/{train,val,test}/{scene}/  # TAU noise symlinks
+    hrtf/CIPIC/{*.sofa, *_hrtf.txt}             # HRTF data
+    FSD50K/, ESC-50/, musdb18/, disco_noises/   # raw audio datasets
+    TAU-acoustic-sounds/                         # TAU metadata + audio
+    start_times.csv                              # silence trimming metadata
 ```
 
-### 5. Train from scratch
+> **Note on `--data_dir`**: All train/eval scripts expect `--data_dir` to point to
+> the **parent** of `BinauralCuratedDataset/`, because the configs reference paths
+> like `BinauralCuratedDataset/scaper_fmt/...`. This matches `setup_dataset.sh`'s
+> `--output_dir`, so you can pass the same path to both.
+
+#### Datasets & Licenses
+
+| Dataset | License | Source |
+|---------|---------|--------|
+| [FSD50K](https://zenodo.org/record/4060432) | Mixed CC (CC0/BY/BY-NC) | Zenodo |
+| [ESC-50](https://github.com/karolpiczak/ESC-50) | CC-BY-NC 3.0 | GitHub |
+| [musdb18](https://sigsep.github.io/datasets/musdb.html) | Academic/non-commercial | Zenodo |
+| [DISCO](https://zenodo.org/record/3828141) | CC-BY 4.0 | [HF: ooshyun/fine-grained-soundscape](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape) |
+| [TAU-2019](https://zenodo.org/record/2589280) | Tampere Univ. custom (NC) | Zenodo |
+| [CIPIC HRTF](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) | Public Domain | [HF: ooshyun/fine-grained-soundscape](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape) |
+
+### 3. Train
 
 ```bash
-python -m src.tse.train --config configs/tse/orange_pi.yaml --data_dir ./BinauralCuratedDataset
-python -m src.sed.train --config configs/sed/ast_finetune.yaml --data_dir ./BinauralCuratedDataset
+# TSE (default: Orange Pi config)
+bash scripts/train/run_tse.sh /path/to/output [orange_pi|raspberry_pi|neuralaid]
+
+# SED (default: AST finetune config)
+bash scripts/train/run_sed.sh /path/to/output [ast_finetune]
+```
+
+### 4. Evaluate (reproduce paper tables)
+
+```bash
+# Table 1: TSE model comparison (Orange Pi, Raspberry Pi, NeuralAids)
+bash scripts/eval/run_tse.sh /path/to/output
+
+# Table 2: Multi-output TSE (5-out, 20-out)
+bash scripts/eval/run_multiout.sh /path/to/output
+
+# Table 3: FiLM ablation (first / all / all-except-first)
+bash scripts/eval/run_ablation.sh /path/to/output
+
+# Table 4, Figure 4: SED (Fine-tuned AST)
+bash scripts/eval/run_sed.sh /path/to/output
 ```
 
 ## Reproducing Paper Results
@@ -163,10 +187,16 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │       ├── train.py                # SED training entry
 │       └── eval.py                 # SED evaluation entry
 ├── scripts/
-│   ├── train_tse.sh
-│   ├── eval_tse.sh
-│   ├── train_sed.sh
-│   └── eval_sed.sh
+│   ├── setup_dataset.sh           # Full dataset setup (download + extract + noise)
+│   ├── build_noise_scaper_fmt.py  # Build TAU noise symlinks
+│   ├── train/
+│   │   ├── run_tse.sh             # Train TSE model
+│   │   └── run_sed.sh             # Train SED model
+│   └── eval/
+│       ├── run_tse.sh             # Table 1: TSE model comparison
+│       ├── run_multiout.sh        # Table 2: Multi-output TSE
+│       ├── run_ablation.sh        # Table 3: FiLM ablation
+│       └── run_sed.sh             # Table 4, Fig 4: SED
 ├── requirements.txt
 └── README.md
 ```
