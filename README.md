@@ -73,9 +73,9 @@ tar xzf data/prebuilt/metadata.tar.gz -C /path/to/BinauralCuratedDataset/
 | [FSD50K](https://zenodo.org/record/4060432) | Mixed CC (CC0/BY/BY-NC) | Zenodo |
 | [ESC-50](https://github.com/karolpiczak/ESC-50) | CC-BY-NC 3.0 | GitHub |
 | [musdb18](https://sigsep.github.io/datasets/musdb.html) | Academic/non-commercial | Zenodo |
-| [DISCO](https://zenodo.org/record/3828141) | CC-BY 4.0 | [HF: ooshyun/fine-grained-soundscape](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape) |
+| [DISCO](https://zenodo.org/record/3828141) | CC-BY 4.0 | [Zenodo 4019030](https://zenodo.org/record/4019030) |
 | [TAU-2019](https://zenodo.org/record/2589280) | Tampere Univ. custom (NC) | Zenodo |
-| [CIPIC HRTF](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) | Public Domain | [HF: ooshyun/fine-grained-soundscape](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape) |
+| [CIPIC HRTF](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) | Public Domain | [Zenodo 4019030](https://zenodo.org/record/4019030) |
 
 ### 3. Train
 
@@ -126,7 +126,7 @@ Evaluated on 2000 on-the-fly synthesized test samples with 1-5 target sources, 1
 
 | Task | HuggingFace Repository | Models |
 |------|------------------------|--------|
-| TSE | [ooshyun/semantic_listening](https://huggingface.co/ooshyun/semantic_listening) | 11 models |
+| TSE | [ooshyun/fine_grained_soundscape_control](https://huggingface.co/ooshyun/fine_grained_soundscape_control) | 11 models |
 | SED | [ooshyun/sound_event_detection](https://huggingface.co/ooshyun/sound_event_detection) | Fine-tuned AST |
 
 See [docs/pretrained_models.md](docs/pretrained_models.md) for full model details, download instructions, and STFT configuration.
@@ -291,7 +291,7 @@ wget https://zenodo.org/records/2589280/files/TAU-urban-acoustic-scenes-2019-dev
 # CIPIC HRTF (~183MB, SOFA files)
 # Available from our HuggingFace dataset repo:
 pip install huggingface_hub
-python -c "from huggingface_hub import snapshot_download; snapshot_download('ooshyun/fine-grained-soundscape', repo_type='dataset', allow_patterns='cipic_hrtf/**', local_dir='.')"
+python -c "from huggingface_hub import snapshot_download; snapshot_download('ooshyun/fine_grained_soundscape_control', repo_type='dataset', allow_patterns='cipic_hrtf/**', local_dir='.')"
 ```
 
 Alternatively, use the automated pipeline downloader:

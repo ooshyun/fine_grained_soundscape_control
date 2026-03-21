@@ -54,7 +54,7 @@ _MODEL_NAME_MAP = {
 
 
 def load_pretrained(
-    repo_id: str = "ooshyun/semantic_listening",
+    repo_id: str = "ooshyun/fine_grained_soundscape_control",
     model_name: str = "orange_pi",
 ) -> Net:
     """Download and instantiate a pretrained :class:`Net` (TFGridNet) from HuggingFace.

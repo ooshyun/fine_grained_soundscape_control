@@ -13,11 +13,11 @@ class CIPICSource(BaseSource):
         if (out / ".done").exists():
             print(f"  [skip] {self.name} already downloaded")
             return
-        print("  Loading from HF: ooshyun/fine-grained-soundscape (cipic) ...")
+        print("  Loading from HF: ooshyun/fine_grained_soundscape_control (cipic) ...")
         from huggingface_hub import snapshot_download
         tmp = raw_dir / "_hf_download_cipic"
         snapshot_download(
-            repo_id="ooshyun/fine-grained-soundscape",
+            repo_id="ooshyun/fine_grained_soundscape_control",
             repo_type="dataset",
             allow_patterns="cipic_hrtf/**",
             local_dir=str(tmp),

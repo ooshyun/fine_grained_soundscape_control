@@ -12,7 +12,7 @@ Reproduces the exact evaluation logic from the original Sementic-Listening-v2
 Usage::
 
     # From HuggingFace pretrained (recommended):
-    python -m src.tse.eval --pretrained ooshyun/semantic_listening --model orange_pi
+    python -m src.tse.eval --pretrained ooshyun/fine_grained_soundscape_control --model orange_pi
 
     # From local checkpoint:
     python -m src.tse.eval --run_dir /path/to/run_dir

@@ -64,12 +64,12 @@ class DISCOSource(BaseSource):
                 return
 
         # Fallback: download from HF
-        print("  Loading from HF: ooshyun/fine-grained-soundscape (disco) ...")
+        print("  Loading from HF: ooshyun/fine_grained_soundscape_control (disco) ...")
         from huggingface_hub import snapshot_download
 
         tmp = raw_dir / "_hf_download"
         snapshot_download(
-            repo_id="ooshyun/fine-grained-soundscape",
+            repo_id="ooshyun/fine_grained_soundscape_control",
             repo_type="dataset",
             allow_patterns="disco/**",
             local_dir=str(tmp),

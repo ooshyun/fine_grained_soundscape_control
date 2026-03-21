@@ -1,10 +1,10 @@
-"""Upload DISCO + CIPIC to ooshyun/fine-grained-soundscape."""
+"""Upload DISCO + CIPIC to ooshyun/fine_grained_soundscape_control."""
 from huggingface_hub import HfApi
 import argparse
 from pathlib import Path
 
 
-def upload(raw_dir: Path, repo_id: str = "ooshyun/fine-grained-soundscape"):
+def upload(raw_dir: Path, repo_id: str = "ooshyun/fine_grained_soundscape_control"):
     api = HfApi()
     api.create_repo(repo_id, repo_type="dataset", exist_ok=True)
 
@@ -45,6 +45,6 @@ def upload(raw_dir: Path, repo_id: str = "ooshyun/fine-grained-soundscape"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--raw_dir", type=Path, required=True)
-    parser.add_argument("--repo_id", default="ooshyun/fine-grained-soundscape")
+    parser.add_argument("--repo_id", default="ooshyun/fine_grained_soundscape_control")
     args = parser.parse_args()
     upload(args.raw_dir, args.repo_id)

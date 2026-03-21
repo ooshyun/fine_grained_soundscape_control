@@ -13,7 +13,7 @@ echo ""
 
 echo "--- Orange Pi 5-out ---"
 python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
+    --pretrained ooshyun/fine_grained_soundscape_control \
     --model orange_pi_5out \
     --data_dir "${DATA_DIR}" \
     --output_dir "${OUTPUT_DIR}/orange_pi_5out"
@@ -21,7 +21,7 @@ echo ""
 
 echo "--- Orange Pi 20-out ---"
 python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
+    --pretrained ooshyun/fine_grained_soundscape_control \
     --model orange_pi_20out \
     --data_dir "${DATA_DIR}" \
     --output_dir "${OUTPUT_DIR}/orange_pi_20out"

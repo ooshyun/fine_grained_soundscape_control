@@ -4,7 +4,7 @@ All pretrained models for **MobiSys 2026 #198 "Aurchestra"**.
 
 ## TSE (Target Sound Extraction)
 
-Hosted on HuggingFace: [ooshyun/semantic_listening](https://huggingface.co/ooshyun/semantic_listening)
+Hosted on HuggingFace: [ooshyun/fine_grained_soundscape_control](https://huggingface.co/ooshyun/fine_grained_soundscape_control)
 
 ### STFT Configuration
 
@@ -54,11 +54,11 @@ from huggingface_hub import hf_hub_download
 model_name = "tfgridnet_large_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight"
 
 checkpoint = hf_hub_download(
-    repo_id="ooshyun/semantic_listening",
+    repo_id="ooshyun/fine_grained_soundscape_control",
     filename=f"{model_name}/checkpoints/best.pt",
 )
 config = hf_hub_download(
-    repo_id="ooshyun/semantic_listening",
+    repo_id="ooshyun/fine_grained_soundscape_control",
     filename=f"{model_name}/config.json",
 )
 ```
@@ -68,7 +68,7 @@ To list all available models:
 ```python
 from huggingface_hub import list_repo_tree
 
-for item in list_repo_tree("ooshyun/semantic_listening"):
+for item in list_repo_tree("ooshyun/fine_grained_soundscape_control"):
     if item.path.endswith("/config.json"):
         print(item.path.split("/")[0])
 ```

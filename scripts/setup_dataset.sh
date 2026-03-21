@@ -34,7 +34,7 @@
 #       --data_dir /path/to/output
 #
 # For eval:
-#   python -m src.tse.eval --pretrained ooshyun/semantic_listening \
+#   python -m src.tse.eval --pretrained ooshyun/fine_grained_soundscape_control \
 #       --model orange_pi --data_dir /path/to/output
 # =================================================================
 
@@ -160,7 +160,7 @@ if [[ "$FG_CLASSES" -ge 20 ]]; then
     echo "      --data_dir ${OUTPUT_DIR}"
     echo ""
     echo "Eval:"
-    echo "  python -m src.tse.eval --pretrained ooshyun/semantic_listening \\"
+    echo "  python -m src.tse.eval --pretrained ooshyun/fine_grained_soundscape_control \\"
     echo "      --model orange_pi --data_dir ${OUTPUT_DIR}"
 else
     echo "⚠ Dataset incomplete (expected ≥20 FG classes, got ${FG_CLASSES})"

@@ -15,7 +15,7 @@ echo "=== Orange Pi ==="
 for variant in film_first film_all film_all_except_first; do
     echo "--- orange_pi_${variant} ---"
     python -m src.tse.eval \
-        --pretrained ooshyun/semantic_listening \
+        --pretrained ooshyun/fine_grained_soundscape_control \
         --model "orange_pi_${variant}" \
         --data_dir "${DATA_DIR}" \
         --output_dir "${OUTPUT_DIR}/orange_pi_${variant}"
@@ -26,7 +26,7 @@ echo "=== NeuralAids ==="
 for variant in film_first film_all film_all_except_first; do
     echo "--- neuralaid_${variant} ---"
     python -m src.tse.eval \
-        --pretrained ooshyun/semantic_listening \
+        --pretrained ooshyun/fine_grained_soundscape_control \
         --model "neuralaid_${variant}" \
         --data_dir "${DATA_DIR}" \
         --output_dir "${OUTPUT_DIR}/neuralaid_${variant}"

@@ -14,7 +14,7 @@ echo ""
 for model in orange_pi raspberry_pi neuralaid; do
     echo "--- ${model} ---"
     python -m src.tse.eval \
-        --pretrained ooshyun/semantic_listening \
+        --pretrained ooshyun/fine_grained_soundscape_control \
         --model "${model}" \
         --data_dir "${DATA_DIR}" \
         --output_dir "${OUTPUT_DIR}/${model}"
