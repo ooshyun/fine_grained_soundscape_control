@@ -83,14 +83,14 @@ All scripts take `<data_dir>` as the first argument — this should be the **par
 `BinauralCuratedDataset/` (i.e. the same path as `--output_dir` from Step 2).
 
 ```bash
-# Example: dataset at /scr/BinauralCuratedDataset/
-#          → data_dir = /scr
+# Example: dataset at /path/to/data_dir/BinauralCuratedDataset/
+#          → data_dir = /path/to/data_dir
 
 # TSE (default: Orange Pi config)
-bash scripts/train/run_tse.sh /scr [orange_pi|raspberry_pi|neuralaid]
+bash scripts/train/run_tse.sh /path/to/data_dir [orange_pi|raspberry_pi|neuralaid]
 
 # SED (default: AST finetune config)
-bash scripts/train/run_sed.sh /scr [ast_finetune]
+bash scripts/train/run_sed.sh /path/to/data_dir [ast_finetune]
 ```
 
 ### 4. Evaluate (reproduce paper tables)
@@ -99,16 +99,16 @@ Same `<data_dir>` convention as training.
 
 ```bash
 # Table 1: TSE model comparison (Orange Pi, Raspberry Pi, NeuralAids)
-bash scripts/eval/run_tse.sh /scr
+bash scripts/eval/run_tse.sh /path/to/data_dir
 
 # Table 2: Multi-output TSE (5-out, 20-out)
-bash scripts/eval/run_multiout.sh /scr
+bash scripts/eval/run_multiout.sh /path/to/data_dir
 
 # Table 3: FiLM ablation (first / all / all-except-first)
-bash scripts/eval/run_ablation.sh /scr
+bash scripts/eval/run_ablation.sh /path/to/data_dir
 
 # Table 4, Figure 4: SED (Fine-tuned AST)
-bash scripts/eval/run_sed.sh /scr
+bash scripts/eval/run_sed.sh /path/to/data_dir
 ```
 
 ## Reproducing Paper Results
