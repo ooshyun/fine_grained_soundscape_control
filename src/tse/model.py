@@ -167,12 +167,14 @@ def _load_waveformer(mp: dict, state_dict: dict) -> Any:
     import sys
     from pathlib import Path
 
-    # Add SemanticHearing to sys.path
+    # Import Waveformer directly from SemanticHearing submodule
+    import importlib.util
     sem_hearing_path = Path(__file__).parent.parent.parent / "third_party" / "SemanticHearing"
-    if str(sem_hearing_path) not in sys.path:
-        sys.path.insert(0, str(sem_hearing_path))
-
-    from src.training.dcc_tf import Net as WaveformerNet
+    dcc_tf_path = sem_hearing_path / "src" / "training" / "dcc_tf.py"
+    spec = importlib.util.spec_from_file_location("dcc_tf", str(dcc_tf_path))
+    dcc_tf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(dcc_tf)
+    WaveformerNet = dcc_tf.Net
 
     wp = mp["waveformer_params"]
     model = WaveformerNet(
