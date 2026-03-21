@@ -28,6 +28,15 @@ _PRETRAINED_MAP: dict[str, str] = {
     "finetuned_ast": "sed_ast_snr_ctl_v2_16k",
 }
 
+# Baseline models that don't need custom weights (use HF pretrained directly)
+_BASELINE_MODELS: dict[str, dict] = {
+    "ast_pretrained": {
+        "hf_model": "MIT/ast-finetuned-audioset-10-10-0.4593",
+        "num_labels": 527,
+        "description": "Pretrained AST on AudioSet (527 classes, no fine-tuning)",
+    },
+}
+
 
 def load_pretrained(
     repo_id: str = "ooshyun/sound_event_detection",
@@ -49,6 +58,19 @@ def load_pretrained(
     Returns:
         An :class:`ASTHuggingFace` with loaded weights.
     """
+    # Handle baseline models (no custom weights, use HF pretrained directly)
+    if model_name in _BASELINE_MODELS:
+        info = _BASELINE_MODELS[model_name]
+        logger.info("Loading baseline model: %s (%s)", model_name, info["description"])
+        model = ASTHuggingFace(
+            model_name=info["hf_model"],
+            num_labels=info["num_labels"],
+        )
+        if device is not None:
+            model = model.to(device)
+        model.eval()
+        return model
+
     from huggingface_hub import hf_hub_download
 
     subfolder = _PRETRAINED_MAP.get(model_name, model_name)
