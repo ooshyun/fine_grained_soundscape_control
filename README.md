@@ -248,7 +248,7 @@ Both backends share the same base interface (`src/trainer/base.py`) and are inte
 ## Citation
 
 ```bibtex
-@article{oh2025fine,
+@article{oh2026fine,
   title   = {Fine-Grained Soundscape Control for Augmented Hearing},
   author  = {Oh, Seunghyun and others},
   journal = {arXiv preprint arXiv:2603.00395},
