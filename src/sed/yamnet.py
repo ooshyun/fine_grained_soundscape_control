@@ -46,19 +46,21 @@ class YAMNetModel(nn.Module):
         super().__init__()
         try:
             import tensorflow as tf
-            import tensorflow_hub as hub
         except ImportError:
             raise ImportError(
-                "YAMNet requires tensorflow and tensorflow-hub. "
-                "Install with: pip install tensorflow tensorflow-hub"
+                "YAMNet requires tensorflow. "
+                "Install with: pip install tensorflow"
             )
 
         # Suppress TF warnings
         tf.get_logger().setLevel("ERROR")
 
         self._device = device or torch.device("cpu")
-        logger.info("Loading YAMNet from TensorFlow Hub...")
-        self._yamnet = hub.load("https://tfhub.dev/google/yamnet/1")
+        logger.info("Loading YAMNet...")
+
+        # Load YAMNet SavedModel — try tensorflow_hub first, fall back to tf.saved_model
+        yamnet_model_dir = self._download_yamnet(tf)
+        self._yamnet = tf.saved_model.load(yamnet_model_dir)
         logger.info("YAMNet loaded (521 classes)")
 
         # Load class names from ontology.json (AudioSet)
@@ -76,6 +78,35 @@ class YAMNetModel(nn.Module):
 
         # Dummy parameter so .to(device) works
         self._dummy = nn.Parameter(torch.zeros(1), requires_grad=False)
+
+    @staticmethod
+    def _download_yamnet(tf):
+        """Download YAMNet SavedModel from TF Hub (without tensorflow_hub)."""
+        import tarfile
+        import tempfile
+        import urllib.request
+        from pathlib import Path
+
+        cache_dir = Path.home() / ".cache" / "yamnet"
+        model_dir = cache_dir / "yamnet_1"
+
+        if (model_dir / "saved_model.pb").exists():
+            logger.info("Using cached YAMNet at %s", model_dir)
+            return str(model_dir)
+
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        url = "https://tfhub.dev/google/yamnet/1?tf-hub-format=compressed"
+        tar_path = cache_dir / "yamnet.tar.gz"
+
+        logger.info("Downloading YAMNet from TF Hub...")
+        urllib.request.urlretrieve(url, str(tar_path))
+
+        logger.info("Extracting...")
+        with tarfile.open(tar_path, "r:gz") as tar:
+            tar.extractall(model_dir)
+        tar_path.unlink()
+
+        return str(model_dir)
 
     def to(self, device=None, *args, **kwargs):
         if device is not None:
