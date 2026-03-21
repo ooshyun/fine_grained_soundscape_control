@@ -259,8 +259,40 @@ def _load_waveformer(mp: dict, state_dict: dict) -> Any:
     model.load_state_dict(stripped, strict=False)
     model.eval()
 
-    # Add nO/nI attributes for eval compatibility
-    model.nO = out_ch
-    model.nI = in_ch
+    # Wrap in adapter that matches eval.py's dict input/output interface
+    wrapper = _WaveformerWrapper(model, nI=in_ch, nO=out_ch, label_len=wp.get("label_len", 20))
+    return wrapper
 
-    return model
+
+class _WaveformerWrapper(torch.nn.Module):
+    """Adapter: dict-based forward interface for Waveformer (dcc_tf.Net)."""
+
+    def __init__(self, model, nI=2, nO=2, label_len=20):
+        super().__init__()
+        self.model = model
+        self.nI = nI
+        self.nO = nO
+        self.label_len = label_len
+
+    def forward(self, inputs):
+        x = inputs["mixture"]  # (B, nI, T)
+
+        # Get label vector
+        if "embedding" in inputs and inputs["embedding"] is not None:
+            label = inputs["embedding"]
+        elif "label_vector" in inputs:
+            label = inputs["label_vector"]
+        else:
+            raise ValueError("Need 'embedding' or 'label_vector' in inputs")
+
+        if label.dim() == 1:
+            label = label.unsqueeze(0)
+
+        # Init buffers
+        batch_size = x.shape[0]
+        enc_buf, dec_buf, out_buf = self.model.init_buffers(batch_size, x.device)
+
+        # Waveformer predict — processes full sequence
+        output, _, _, _ = self.model.predict(x, label, enc_buf, dec_buf, out_buf)
+
+        return {"output": output}
