@@ -6,26 +6,72 @@ Part of **MobiSys 2026 #198 "Aurchestra"**.
 
 ## Quick Start
 
+### 1. Install
+
 ```bash
-# 1. Install dependencies
 pip install -r requirements.txt
-
-# 2. Download datasets (~110GB)
-python data/download.py --output_dir ./raw_datasets
-
-# 3. Prepare binaural dataset
-python data/prepare.py --raw_dir ./raw_datasets --output_dir ./BinauralCuratedDataset
-
-# 4. Train TSE
-python -m src.tse.train --config configs/tse/orange_pi.yaml
-
-# 5. Train SED
-python -m src.sed.train --config configs/sed/ast_finetune.yaml
-
-# 6. Evaluate
-python -m src.tse.eval --pretrained ooshyun/semantic_listening --model orange_pi
-python -m src.sed.eval --pretrained ooshyun/sound_event_detection --model finetuned_ast
 ```
+
+### 2. Download datasets (~88GB)
+
+Downloads 6 public audio datasets. CIPIC HRTF and DISCO are fetched from our [HuggingFace dataset repo](https://huggingface.co/datasets/ooshyun/fine-grained-soundscape).
+
+```bash
+python data/download.py --output_dir ./raw_datasets
+```
+
+| Dataset | Source | Size |
+|---------|--------|------|
+| FSD50K | Zenodo (split zip) | ~59GB |
+| ESC-50 | GitHub | ~1GB |
+| musdb18 | Zenodo | ~5GB |
+| DISCO | HuggingFace | ~3GB |
+| TAU-2019 | Zenodo (10 parts) | ~19GB |
+| CIPIC HRTF | HuggingFace (45 SOFA) | ~183MB |
+
+### 3. Prepare binaural dataset
+
+Runs per-dataset label collectors and consolidates into Scaper format with symlinks.
+
+```bash
+python data/prepare.py --raw_dir ./raw_datasets --output_dir ./BinauralCuratedDataset
+```
+
+Note: musdb18 requires `ffmpeg` for STEMS extraction. If unavailable, music/singing classes from musdb18 will be skipped (FSD50K samples still included).
+
+### 4. Evaluate with pretrained models
+
+```bash
+# TSE: Orange Pi 5ch, FiLM=All blocks (Table 3)
+python -m src.tse.eval \
+  --pretrained ooshyun/semantic_listening \
+  --model orange_pi_5ch_film_all \
+  --data_dir ./BinauralCuratedDataset
+
+# SED: Fine-tuned AST
+python -m src.sed.eval \
+  --pretrained ooshyun/sound_event_detection \
+  --model finetuned_ast \
+  --data_dir ./BinauralCuratedDataset
+```
+
+### 5. Train from scratch
+
+```bash
+python -m src.tse.train --config configs/tse/orange_pi.yaml --data_dir ./BinauralCuratedDataset
+python -m src.sed.train --config configs/sed/ast_finetune.yaml --data_dir ./BinauralCuratedDataset
+```
+
+## Reproducing Paper Results
+
+The evaluation pipeline reproduces the metrics from **Table 3** of the paper (Orange Pi, FiLM=All blocks, 5 output channels, 1-5 targets in mixture):
+
+| Metric | This Repo | Paper |
+|--------|-----------|-------|
+| **SNRi (dB)** | **12.31 ± 4.08** | **12.26 ± 4.38** |
+| **SI-SNRi (dB)** | **10.18 ± 5.43** | **10.16 ± 5.72** |
+
+Evaluated on 2000 on-the-fly synthesized test samples with 1-5 target sources, 1-3 interfering sources, and urban noise backgrounds.
 
 ## Pretrained Models
 
@@ -38,11 +84,13 @@ See [docs/pretrained_models.md](docs/pretrained_models.md) for full model detail
 
 ### TSE Models
 
-| Name | Architecture | D | H | B | Config |
-|------|--------------|---|---|---|--------|
-| Orange Pi | TFGridNet | 32 | 64 | 6 | `configs/tse/orange_pi.yaml` |
-| Raspberry Pi | TFGridNet | 16 | 64 | 3 | `configs/tse/raspberry_pi.yaml` |
-| NeuralAids | TFMLPNet | 32 | 32 | 6 | `configs/tse/neuralaid.yaml` |
+| Name | Architecture | D | H | B | Outputs | FiLM | Config |
+|------|--------------|---|---|---|---------|------|--------|
+| Orange Pi (1ch) | TFGridNet | 32 | 64 | 6 | 1 | All-ex-1st | `configs/tse/orange_pi.yaml` |
+| Orange Pi (5ch) | TFGridNet | 32 | 64 | 6 | 5 | All-ex-1st | -- |
+| Orange Pi (5ch, All) | TFGridNet | 32 | 64 | 6 | 5 | **All** | -- |
+| Raspberry Pi | TFGridNet | 16 | 64 | 3 | 1 | All-ex-1st | `configs/tse/raspberry_pi.yaml` |
+| NeuralAids | TFMLPNet | 32 | 32 | 6 | 1 | All-ex-1st | `configs/tse/neuralaid.yaml` |
 
 ### SED Models
 
@@ -89,24 +137,31 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │       └── ontology.py
 ├── src/
 │   ├── datasets/
-│   │   ├── soundscape_dataset.py   # Binaural mixture dataset
-│   │   ├── hrtf.py                 # HRTF spatialization
-│   │   └── augmentations.py        # Audio augmentations
+│   │   ├── MisophoniaDataset.py    # On-the-fly binaural synthesis (original)
+│   │   ├── soundscape_dataset.py   # Simplified dataset interface
+│   │   ├── multi_ch_simulator.py   # HRTF spatialization (CIPIC, etc.)
+│   │   ├── motion_simulator.py     # Sound source motion
+│   │   ├── augmentations/          # Audio augmentations (speed, pitch, etc.)
+│   │   └── gen/                    # Dataset generation utilities
 │   ├── trainer/
 │   │   ├── base.py                 # Base trainer interface
 │   │   ├── lightning.py            # PyTorch Lightning backend
 │   │   └── fabric.py              # Lightning Fabric backend
 │   ├── metrics/
-│   │   ├── tse.py                  # SI-SNRi, SDRi
-│   │   └── sed.py                  # mAP, F1
+│   │   ├── tse.py                  # SI-SNRi, SNRi, per-channel metrics
+│   │   └── sed.py                  # mAP, F1, AUC-ROC, d-prime
 │   ├── tse/
-│   │   ├── model.py                # TFGridNet, TFMLPNet
-│   │   ├── loss.py                 # TSE losses
+│   │   ├── model.py                # Pretrained model loading
+│   │   ├── net.py                  # TFGridNet STFT wrapper (original)
+│   │   ├── multiflim_guided_tfnet.py  # FiLM-conditioned separator
+│   │   ├── gridnet_block.py        # Time-frequency processing block
+│   │   ├── loss.py                 # Multi-resolution STFT + L1 loss
 │   │   ├── train.py                # TSE training entry
 │   │   └── eval.py                 # TSE evaluation entry
 │   └── sed/
-│       ├── model.py                # AST wrapper
-│       ├── loss.py                 # SED losses
+│       ├── model.py                # Pretrained AST loading
+│       ├── ast_hf.py               # HuggingFace AST wrapper (original)
+│       ├── loss.py                 # BCE + Focal loss
 │       ├── train.py                # SED training entry
 │       └── eval.py                 # SED evaluation entry
 ├── scripts/
