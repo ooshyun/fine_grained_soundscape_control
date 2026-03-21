@@ -36,6 +36,10 @@ class DISCOSource(BaseSource):
     def __init__(self, ontology):
         self.ontology = ontology
 
+    # Zenodo raw layout: DISCO/{train,test}/{label}/*.wav
+    # Expected layout:   disco_noises/{train,test}/{label}/*.wav
+    ZENODO_RAW_NAMES = ("DISCO",)
+
     def download(self, raw_dir: Path) -> None:
         import shutil
 
@@ -43,6 +47,23 @@ class DISCOSource(BaseSource):
         if (out / ".done").exists():
             print(f"  [skip] {self.name} already downloaded")
             return
+
+        # Check for Zenodo raw layout (DISCO/{train,test}/)
+        for zenodo_name in self.ZENODO_RAW_NAMES:
+            zenodo_dir = raw_dir / zenodo_name
+            if zenodo_dir.exists() and (zenodo_dir / "train").is_dir():
+                print(f"  Found Zenodo raw: {zenodo_dir}")
+                out.mkdir(parents=True, exist_ok=True)
+                for split in ("train", "test"):
+                    src = zenodo_dir / split
+                    dst = out / split
+                    if src.exists() and not dst.exists():
+                        dst.symlink_to(src.resolve())
+                (out / ".done").touch()
+                print(f"  ✓ {self.name} linked from {zenodo_name}/")
+                return
+
+        # Fallback: download from HF
         print("  Loading from HF: ooshyun/fine-grained-soundscape (disco) ...")
         from huggingface_hub import snapshot_download
 
