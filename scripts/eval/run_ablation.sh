@@ -11,58 +11,26 @@ echo "Data: ${DATA_DIR}"
 echo "Output: ${OUTPUT_DIR}"
 echo ""
 
-# Orange Pi variants
 echo "=== Orange Pi ==="
+for variant in film_first film_all film_all_except_first; do
+    echo "--- orange_pi_${variant} ---"
+    python -m src.tse.eval \
+        --pretrained ooshyun/semantic_listening \
+        --model "orange_pi_${variant}" \
+        --data_dir "${DATA_DIR}" \
+        --output_dir "${OUTPUT_DIR}/orange_pi_${variant}"
+    echo ""
+done
 
-echo "--- FiLM: first ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_first_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/orange_pi_film_first"
-echo ""
-
-echo "--- FiLM: all ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/orange_pi_film_all"
-echo ""
-
-echo "--- FiLM: all-except-first ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/orange_pi_film_all_except_first"
-echo ""
-
-# NeuralAids variants
 echo "=== NeuralAids ==="
-
-echo "--- FiLM: first ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_first_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/neuralaid_film_first"
-echo ""
-
-echo "--- FiLM: all ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_layers_6_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/neuralaid_film_all"
-echo ""
-
-echo "--- FiLM: all-except-first ---"
-python -m src.tse.eval \
-    --pretrained ooshyun/semantic_listening \
-    --model tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight \
-    --data_dir "${DATA_DIR}" \
-    --output_dir "${OUTPUT_DIR}/neuralaid_film_all_except_first"
-echo ""
+for variant in film_first film_all film_all_except_first; do
+    echo "--- neuralaid_${variant} ---"
+    python -m src.tse.eval \
+        --pretrained ooshyun/semantic_listening \
+        --model "neuralaid_${variant}" \
+        --data_dir "${DATA_DIR}" \
+        --output_dir "${OUTPUT_DIR}/neuralaid_${variant}"
+    echo ""
+done
 
 echo "✓ Table 3 results saved to ${OUTPUT_DIR}/"

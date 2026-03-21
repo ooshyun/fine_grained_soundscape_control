@@ -31,11 +31,25 @@ TFGridNet = Net
 # ---------------------------------------------------------------------------
 
 _MODEL_NAME_MAP = {
+    # Table 1: TSE model comparison (1ch, 1out)
     "orange_pi": "tfgridnet_large_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
-    "orange_pi_5ch": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
-    "orange_pi_5ch_film_all": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_onflight",
     "raspberry_pi": "tfgridnet_small_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
     "neuralaid": "tfmlpnet_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    "waveformer": "waveformer_snr_ctl_v2_1ch_1spk_1out_20000samples_20sounds_16000sr_256chunk_film_all_onflight",
+    # Table 2: Multi-output (Orange Pi)
+    "orange_pi_5out": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    "orange_pi_20out": "tfgridnet_large_snr_ctl_v2_20ch_5spk_20out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    # Table 3: FiLM ablation — Orange Pi
+    "orange_pi_film_first": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_first_onflight",
+    "orange_pi_film_all": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_onflight",
+    "orange_pi_film_all_except_first": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    # Table 3: FiLM ablation — NeuralAids
+    "neuralaid_film_first": "tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_first_onflight",
+    "neuralaid_film_all": "tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_layers_6_onflight",
+    "neuralaid_film_all_except_first": "tfmlpnet_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    # Legacy aliases
+    "orange_pi_5ch": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_except_first_onflight",
+    "orange_pi_5ch_film_all": "tfgridnet_large_snr_ctl_v2_5ch_5spk_5out_20000samples_20sounds_16000sr_96chunk_film_all_onflight",
 }
 
 
