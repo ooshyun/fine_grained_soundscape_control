@@ -44,4 +44,15 @@ python -m src.sed.eval \
     --output_dir "${OUTPUT_DIR}/ast_pretrained"
 echo ""
 
+# YAMNet baseline (Google TF Hub, 521 AudioSet classes)
+# Requires: pip install tensorflow tensorflow-hub
+echo "--- YAMNet (baseline) ---"
+python -m src.sed.eval \
+    --pretrained ooshyun/sound_event_detection \
+    --model yamnet \
+    ${COMMON_ARGS} \
+    --find_thresholds --val_samples 2000 \
+    --output_dir "${OUTPUT_DIR}/yamnet"
+echo ""
+
 echo "✓ Baseline comparison saved to ${OUTPUT_DIR}/"

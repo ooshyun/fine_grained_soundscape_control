@@ -35,6 +35,10 @@ _BASELINE_MODELS: dict[str, dict] = {
         "num_labels": 527,
         "description": "Pretrained AST on AudioSet (527 classes, no fine-tuning)",
     },
+    "yamnet": {
+        "loader": "yamnet",
+        "description": "Google YAMNet on AudioSet (521 classes, TF Hub)",
+    },
 }
 
 
@@ -62,10 +66,16 @@ def load_pretrained(
     if model_name in _BASELINE_MODELS:
         info = _BASELINE_MODELS[model_name]
         logger.info("Loading baseline model: %s (%s)", model_name, info["description"])
-        model = ASTHuggingFace(
-            model_name=info["hf_model"],
-            num_labels=info["num_labels"],
-        )
+
+        if info.get("loader") == "yamnet":
+            from src.sed.yamnet import YAMNetModel
+            model = YAMNetModel(device=device)
+        else:
+            model = ASTHuggingFace(
+                model_name=info["hf_model"],
+                num_labels=info["num_labels"],
+            )
+
         if device is not None:
             model = model.to(device)
         model.eval()
