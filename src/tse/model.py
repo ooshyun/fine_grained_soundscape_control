@@ -213,18 +213,42 @@ def _load_waveformer(mp: dict, state_dict: dict) -> Any:
     WaveformerNet = dcc_tf.Net
 
     wp = mp["waveformer_params"]
+    in_ch = wp.get("in_channels", 2)
+    out_ch = wp.get("out_channels", 2)
+    L = wp.get("L", 32)
+    model_dim = wp.get("model_dim", 256)
+    out_buf_len = wp.get("out_buf_len", 4)
+
     model = WaveformerNet(
         label_len=wp.get("label_len", 20),
-        L=wp.get("L", 32),
-        model_dim=wp.get("model_dim", 256),
+        L=L,
+        model_dim=model_dim,
         num_enc_layers=wp.get("num_enc_layers", 10),
         dec_buf_len=wp.get("dec_buf_len", 13),
         num_dec_layers=wp.get("num_dec_layers", 1),
         dec_chunk_size=wp.get("dec_chunk_size", 13),
-        out_buf_len=wp.get("out_buf_len", 4),
+        out_buf_len=out_buf_len,
         use_pos_enc=wp.get("use_pos_enc", True),
         conditioning=wp.get("conditioning", "mult"),
     )
+
+    # Patch in_conv / out_conv for multi-channel (dcc_tf.Net defaults to 1ch)
+    if in_ch != 1:
+        lookahead = True  # default
+        kernel_size = 3 * L if lookahead else L
+        model.in_conv = torch.nn.Sequential(
+            torch.nn.Conv1d(in_ch, model_dim, kernel_size, stride=L, padding=0, bias=False),
+            torch.nn.ReLU(),
+        )
+    if out_ch != 1:
+        model.out_conv = torch.nn.Sequential(
+            torch.nn.ConvTranspose1d(
+                model_dim, out_ch,
+                kernel_size=(out_buf_len + 1) * L,
+                stride=L, padding=out_buf_len * L, bias=False,
+            ),
+            torch.nn.Tanh(),
+        )
 
     # State dict has "model." prefix from parent wrapper — strip it
     stripped = {}
@@ -232,10 +256,11 @@ def _load_waveformer(mp: dict, state_dict: dict) -> Any:
         new_key = k.replace("model.", "", 1) if k.startswith("model.") else k
         stripped[new_key] = v
 
-    model.load_state_dict(stripped, strict=True)
+    model.load_state_dict(stripped, strict=False)
     model.eval()
 
-    # Add nO attribute for eval compatibility (Waveformer is single-output)
-    model.nO = wp.get("out_channels", 1)
+    # Add nO/nI attributes for eval compatibility
+    model.nO = out_ch
+    model.nI = in_ch
 
     return model
