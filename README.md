@@ -229,3 +229,45 @@ Both backends share the same base interface (`src/trainer/base.py`) and are inte
 ## License
 
 MIT
+
+---
+
+### Appendix: Downloading Raw Datasets Individually
+
+If you need the raw source datasets (e.g. for custom preprocessing), you can download them individually:
+
+```bash
+# FSD50K (~59GB, split zip)
+# Requires manual merge of split archives
+wget https://zenodo.org/records/4060432/files/FSD50K.dev_audio.zip
+wget https://zenodo.org/records/4060432/files/FSD50K.eval_audio.zip
+wget https://zenodo.org/records/4060432/files/FSD50K.metadata.zip
+
+# ESC-50 (~600MB)
+wget https://github.com/karolpiczak/ESC-50/archive/refs/heads/master.zip -O ESC-50.zip
+
+# musdb18 (~5GB, academic use only)
+wget https://zenodo.org/records/1117372/files/musdb18.zip
+
+# DISCO (~3GB)
+wget https://zenodo.org/api/records/4019030/files/disco_noises.zip/content -O disco_noises.zip
+
+# TAU-2019 (~20GB, 10 parts + meta, non-commercial)
+for i in $(seq 1 10); do
+  wget "https://zenodo.org/records/2589280/files/TAU-urban-acoustic-scenes-2019-development.audio.${i}.zip"
+done
+wget https://zenodo.org/records/2589280/files/TAU-urban-acoustic-scenes-2019-development.meta.zip
+
+# CIPIC HRTF (~183MB, SOFA files)
+# Available from our HuggingFace dataset repo:
+pip install huggingface_hub
+python -c "from huggingface_hub import snapshot_download; snapshot_download('ooshyun/fine-grained-soundscape', repo_type='dataset', allow_patterns='cipic_hrtf/**', local_dir='.')"
+```
+
+Alternatively, use the automated downloader:
+
+```bash
+python data/download.py --output_dir ./raw_datasets
+python data/download.py --output_dir ./raw_datasets --datasets fsd50k,esc50  # specific datasets
+python data/download.py --dry-run  # preview sizes
+```
