@@ -73,9 +73,9 @@ tar xzf data/prebuilt/metadata.tar.gz -C /path/to/BinauralCuratedDataset/
 | [FSD50K](https://zenodo.org/record/4060432) | Mixed CC (CC0/BY/BY-NC) | Zenodo |
 | [ESC-50](https://github.com/karolpiczak/ESC-50) | CC-BY-NC 3.0 | GitHub |
 | [musdb18](https://sigsep.github.io/datasets/musdb.html) | Academic/non-commercial | Zenodo |
-| [DISCO](https://zenodo.org/record/3828141) | CC-BY 4.0 | [Zenodo 4019030](https://zenodo.org/record/4019030) |
-| [TAU-2019](https://zenodo.org/record/2589280) | Tampere Univ. custom (NC) | Zenodo |
-| [CIPIC HRTF](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) | Public Domain | [Zenodo 4019030](https://zenodo.org/record/4019030) |
+| [DISCO](https://zenodo.org/record/4019030) | CC-BY 4.0 | [Zenodo](https://zenodo.org/record/4019030) |
+| [TAU-2019](https://zenodo.org/record/2589280) | Tampere Univ. custom (NC) | [Zenodo](https://zenodo.org/record/2589280) |
+| [CIPIC HRTF](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) | Public Domain | [UC Davis](https://www.ece.ucdavis.edu/cipic/spatial-sound/hrtf-data/) |
 
 ### 3. Train
 
