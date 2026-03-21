@@ -37,7 +37,7 @@ class EnvironmentConfig:
             "TORCH_DISTRIBUTED_DEBUG": self.torch_distributed_debug,
             "TORCH_USE_CUDA_DSA": self.torch_use_cuda_dsa,
             "CUDA_LAUNCH_BLOCKING": self.cuda_launch_blocking,
-            "DEBUG_DISTRIBUTUTED_TRAINING": self.debug_distributed_training,
+            "DEBUG_DISTRIBUTED_TRAINING": self.debug_distributed_training,
         }
 
     def apply(self) -> None:

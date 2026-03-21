@@ -269,10 +269,10 @@ pip install huggingface_hub
 python -c "from huggingface_hub import snapshot_download; snapshot_download('ooshyun/fine-grained-soundscape', repo_type='dataset', allow_patterns='cipic_hrtf/**', local_dir='.')"
 ```
 
-Alternatively, use the automated downloader:
+Alternatively, use the automated pipeline downloader:
 
 ```bash
-python data/download.py --output_dir ./raw_datasets
-python data/download.py --output_dir ./raw_datasets --datasets fsd50k,esc50  # specific datasets
-python data/download.py --dry-run  # preview sizes
+python data/setup_data.py --output_dir ./data --stage download
+python data/setup_data.py --output_dir ./data --datasets fsd50k,esc50 --stage download
+python data/setup_data.py --output_dir ./data --dry-run
 ```

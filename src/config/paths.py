@@ -22,13 +22,13 @@ def get_project_root() -> Path:
     """
     current = Path(__file__).resolve()
 
-    # Walk up the directory tree looking for pyproject.toml
+    # Walk up the directory tree looking for project markers
     for parent in [current, *current.parents]:
-        if (parent / "pyproject.toml").exists():
+        if (parent / "pyproject.toml").exists() or (parent / ".git").exists():
             return parent
 
     raise RuntimeError(
-        "Could not find project root (no pyproject.toml found). "
+        "Could not find project root (no pyproject.toml or .git found). "
         f"Started search from {current}"
     )
 
