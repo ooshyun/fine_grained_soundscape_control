@@ -31,6 +31,7 @@ class TAUSource(BaseSource):
 
     name = "TAU-2019"
     key = "tau"
+    ref_csv_dir = "TAU-acoustic-sounds"
     ZENODO_BASE = "https://zenodo.org/records/2589280/files"
 
     def print_download_guide(self) -> None:

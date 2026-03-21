@@ -15,6 +15,7 @@ def run(
     stage: str = "all",
     datasets: list[str] | None = None,
     manual_dir: Path | None = None,
+    reference_dir: Path | None = None,
     dry_run: bool = False,
 ) -> None:
     # Match original prepare.py seed for reproducible splits
@@ -39,7 +40,7 @@ def run(
             run_download(sources, raw_dir, manual_dir, dry_run)
         elif s == "collect":
             from .collect import run_collect
-            run_collect(sources, raw_dir, curated_dir)
+            run_collect(sources, raw_dir, curated_dir, reference_dir)
         elif s == "prepare":
             from .prepare import run_prepare
             run_prepare(curated_dir, raw_dir, output_dir, ontology, data_dir)

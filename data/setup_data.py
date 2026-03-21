@@ -17,13 +17,15 @@ def main() -> None:
                         default="all")
     parser.add_argument("--manual_dir", type=Path, default=None,
                         help="Path to manually downloaded datasets (musdb18, TAU-2019)")
+    parser.add_argument("--reference_dir", type=Path, default=None,
+                        help="Path to reference CSV splits (skips collect, uses exact same splits)")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
     ds = [d.strip() for d in args.datasets.split(",")] if args.datasets else None
 
     from pipeline import run
-    run(args.output_dir, args.stage, ds, args.manual_dir, args.dry_run)
+    run(args.output_dir, args.stage, ds, args.manual_dir, args.reference_dir, args.dry_run)
 
 
 if __name__ == "__main__":
