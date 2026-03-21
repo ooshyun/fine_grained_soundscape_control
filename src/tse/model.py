@@ -167,8 +167,44 @@ def _load_waveformer(mp: dict, state_dict: dict) -> Any:
     import sys
     from pathlib import Path
 
-    # Import Waveformer directly from SemanticHearing submodule
+    # Provide PositionalEncoding stub to avoid speechbrain dependency
+    import types
     import importlib.util
+    import math
+
+    class _PositionalEncoding(torch.nn.Module):
+        """Standard sinusoidal positional encoding (replaces speechbrain dependency)."""
+        def __init__(self, d_model, max_len=2048):
+            super().__init__()
+            pe = torch.zeros(max_len, d_model)
+            position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+            div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+            pe[:, 0::2] = torch.sin(position * div_term)
+            pe[:, 1::2] = torch.cos(position * div_term)
+            pe = pe.unsqueeze(0)  # (1, max_len, d_model)
+            self.register_buffer("pe", pe)
+
+        def forward(self, x):
+            return x + self.pe[:, :x.size(1)]
+
+    # Mock speechbrain module so dcc_tf.py can import PositionalEncoding
+    sb_transformer = types.ModuleType("speechbrain.lobes.models.transformer.Transformer")
+    sb_transformer.PositionalEncoding = _PositionalEncoding
+    sb_lobes_models_transformer = types.ModuleType("speechbrain.lobes.models.transformer")
+    sb_lobes_models_transformer.Transformer = sb_transformer
+    sb_lobes_models = types.ModuleType("speechbrain.lobes.models")
+    sb_lobes_models.transformer = sb_lobes_models_transformer
+    sb_lobes = types.ModuleType("speechbrain.lobes")
+    sb_lobes.models = sb_lobes_models
+    sb = types.ModuleType("speechbrain")
+    sb.lobes = sb_lobes
+    sys.modules["speechbrain"] = sb
+    sys.modules["speechbrain.lobes"] = sb_lobes
+    sys.modules["speechbrain.lobes.models"] = sb_lobes_models
+    sys.modules["speechbrain.lobes.models.transformer"] = sb_lobes_models_transformer
+    sys.modules["speechbrain.lobes.models.transformer.Transformer"] = sb_transformer
+
+    # Import Waveformer directly from SemanticHearing submodule
     sem_hearing_path = Path(__file__).parent.parent.parent / "third_party" / "SemanticHearing"
     dcc_tf_path = sem_hearing_path / "src" / "training" / "dcc_tf.py"
     spec = importlib.util.spec_from_file_location("dcc_tf", str(dcc_tf_path))
