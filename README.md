@@ -84,11 +84,11 @@ See [docs/pretrained_models.md](docs/pretrained_models.md) for full model detail
 
 ### TSE Models
 
-| Name | Architecture | D | H | B | Outputs | FiLM | SNRi (dB) | SI-SNRi (dB) |
-|------|--------------|---|---|---|---------|------|-----------|-------------|
-| **Orange Pi** | TFGridNet | 32 | 64 | 6 | 5 | All | **12.31 ± 4.08** | **10.18 ± 5.43** |
-| Raspberry Pi | TFGridNet | 16 | 64 | 3 | 5 | -- | -- | -- |
-| NeuralAids | TFMLPNet | 32 | 32 | 6 | 5 | -- | -- | -- |
+| Name | Architecture | D | H | B | Outputs | FiLM |
+|------|--------------|---|---|---|---------|------|
+| Orange Pi | TFGridNet | 32 | 64 | 6 | 5 | All |
+| Raspberry Pi | TFGridNet | 16 | 64 | 3 | 5 | All |
+| NeuralAids | TFMLPNet | 32 | 32 | 6 | 5 | All |
 
 ### SED Models
 
