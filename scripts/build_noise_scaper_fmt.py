@@ -128,17 +128,21 @@ def build_noise_scaper_fmt(data_dir: str, tau_dir: str | None = None) -> None:
     train_samples = train_samples[train_samples["label"].isin(common_labels)]
     val_samples = val_samples[val_samples["label"].isin(common_labels)]
 
-    # Write CSVs (if not already present)
+    # Use existing CSVs if present, otherwise write new ones
     csv_dir = os.path.join(data_dir, "TAU-acoustic-sounds")
     os.makedirs(csv_dir, exist_ok=True)
     cols = ["label", "fname", "id"]
-    for name, df in [("train", train_samples), ("val", val_samples), ("test", test_samples)]:
+
+    splits = {"train": train_samples, "val": val_samples, "test": test_samples}
+    for name in list(splits.keys()):
         csv_path = os.path.join(csv_dir, f"{name}.csv")
-        if not os.path.exists(csv_path):
-            df[cols].to_csv(csv_path, index=False)
-            print(f"  Wrote {csv_path} ({len(df)} rows)")
+        if os.path.exists(csv_path):
+            print(f"  [use existing] {csv_path}")
+            splits[name] = pd.read_csv(csv_path)
         else:
-            print(f"  [skip] {csv_path} already exists")
+            splits[name][cols].to_csv(csv_path, index=False)
+            print(f"  Wrote {csv_path} ({len(splits[name])} rows)")
+    train_samples, val_samples, test_samples = splits["train"], splits["val"], splits["test"]
 
     # Create symlinks in noise_scaper_fmt
     dataset_name = "TAU-acoustic-sounds"
