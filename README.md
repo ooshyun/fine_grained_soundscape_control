@@ -2,7 +2,7 @@
 
 TSE (Target Sound Extraction) and SED (Sound Event Detection) pipelines for binaural augmented hearing with on-the-fly spatial audio synthesis using Head-Related Transfer Functions (HRTF).
 
-Part of **MobiSys 2026 #198 "Aurchestra"**.
+Paper: [arXiv:2603.00395](https://arxiv.org/abs/2603.00395) | MobiSys 2026
 
 ## Quick Start
 
@@ -248,11 +248,12 @@ Both backends share the same base interface (`src/trainer/base.py`) and are inte
 ## Citation
 
 ```bibtex
-@inproceedings{aurchestra2026,
-  title     = {Aurchestra: Fine-Grained Soundscape Control for Augmented Hearing},
-  booktitle = {Proceedings of the 24th ACM International Conference on
-               Mobile Systems, Applications, and Services (MobiSys '26)},
-  year      = {2026},
+@article{oh2025fine,
+  title   = {Fine-Grained Soundscape Control for Augmented Hearing},
+  author  = {Oh, Seunghyun and others},
+  journal = {arXiv preprint arXiv:2603.00395},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2603.00395},
 }
 ```
 
