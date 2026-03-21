@@ -110,6 +110,7 @@ def load_pretrained(
     _IMPORT_REMAP = {
         "src.models.GuidedTFNetwork.multiflim_guided_tfnet.MultiFiLMGuidedTFNet": "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet",
         "src.models.blocks.gridnet_blockTFGridNet.GridNetBlock": "src.tse.gridnet_block.GridNetBlock",
+        "src.models.blocks.mlpnet_block.MLPBlock": "src.tse.mlpnet_block.MLPBlock",
     }
     raw_model_name = mp.get("model_name", "src.tse.multiflim_guided_tfnet.MultiFiLMGuidedTFNet")
     raw_block_name = mp.get("block_model_name", "src.tse.gridnet_block.GridNetBlock")
