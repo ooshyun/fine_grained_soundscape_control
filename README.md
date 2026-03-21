@@ -146,17 +146,22 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │   └── sed/                    # SED training configs
 │       └── ast_finetune.yaml
 ├── data/
-│   ├── download.py             # Dataset downloader
-│   ├── prepare.py              # Binaural dataset preparation
+│   ├── setup_data.py           # CLI entrypoint for data pipeline
 │   ├── class_map.yaml          # Sound class definitions
 │   ├── ontology.json           # AudioSet ontology
-│   └── collectors/             # Per-dataset download/processing
-│       ├── fsd50k.py
-│       ├── esc50.py
-│       ├── musdb18.py
-│       ├── disco_noise.py
-│       ├── tau.py
-│       └── ontology.py
+│   ├── pipeline/               # Modular data pipeline
+│   │   ├── download.py         # Stage 1: download datasets
+│   │   ├── collect.py          # Stage 2: collect + split CSVs
+│   │   ├── prepare.py          # Stage 3: Scaper format + HRTF
+│   │   ├── ontology.py         # AudioSet ontology wrapper
+│   │   ├── silence.py          # Silence trimming utility
+│   │   └── sources/            # Per-dataset logic
+│   │       ├── fsd50k.py, esc50.py, disco.py
+│   │       ├── cipic.py, musdb18.py, tau.py
+│   │       └── base.py         # BaseSource ABC
+│   └── hf_upload/              # HuggingFace dataset upload
+│       ├── README.md           # Dataset Card
+│       └── upload.py           # Upload script
 ├── src/
 │   ├── datasets/
 │   │   ├── MisophoniaDataset.py    # On-the-fly binaural synthesis (original)
