@@ -101,23 +101,28 @@ if [[ ! -d "$DATA_DIR" ]]; then
     exit 1
 fi
 
-# ---- Step 2: Build noise_scaper_fmt ----
+# ---- Step 2: Build noise_scaper_fmt + metadata ----
 if [[ -d "${DATA_DIR}/noise_scaper_fmt/train" ]]; then
     echo "[Step 2] noise_scaper_fmt already exists, skipping."
 else
-    echo "[Step 2] Building noise_scaper_fmt..."
-
-    TAU_ARG=""
-    if [[ -n "$TAU_RAW_DIR" ]]; then
-        TAU_ARG="--tau_raw_dir ${TAU_RAW_DIR}"
+    # Try prebuilt metadata first (fast: extract 898KB tar.gz)
+    PREBUILT="${REPO_DIR}/data/prebuilt/metadata.tar.gz"
+    if [[ -f "$PREBUILT" ]]; then
+        echo "[Step 2] Extracting prebuilt metadata (noise_scaper_fmt + CSVs)..."
+        tar xzf "$PREBUILT" -C "$DATA_DIR"
+        echo "  ✓ Prebuilt metadata extracted"
+    else
+        echo "[Step 2] Building noise_scaper_fmt from TAU audio..."
+        TAU_ARG=""
+        if [[ -n "$TAU_RAW_DIR" ]]; then
+            TAU_ARG="--tau_raw_dir ${TAU_RAW_DIR}"
+        fi
+        cd "$REPO_DIR"
+        python scripts/build_noise_scaper_fmt.py \
+            --data_dir "$DATA_DIR" \
+            $TAU_ARG
+        echo "  ✓ noise_scaper_fmt built"
     fi
-
-    cd "$REPO_DIR"
-    python scripts/build_noise_scaper_fmt.py \
-        --data_dir "$DATA_DIR" \
-        $TAU_ARG
-
-    echo "  ✓ noise_scaper_fmt built"
 fi
 
 # ---- Step 3: Verify ----
