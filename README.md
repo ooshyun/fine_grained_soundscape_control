@@ -252,7 +252,7 @@ Both backends share the same base interface (`src/trainer/base.py`) and are inte
   title   = {Fine-Grained Soundscape Control for Augmented Hearing},
   author  = {Oh, Seunghyun and others},
   journal = {arXiv preprint arXiv:2603.00395},
-  year    = {2025},
+  year    = {2026},
   url     = {https://arxiv.org/abs/2603.00395},
 }
 ```
