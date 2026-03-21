@@ -190,7 +190,13 @@ def write_scaper_source(
 
 def prepare_hrtf(raw_dir: Path, output_dir: Path) -> None:
     """Copy CIPIC SOFA files and generate train/val/test split lists."""
-    cipic_src = raw_dir / "cipic-hrtf-database"
+    # Try original Zenodo layout first (CIPIC-HRTF/CIPIC_SOFA/),
+    # then fall back to GitHub mirror layout (cipic-hrtf-database/**/)
+    cipic_src = raw_dir / "CIPIC-HRTF" / "CIPIC_SOFA"
+    if not cipic_src.exists():
+        cipic_src = raw_dir / "cipic-hrtf-database" / "CIPIC_SOFA"
+    if not cipic_src.exists():
+        cipic_src = raw_dir / "cipic-hrtf-database"
     cipic_dst = output_dir / "hrtf" / "CIPIC"
     cipic_dst.mkdir(parents=True, exist_ok=True)
 
