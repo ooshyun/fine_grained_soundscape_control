@@ -190,6 +190,22 @@ class MUSDB18Source(BaseSource):
         out_dir = str(curated_dir / self.name)
         os.makedirs(out_dir, exist_ok=True)
 
+        # If reference CSVs already exist (e.g. from existing dataset),
+        # use them directly — avoids STEMS re-extraction and ensures
+        # identical train/val/test splits.
+        ref_csvs = [
+            os.path.join(dataset_dir, f"{s}.csv") for s in ("train", "val", "test")
+        ]
+        if all(os.path.exists(c) for c in ref_csvs):
+            import shutil
+            logger.info("MUSDB18: using existing reference CSVs")
+            for csv_path in ref_csvs:
+                shutil.copy2(csv_path, out_dir)
+            for split in ("train", "val", "test"):
+                df = pd.read_csv(os.path.join(out_dir, f"{split}.csv"))
+                logger.info("MUSDB18 %s: %d samples", split, len(df))
+            return
+
         audio_dir = os.path.join(dataset_dir, "audio")
 
         # Check for actual extracted WAVs, not just the directory existing

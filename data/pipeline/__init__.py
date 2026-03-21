@@ -1,5 +1,9 @@
 from __future__ import annotations
+import random
 from pathlib import Path
+
+import numpy as np
+
 from .ontology import Ontology
 from .sources import register_sources
 
@@ -13,6 +17,10 @@ def run(
     manual_dir: Path | None = None,
     dry_run: bool = False,
 ) -> None:
+    # Match original prepare.py seed for reproducible splits
+    random.seed(0)
+    np.random.seed(0)
+
     data_dir = Path(__file__).parent.parent  # data/
     ontology = Ontology(str(data_dir / "ontology.json"))
     sources = register_sources(ontology)
