@@ -215,20 +215,7 @@ class Net(nn.Module):
 
     def forward(self, inputs, input_state=None, pad=True):
         x = inputs["mixture"]
-        # Use label_vector (float one-hot) as embedding when available,
-        # matching the original training code (semhearing_hl_module.py).
-        embedding = inputs.get("label_vector", inputs["embedding"])
-
-        # Ensure embedding is (B, D) float for FiLM layers.
-        if isinstance(embedding, torch.Tensor):
-            if embedding.dtype in (torch.long, torch.int, torch.int32):
-                embedding = torch.nn.functional.one_hot(
-                    embedding.long(), num_classes=self.tfgridnet.embedding_dim
-                ).float()
-            elif embedding.dtype != torch.float32:
-                embedding = embedding.float()
-            if embedding.dim() == 1:
-                embedding = embedding.unsqueeze(0)
+        embedding = inputs["embedding"]
 
         # Create empty state if it is not passed
         if input_state is None:
