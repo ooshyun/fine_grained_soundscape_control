@@ -220,7 +220,7 @@ def evaluate(model, test_loader, params, device, output_dir):
                 label_vector_target_one[0, id_label] = 1
                 inputs["embedding"] = label_vector_target_one.to(device)
                 outputs = model(inputs)
-                output[0, src_idx] = outputs["output"]
+                output[0, src_idx] = outputs["output"].squeeze(0)
                 label_vector_target_one[0, id_label] = 0
         else:
             # Multi-output model: single forward pass
