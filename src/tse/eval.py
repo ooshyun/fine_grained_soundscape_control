@@ -104,14 +104,6 @@ def _build_dataset(params: dict, data_dir: str | None = None):
 
     if data_dir is not None:
         test_data_args["root_dataset_dir"] = data_dir
-        # Strip 'BinauralCuratedDataset/' prefix from paths if data_dir is used
-        # (config paths are relative to /scr/BinauralCuratedDataset/ but
-        #  data_dir already points to the dataset root)
-        for key in ("fg_sounds_dir", "bg_sounds_dir", "noise_sounds_dir", "hrtf_list"):
-            if key in test_data_args:
-                val = test_data_args[key]
-                if val.startswith("BinauralCuratedDataset/"):
-                    test_data_args[key] = val[len("BinauralCuratedDataset/"):]
     elif "root_dataset_dir" in params:
         test_data_args["root_dataset_dir"] = params["root_dataset_dir"]
 
