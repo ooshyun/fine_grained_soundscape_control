@@ -111,6 +111,26 @@ bash scripts/eval/run_ablation.sh /path/to/data_dir
 bash scripts/eval/run_sed.sh /path/to/data_dir
 ```
 
+### 5. Docker (recommended for reproducibility)
+
+Build and run all evaluations in an isolated Docker environment. Requires [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html).
+
+```bash
+# Build image
+bash docker/build.sh
+
+# Run all paper evaluations (Tables 1-4)
+bash docker/eval_all.sh /path/to/data_dir ./eval_results
+
+# Run a single model
+bash docker/eval_single.sh tse orange_pi /path/to/data_dir
+bash docker/eval_single.sh sed finetuned_ast /path/to/data_dir ./results \
+    --num_fg_min 1 --num_fg_max 1 --num_bg_min 1 --num_bg_max 1
+
+# Train inside Docker
+bash docker/train_single.sh tse configs/tse/orange_pi.yaml /path/to/data_dir
+```
+
 ## Reproducing Paper Results
 
 The evaluation pipeline reproduces the metrics from **Table 3** of the paper (Orange Pi, FiLM=All blocks, 5 output channels, 1-5 targets in mixture):
@@ -227,6 +247,12 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │       ├── run_multiout.sh        # Table 2: Multi-output TSE
 │       ├── run_ablation.sh        # Table 3: FiLM ablation
 │       └── run_sed.sh             # Table 4, Fig 4: SED
+├── docker/
+│   ├── build.sh                 # Build Docker image
+│   ├── eval_all.sh              # Run all paper evals (Tables 1-4)
+│   ├── eval_single.sh           # Run single TSE/SED eval
+│   └── train_single.sh          # Run single training job
+├── Dockerfile
 ├── requirements.txt
 └── README.md
 ```
