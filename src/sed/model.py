@@ -2,8 +2,8 @@ from __future__ import annotations
 
 """AST-based Sound Event Detection model.
 
-Wraps the original ASTHuggingFace from the parent project and provides
-a ``load_pretrained()`` helper for checkpoint loading.
+Provides a ``load_pretrained()`` helper for checkpoint loading from
+HuggingFace Hub.
 """
 
 import json

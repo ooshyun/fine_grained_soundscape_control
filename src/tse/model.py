@@ -2,8 +2,8 @@ from __future__ import annotations
 
 """TSE model wrapper.
 
-Re-exports the original model classes from the parent project and provides
-a ``load_pretrained()`` helper for checkpoint loading.
+Provides a ``load_pretrained()`` helper for checkpoint loading from
+HuggingFace Hub.
 """
 
 import logging
@@ -11,7 +11,7 @@ from typing import Any
 
 import torch
 
-# Re-export original classes for direct use
+# Re-export model classes
 from src.tse.net import Net
 from src.tse.multiflim_guided_tfnet import MultiFiLMGuidedTFNet
 from src.tse.gridnet_block import GridNetBlock

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 """SED evaluation entry-point.
 
-Supports MisophoniaDataset (original) and SoundscapeDataset (new),
+Supports MisophoniaDataset and SoundscapeDataset,
 with optional per-class optimal thresholds for paper reproduction.
 
 Usage examples::
@@ -68,7 +68,7 @@ _DATASET_TO_AUDIOSET = {
 
 
 def _load_base_ast(device: str = "cuda"):
-    """Load base AST (527-class, AudioSet pretrained) — same as original yamnet eval.
+    """Load base AST (527-class, AudioSet pretrained).
 
     Returns:
         model: ASTForAudioClassification wrapper
@@ -110,7 +110,7 @@ def _run_base_ast_inference(
 ):
     """Run inference with base 527-class AST + softmax + label filter.
 
-    Matches original yamnet eval.py pipeline exactly:
+    Pipeline:
     1. feature_extractor → AST → softmax(527)
     2. scores[:, label_filter] → 20 classes
     3. max pooling over frames (no-op for clip-level AST)
@@ -149,7 +149,7 @@ def _run_base_ast_inference(
             # Filter to 20 classes
             filtered = scores[:, label_filter].cpu().numpy()  # (B, 20)
 
-            # Max pooling (no-op for clip-level, but matches original)
+            # Max pooling (no-op for clip-level)
             filtered = np.max(filtered, axis=0, keepdims=True)
 
             all_predictions.append(filtered)
@@ -493,7 +493,7 @@ def parse_args(argv=None):
     parser.add_argument("--model", type=str, default=None)
     parser.add_argument(
         "--base_ast", action="store_true",
-        help="Use base 527-class AST with softmax + label filter (original paper eval)",
+        help="Use base 527-class AST with softmax + label filter (paper eval)",
     )
 
     # Dataset
@@ -568,7 +568,7 @@ def main(argv=None):
     base_ast_components = None
 
     if use_base_ast:
-        logger.info("=== Using base 527-class AST (original paper eval) ===")
+        logger.info("=== Using base 527-class AST (paper eval) ===")
         ast_model, feature_extractor, label_filter, class_names_527 = _load_base_ast(device)
         total_params = sum(p.numel() for p in ast_model.parameters())
         base_ast_components = (ast_model, feature_extractor, label_filter)

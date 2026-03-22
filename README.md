@@ -189,7 +189,7 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │       └── upload.py           # Upload script
 ├── src/
 │   ├── datasets/
-│   │   ├── MisophoniaDataset.py    # On-the-fly binaural synthesis (original)
+│   │   ├── MisophoniaDataset.py    # On-the-fly binaural synthesis
 │   │   ├── soundscape_dataset.py   # Simplified dataset interface
 │   │   ├── multi_ch_simulator.py   # HRTF spatialization (CIPIC, etc.)
 │   │   ├── motion_simulator.py     # Sound source motion
@@ -204,7 +204,7 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │   │   └── sed.py                  # mAP, F1, AUC-ROC, d-prime
 │   ├── tse/
 │   │   ├── model.py                # Pretrained model loading
-│   │   ├── net.py                  # TFGridNet STFT wrapper (original)
+│   │   ├── net.py                  # TFGridNet STFT wrapper
 │   │   ├── multiflim_guided_tfnet.py  # FiLM-conditioned separator
 │   │   ├── gridnet_block.py        # Time-frequency processing block
 │   │   ├── loss.py                 # Multi-resolution STFT + L1 loss
@@ -212,7 +212,7 @@ fine_grained_soundscape_control_for_augmented_hearing/
 │   │   └── eval.py                 # TSE evaluation entry
 │   └── sed/
 │       ├── model.py                # Pretrained AST loading
-│       ├── ast_hf.py               # HuggingFace AST wrapper (original)
+│       ├── ast_hf.py               # HuggingFace AST wrapper
 │       ├── loss.py                 # BCE + Focal loss
 │       ├── train.py                # SED training entry
 │       └── eval.py                 # SED evaluation entry

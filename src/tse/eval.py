@@ -2,9 +2,8 @@ from __future__ import annotations
 
 """TSE evaluation entry point.
 
-Reproduces the exact evaluation logic from the original Sementic-Listening-v2
-``src/eval.py``, including:
-- On-the-fly dataset from config (original MisophoniaDataset)
+Supports:
+- On-the-fly dataset from config (MisophoniaDataset)
 - Per-label inference for nO=1 models (one-hot embedding per active source)
 - Direct multi-output for nO>1 models
 - ``compute_metrics_tse`` with ``label_vector`` for active-channel matching
@@ -34,14 +33,14 @@ logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
-# Metric helpers (from original src/metrics/metrics.py)
+# Metric helpers
 # ---------------------------------------------------------------------------
 
 from src.metrics.tse import Metrics, compute_metrics_tse
 
 
 # ---------------------------------------------------------------------------
-# Model loading — mirrors original utils.load_pretrained
+# Model loading
 # ---------------------------------------------------------------------------
 
 def _import_attr(path: str):
@@ -94,11 +93,11 @@ def _load_model_from_pretrained(repo_id: str, model_name: str):
 
 
 # ---------------------------------------------------------------------------
-# Dataset loading — uses original MisophoniaDataset via config
+# Dataset loading
 # ---------------------------------------------------------------------------
 
 def _build_dataset(params: dict, data_dir: str | None = None):
-    """Build test dataset from config, matching original eval.py logic."""
+    """Build test dataset from config."""
     test_data_args = dict(params["onflight_test_data_args"])
     test_data_args["split"] = "test"
 
@@ -137,14 +136,14 @@ def _build_dataset(params: dict, data_dir: str | None = None):
 
 
 # ---------------------------------------------------------------------------
-# Evaluation loop — mirrors original src/eval.py lines 394-615
+# Evaluation loop
 # ---------------------------------------------------------------------------
 
 @torch.no_grad()
 def evaluate(model, test_loader, params, device, output_dir):
-    """Run evaluation matching the original eval.py logic exactly."""
+    """Run evaluation loop over test set."""
 
-    # Initialize metrics (same as original)
+    # Initialize metrics
     metrics_func_names_list = [
         "snr_i",
         "snr_per_channel",
@@ -190,7 +189,7 @@ def evaluate(model, test_loader, params, device, output_dir):
                 inputs[k] = torch.from_numpy(inputs[k]).unsqueeze(0).to(device)
 
         # ----------------------------------------------------------
-        # Inference — matches original eval.py lines 460-514
+        # Inference
         # ----------------------------------------------------------
         label_vector = inputs["label_vector"]
 
@@ -220,7 +219,7 @@ def evaluate(model, test_loader, params, device, output_dir):
             output = outputs["output"]
 
         # ----------------------------------------------------------
-        # Compute metrics — matches original eval.py lines 571-606
+        # Compute metrics
         # ----------------------------------------------------------
         if isinstance(gt, np.ndarray):
             gt = torch.from_numpy(gt).unsqueeze(0)
