@@ -295,4 +295,8 @@ class _WaveformerWrapper(torch.nn.Module):
         # Waveformer predict — processes full sequence
         output, _, _, _ = self.model.predict(x, label, enc_buf, dec_buf, out_buf)
 
+        # Waveformer outputs stereo (B, 2, T) — convert to mono (B, 1, T)
+        if output.shape[1] == 2:
+            output = output.mean(dim=1, keepdim=True)
+
         return {"output": output}
