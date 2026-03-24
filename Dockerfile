@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir jupyterlab
 
 # Copy source code
 COPY . .
@@ -24,4 +25,4 @@ VOLUME ["/data"]
 # Default output mount point
 VOLUME ["/output"]
 
-ENTRYPOINT ["python", "-m"]
+EXPOSE 8888
