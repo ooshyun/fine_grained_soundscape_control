@@ -880,7 +880,7 @@ class MisophoniaDataset(Dataset):
 
             cnt_attempts += 1
             if cnt_attempts > n_attempts:
-                logging.warning(
+                logging.debug(
                     f"MisophoniaDataset: Failed to sample a valid source {src_audio_path} audio after {n_attempts} attempts"
                 )
                 # Use thread-local threshold adjustment to avoid race conditions

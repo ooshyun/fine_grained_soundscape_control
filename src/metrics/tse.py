@@ -3,7 +3,7 @@ import torch.nn as nn
 
 from torchaudio.functional import resample
 
-from torchmetrics.functional import (
+from torchmetrics.audio import (
     scale_invariant_signal_distortion_ratio as si_sdr,
     scale_invariant_signal_noise_ratio as si_snr,
     signal_noise_ratio as snr,
