@@ -58,6 +58,7 @@ docker rm -f "${CONTAINER_NAME}" 2>/dev/null || true
 docker run --rm -d \
     --name "${CONTAINER_NAME}" \
     --gpus all \
+    --shm-size=2g \
     -p "${PORT}:8888" \
     -e HF_HUB_OFFLINE=1 \
     -e TRANSFORMERS_OFFLINE=1 \
