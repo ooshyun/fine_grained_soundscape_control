@@ -556,6 +556,7 @@ def main(argv=None):
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     )
+    logging.getLogger("root").setLevel(logging.WARNING)
 
     config = None
     if args.config:

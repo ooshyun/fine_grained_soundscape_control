@@ -441,6 +441,8 @@ def main(argv: list[str] | None = None) -> None:
         level=logging.INFO,
         format="%(asctime)s %(name)s %(levelname)s: %(message)s",
     )
+    # Suppress verbose dataset init logs
+    logging.getLogger("root").setLevel(logging.WARNING)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info("Device: %s", device)
