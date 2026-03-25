@@ -1,6 +1,8 @@
 from __future__ import annotations
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning, module="torchmetrics")
+import os
+os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
 
 """SED evaluation entry-point.
 
@@ -30,6 +32,9 @@ import numpy as np
 import torch
 import yaml
 from torch.utils.data import DataLoader
+
+import transformers
+transformers.logging.set_verbosity_error()
 
 from src.metrics.sed import ClassificationMetrics
 from src.sed.model import ASTModel, load_pretrained
