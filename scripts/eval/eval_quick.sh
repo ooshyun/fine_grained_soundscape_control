@@ -2,7 +2,7 @@
 # Quick Evaluation — subset of paper results (~1.5 hours on single GPU)
 #
 # TSE: Table 3 FiLM=All variants (orange_pi, raspberry_pi, neuralaid) × 2000 samples
-# SED: Best case (tgt=1, bg=1-1) + Worst case (tgt=5, bg=1-3) × 2000 samples
+# SED: Best case (tgt=1) + Worst case (tgt=5) × 2000 samples
 #
 # Usage:
 #   bash scripts/eval/eval_quick.sh <data_dir> [output_dir]
@@ -46,18 +46,18 @@ SED_COMMON="--pretrained ooshyun/sound_event_detection --model finetuned_ast \
     --find_thresholds --val_samples 2000"
 
 echo ""
-echo "--- Best case: tgt=1, bg=1-1 --- $(date)"
+echo "--- Best case: tgt=1 --- $(date)"
 python -m src.sed.eval ${SED_COMMON} \
     --num_fg_min 1 --num_fg_max 1 \
     --num_bg_min 1 --num_bg_max 1 \
-    --output_dir "${OUTPUT_DIR}/sed/tgt1_bg1-1"
+    --output_dir "${OUTPUT_DIR}/sed/tgt1"
 
 echo ""
-echo "--- Worst case: tgt=5, bg=1-3 --- $(date)"
+echo "--- Worst case: tgt=5 --- $(date)"
 python -m src.sed.eval ${SED_COMMON} \
     --num_fg_min 5 --num_fg_max 5 \
-    --num_bg_min 1 --num_bg_max 3 \
-    --output_dir "${OUTPUT_DIR}/sed/tgt5_bg1-3"
+    --num_bg_min 1 --num_bg_max 1 \
+    --output_dir "${OUTPUT_DIR}/sed/tgt5"
 
 # ============================================================
 # Summary

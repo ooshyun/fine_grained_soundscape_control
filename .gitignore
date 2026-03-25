@@ -24,3 +24,5 @@ raw_datasets/
 BinauralCuratedDataset/
 outputs/
 eval_results/
+*.crt
+*.key
