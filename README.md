@@ -9,8 +9,17 @@ Paper: [arXiv:2603.00395](https://arxiv.org/abs/2603.00395) | MobiSys 2026
 ### 1. Install
 
 ```bash
+git clone --recursive https://github.com/ooshyun/fine_grained_soundscape_control.git
+cd fine_grained_soundscape_control
 pip install -r requirements.txt
 ```
+
+If you already cloned without `--recursive`, initialize the required submodule:
+```bash
+git submodule update --init third_party/SemanticHearing
+```
+
+> **Note**: Only `third_party/SemanticHearing` is required for evaluation (Waveformer baseline). Other submodules are private and can be ignored.
 
 ### 2. Setup dataset
 
