@@ -1,13 +1,16 @@
+import warnings
 import torch
 import torch.nn as nn
 
 from torchaudio.functional import resample
 
-from torchmetrics.audio import (
-    scale_invariant_signal_distortion_ratio as si_sdr,
-    scale_invariant_signal_noise_ratio as si_snr,
-    signal_noise_ratio as snr,
-)
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore", category=FutureWarning, module="torchmetrics")
+    from torchmetrics.functional import (
+        scale_invariant_signal_distortion_ratio as si_sdr,
+        scale_invariant_signal_noise_ratio as si_snr,
+        signal_noise_ratio as snr,
+    )
 
 from torchmetrics.functional.audio.stoi import (
     short_time_objective_intelligibility as STOI,
