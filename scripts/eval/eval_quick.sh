@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Quick Evaluation — subset of paper results (~1.5 hours on single GPU)
 #
-# TSE: Table 3 FiLM=All variants (orange_pi, raspberry_pi, neuralaid) × 2000 samples
+# TSE: Table 3 FiLM=All variants (orange_pi, neuralaid) × 2000 samples
 # SED: Best case (tgt=1) + Worst case (tgt=5) × 2000 samples
 #
 # Usage:
@@ -23,7 +23,7 @@ echo "============================================================"
 # ============================================================
 echo ""
 echo "========== TSE: FiLM=All Models (Table 1 & 3) =========="
-for model in orange_pi raspberry_pi neuralaid; do
+for model in orange_pi neuralaid; do
     model_name="${model}_film_all"
     echo ""
     echo "--- ${model_name} --- $(date)"
@@ -69,8 +69,8 @@ echo "============================================================"
 
 echo ""
 echo "=== TSE (Table 1 & 3: FiLM=All) ==="
-echo "  Paper values: OrangePi SNRi=12.26, RaspberryPi ~10.5, NeuralAids SNRi=10.50"
-for model in orange_pi raspberry_pi neuralaid; do
+echo "  Paper values: OrangePi SNRi=12.26, NeuralAids SNRi=10.50"
+for model in orange_pi neuralaid; do
     f="${OUTPUT_DIR}/tse/${model}_film_all/metrics_total_averages.json"
     [ -f "$f" ] && python3 -c "
 import json; d=json.load(open('$f'))
