@@ -59,6 +59,8 @@ docker run --rm -d \
     --name "${CONTAINER_NAME}" \
     --gpus all \
     -p "${PORT}:8888" \
+    -e HF_HUB_OFFLINE=1 \
+    -e TRANSFORMERS_OFFLINE=1 \
     -v "${DATA_DIR}:/data:ro" \
     -v "${MODEL_CACHE}:/root/.cache/huggingface:ro" \
     -v "${OUTPUT_DIR}:/output" \
