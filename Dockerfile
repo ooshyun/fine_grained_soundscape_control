@@ -19,6 +19,12 @@ RUN pip install --no-cache-dir jupyterlab
 # Copy source code
 COPY . .
 
+# Ensure submodule is present (needed for Waveformer baseline)
+RUN if [ ! -f third_party/SemanticHearing/src/training/dcc_tf.py ]; then \
+        git submodule update --init third_party/SemanticHearing || \
+        git clone https://github.com/vb000/SemanticHearing.git third_party/SemanticHearing; \
+    fi
+
 # Default data mount point
 VOLUME ["/data"]
 
