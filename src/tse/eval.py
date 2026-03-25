@@ -268,7 +268,7 @@ def evaluate(model, test_loader, params, device, output_dir):
 
         # Update progress bar
         desc_parts = []
-        for mn in ["snr_i", "si_sdr", "si_sdr_i"]:
+        for mn in ["snr_i", "si_sdr_i"]:
             if mn in metrics_avg:
                 desc_parts.append(f"{mn}: {metrics_avg[mn]:.4f}")
         pbar.set_description(f"Avg: {', '.join(desc_parts)}")
@@ -298,6 +298,8 @@ def evaluate(model, test_loader, params, device, output_dir):
     logger.info("  FINAL RESULTS")
     logger.info("=" * 60)
     for mn, val in sorted(metrics_avg.items()):
+        if "per_channel" in mn or mn == "si_sdr":
+            continue
         logger.info("  %s: %.4f", mn, val)
 
     return metrics_avg, records
