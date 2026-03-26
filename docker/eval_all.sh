@@ -100,26 +100,12 @@ SED_COMMON="src.sed.eval \
 
 for tgt in 1 2 3 4 5; do
     echo ""
-    echo "--- tgt=${tgt}, bg=1-1 ---"
+    echo "--- tgt=${tgt}, bg=1-2 ---"
     ${DOCKER_RUN} ${SED_COMMON} \
         --num_fg_min ${tgt} --num_fg_max ${tgt} \
-        --num_bg_min 1 --num_bg_max 1 \
-        --output_dir "/output/table4/tgt${tgt}_bg1-1"
+        --num_bg_min 1 --num_bg_max 2 \
+        --output_dir "/output/table4/tgt${tgt}_bg1-2"
 done
-
-echo ""
-echo "--- tgt=1, bg=1-3 ---"
-${DOCKER_RUN} ${SED_COMMON} \
-    --num_fg_min 1 --num_fg_max 1 \
-    --num_bg_min 1 --num_bg_max 3 \
-    --output_dir "/output/table4/tgt1_bg1-3"
-
-echo ""
-echo "--- tgt=5, bg=1-3 ---"
-${DOCKER_RUN} ${SED_COMMON} \
-    --num_fg_min 5 --num_fg_max 5 \
-    --num_bg_min 1 --num_bg_max 3 \
-    --output_dir "/output/table4/tgt5_bg1-3"
 
 # ============================================================
 # Summary

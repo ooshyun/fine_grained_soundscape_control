@@ -49,14 +49,14 @@ echo ""
 echo "--- Best case: tgt=1 --- $(date)"
 python -m src.sed.eval ${SED_COMMON} \
     --num_fg_min 1 --num_fg_max 1 \
-    --num_bg_min 1 --num_bg_max 1 \
+    --num_bg_min 1 --num_bg_max 2 \
     --output_dir "${OUTPUT_DIR}/sed/tgt1"
 
 echo ""
 echo "--- Worst case: tgt=5 --- $(date)"
 python -m src.sed.eval ${SED_COMMON} \
     --num_fg_min 5 --num_fg_max 5 \
-    --num_bg_min 1 --num_bg_max 1 \
+    --num_bg_min 1 --num_bg_max 2 \
     --output_dir "${OUTPUT_DIR}/sed/tgt5"
 
 # ============================================================

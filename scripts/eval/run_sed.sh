@@ -4,9 +4,8 @@
 # Reproduces paper Table 4 metrics: Accuracy, Precision, Recall, F1
 # Method: per-class F1-maximizing thresholds found on val set → applied to test set
 #
-# 7 conditions from paper §4.2:
-#   tgt={1,2,3,4,5} × bg=1-1, noise=1-1
-#   tgt={1,5}       × bg=1-3, noise=1-1
+# 5 conditions from paper §4.2 (Table 4, 5s duration):
+#   tgt={1,2,3,4,5} × bg=1-2, noise=1-1
 #
 # Usage:
 #   bash scripts/eval/run_sed.sh <data_dir> [output_dir] [--thresholds <path>]
@@ -49,34 +48,16 @@ echo "  Output: ${OUTPUT_DIR}"
 echo "============================================================"
 echo ""
 
-# Condition 1-5: tgt={1..5}, bg=1-1
+# Conditions 1-5: tgt={1..5}, bg=1-2 (paper §3.3: 1-2 interfering classes)
 for tgt in 1 2 3 4 5; do
-    echo "--- tgt=${tgt}, bg=1-1 ---"
+    echo "--- tgt=${tgt}, bg=1-2 ---"
     python -m src.sed.eval ${COMMON_ARGS} \
         --num_fg_min ${tgt} --num_fg_max ${tgt} \
-        --num_bg_min 1 --num_bg_max 1 \
+        --num_bg_min 1 --num_bg_max 2 \
         ${THRESHOLD_ARG} \
-        --output_dir "${OUTPUT_DIR}/tgt${tgt}_bg1-1"
+        --output_dir "${OUTPUT_DIR}/tgt${tgt}_bg1-2"
     echo ""
 done
-
-# Condition 6: tgt=1, bg=1-3
-echo "--- tgt=1, bg=1-3 ---"
-python -m src.sed.eval ${COMMON_ARGS} \
-    --num_fg_min 1 --num_fg_max 1 \
-    --num_bg_min 1 --num_bg_max 3 \
-    ${THRESHOLD_ARG} \
-    --output_dir "${OUTPUT_DIR}/tgt1_bg1-3"
-echo ""
-
-# Condition 7: tgt=5, bg=1-3
-echo "--- tgt=5, bg=1-3 ---"
-python -m src.sed.eval ${COMMON_ARGS} \
-    --num_fg_min 5 --num_fg_max 5 \
-    --num_bg_min 1 --num_bg_max 3 \
-    ${THRESHOLD_ARG} \
-    --output_dir "${OUTPUT_DIR}/tgt5_bg1-3"
-echo ""
 
 echo "✓ Table 4 results saved to ${OUTPUT_DIR}/"
 echo ""
