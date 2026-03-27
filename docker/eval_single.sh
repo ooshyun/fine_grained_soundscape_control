@@ -29,9 +29,11 @@ IMAGE="fine-grained-soundscape"
 
 if [ "$TASK" = "tse" ]; then
     docker run --rm --gpus all \
+        --shm-size=2g \
         -v "${DATA_DIR}:/data:ro" \
         -v "${OUTPUT_DIR}:/output" \
-        "${IMAGE}" src.tse.eval \
+        -w /app \
+        "${IMAGE}" python -m src.tse.eval \
         --pretrained ooshyun/fine_grained_soundscape_control \
         --model "${MODEL}" \
         --data_dir /data \
@@ -39,9 +41,11 @@ if [ "$TASK" = "tse" ]; then
         ${EXTRA_ARGS}
 elif [ "$TASK" = "sed" ]; then
     docker run --rm --gpus all \
+        --shm-size=2g \
         -v "${DATA_DIR}:/data:ro" \
         -v "${OUTPUT_DIR}:/output" \
-        "${IMAGE}" src.sed.eval \
+        -w /app \
+        "${IMAGE}" python -m src.sed.eval \
         --pretrained ooshyun/sound_event_detection \
         --model "${MODEL}" \
         --dataset misophonia \

@@ -26,9 +26,11 @@ mkdir -p "$OUTPUT_DIR"
 OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
 
 DOCKER_RUN="docker run --rm --gpus all \
+    --shm-size=2g \
     -v ${DATA_DIR}:/data:ro \
     -v ${OUTPUT_DIR}:/output \
-    ${IMAGE}"
+    -w /app \
+    ${IMAGE} python -m"
 
 echo "============================================================"
 echo "  Paper Evaluation (Docker)"

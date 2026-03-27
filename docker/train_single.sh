@@ -21,9 +21,11 @@ OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
 IMAGE="fine-grained-soundscape"
 
 docker run --rm --gpus all \
+    --shm-size=2g \
     -v "${DATA_DIR}:/data:ro" \
     -v "${OUTPUT_DIR}:/output" \
-    "${IMAGE}" "src.${TASK}.train" \
+    -w /app \
+    "${IMAGE}" python -m "src.${TASK}.train" \
     --config "${CONFIG}" \
     --data_dir /data \
     --output_dir /output
